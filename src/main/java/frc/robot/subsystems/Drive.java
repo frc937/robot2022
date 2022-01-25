@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.*;
@@ -17,7 +18,16 @@ public class Drive extends SubsystemBase {
       WPI_TalonSRX frontRight = new WPI_TalonSRX(Constants.ID_TALON_FRONT_RIGHT);
       WPI_TalonSRX rearLeft = new WPI_TalonSRX(Constants.ID_TALON_REAR_LEFT);
       WPI_TalonSRX rearRight = new WPI_TalonSRX(Constants.ID_TALON_REAR_RIGHT);
-  }
+
+      /* Invert the motor's driving direction */
+      frontLeft.setInverted(false);
+      frontRight.setInverted(false);
+      rearLeft.setInverted(false);
+      rearRight.setInverted(false);
+      
+      /* I believe this takes the motors and makes a list out of it called drivetrain. */ 
+      MecanumDrive drivetrain = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
+    }
 
   @Override
   public void periodic() {
