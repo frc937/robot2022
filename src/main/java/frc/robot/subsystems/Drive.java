@@ -11,22 +11,31 @@ import com.ctre.phoenix.motorcontrol.can.*;
 import frc.robot.Constants;
 
 public class Drive extends SubsystemBase {
+
+    /** Variables */
+    WPI_TalonSRX frontLeft;
+    WPI_TalonSRX frontRight;
+    WPI_TalonSRX rearLeft;
+    WPI_TalonSRX rearRight;
+
+    MecanumDrive drivetrain;
+
     /** Creates a new drivetrain subsystem. */
     public Drive() {
-        /* Create all our motors */
-        WPI_TalonSRX frontLeft = new WPI_TalonSRX(Constants.ID_TALON_FRONT_LEFT);
-        WPI_TalonSRX frontRight = new WPI_TalonSRX(Constants.ID_TALON_FRONT_RIGHT);
-        WPI_TalonSRX rearLeft = new WPI_TalonSRX(Constants.ID_TALON_REAR_LEFT);
-        WPI_TalonSRX rearRight = new WPI_TalonSRX(Constants.ID_TALON_REAR_RIGHT);
+        /** Create all our motors */
+        frontLeft = new WPI_TalonSRX(Constants.ID_TALON_FRONT_LEFT);
+        frontRight = new WPI_TalonSRX(Constants.ID_TALON_FRONT_RIGHT);
+        rearLeft = new WPI_TalonSRX(Constants.ID_TALON_REAR_LEFT);
+        rearRight = new WPI_TalonSRX(Constants.ID_TALON_REAR_RIGHT);
 
-        /* Invert the motor's driving direction */
+        /** Invert the motor's driving direction */
         frontLeft.setInverted(false);
         frontRight.setInverted(false);
         rearLeft.setInverted(false);
         rearRight.setInverted(false);
         
-        /* I believe this takes the motors and makes a list out of it called drivetrain. */ 
-        MecanumDrive drivetrain = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
+        /** I believe this takes the motors and makes a list out of it called drivetrain. */ 
+        drivetrain = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
     }
 
     @Override
