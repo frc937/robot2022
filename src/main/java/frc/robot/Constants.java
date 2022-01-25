@@ -14,9 +14,7 @@ package frc.robot;
  */
 public final class Constants {
 
-    /* Drive motor IDs
-     * I believe they are CAN IDs, but I could be wrong. Feel free to correct me if I am. (- Gabe)
-     */
+    /** Drive motor CAN IDs */
     public static final int ID_TALON_FRONT_LEFT = 0;
     public static final int ID_TALON_FRONT_RIGHT = 1;
     public static final int ID_TALON_REAR_LEFT = 2;

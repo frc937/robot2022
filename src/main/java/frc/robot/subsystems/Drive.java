@@ -22,19 +22,19 @@ public class Drive extends SubsystemBase {
 
     /** Creates a new drivetrain subsystem. */
     public Drive() {
-        /** Create all our motors */
+        /** Initializes drive motor controllers */
         frontLeft = new WPI_TalonSRX(Constants.ID_TALON_FRONT_LEFT);
         frontRight = new WPI_TalonSRX(Constants.ID_TALON_FRONT_RIGHT);
         rearLeft = new WPI_TalonSRX(Constants.ID_TALON_REAR_LEFT);
         rearRight = new WPI_TalonSRX(Constants.ID_TALON_REAR_RIGHT);
 
-        /** Invert the motor's driving direction */
+        /** Sets default drive directions */
         frontLeft.setInverted(false);
         frontRight.setInverted(false);
         rearLeft.setInverted(false);
         rearRight.setInverted(false);
         
-        /** I believe this takes the motors and makes a list out of it called drivetrain. */ 
+        /** Initializes a mecanum drivetrain */ 
         drivetrain = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
     }
 
