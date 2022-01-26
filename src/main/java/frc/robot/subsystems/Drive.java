@@ -38,7 +38,7 @@ public class Drive extends SubsystemBase {
         drivetrain = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
     }
 
-    public void move(double x, double y, double z,) {
+    public void move(double x, double y, double z) {
         /** Sets the default drive mode to Cartesian */
         drivetrain.driveCartesian(x, y, z);
     }
