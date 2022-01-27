@@ -34,6 +34,17 @@ public class Drive extends SubsystemBase {
         frontRight.setInverted(false);
         rearRight.setInverted(false);
         
+        /* WHEN SETTING UP PID IN A BIT
+         * Instead of writing the same config statements for each
+         * motor and creating tonnes of boilerplate, we could create 
+         * a method that configures a Talon object that we pass to
+         * it.
+         * Also, if it turns out that we need to configure lots of 
+         * different parts in this manner, we could create a big static
+         * class with lots of static methods to configure different
+         * components (similar to Constants).
+         */
+
         /** Initializes a mecanum drivetrain */ 
         drivetrain = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
     }
