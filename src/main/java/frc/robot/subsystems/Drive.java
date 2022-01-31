@@ -17,8 +17,8 @@ public class Drive extends SubsystemBase {
 
     /** Variables */
     WPI_TalonSRX frontLeft;
-    WPI_TalonSRX frontRight;
     WPI_TalonSRX rearLeft;
+    WPI_TalonSRX frontRight;
     WPI_TalonSRX rearRight;
 
     MecanumDrive drivetrain;
@@ -29,14 +29,14 @@ public class Drive extends SubsystemBase {
     public Drive() {
         /** Initializes drive motor controllers */
         frontLeft = new WPI_TalonSRX(Constants.ID_TALON_FRONT_LEFT);
-        frontRight = new WPI_TalonSRX(Constants.ID_TALON_FRONT_RIGHT);
         rearLeft = new WPI_TalonSRX(Constants.ID_TALON_REAR_LEFT);
+        frontRight = new WPI_TalonSRX(Constants.ID_TALON_FRONT_RIGHT);
         rearRight = new WPI_TalonSRX(Constants.ID_TALON_REAR_RIGHT);
 
         /** Sets default drive directions */
         frontLeft.setInverted(false);
-        frontRight.setInverted(false);
         rearLeft.setInverted(false);
+        frontRight.setInverted(false);
         rearRight.setInverted(false);
         
         /** Initializes a mecanum drivetrain */ 
