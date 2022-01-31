@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -22,6 +23,8 @@ public class RobotContainer {
 
     private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
+    public static XboxController controller = new XboxController(Constants.CONTROLLER_NUMBER);
+
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
         // Configure the button bindings
@@ -34,7 +37,19 @@ public class RobotContainer {
      * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
      * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
-    private void configureButtonBindings() {}
+    private void configureButtonBindings() {
+        JoystickButton aButton = new JoystickButton(controller, Constants.A_NUMBER);
+        JoystickButton bButton = new JoystickButton(controller, Constants.B_NUMBER);
+        JoystickButton xButton = new JoystickButton(controller, Constants.X_NUMBER);
+        JoystickButton yButton = new JoystickButton(controller, Constants.Y_NUMBER);
+        JoystickButton leftBumper = new JoystickButton(controller, Constants.LEFT_BUMPER_NUMBER);
+        JoystickButton rightBumper = new JoystickButton(controller, Constants.RIGHT_BUMPER_NUMBER);
+        JoystickButton backButton = new JoystickButton(controller, Constants.BACK_NUMBER);
+        JoystickButton startButton = new JoystickButton(controller, Constants.START_NUMBER);
+        JoystickButton leftStick = new JoystickButton(controller, Constants.LEFT_STICK_NUMBER);
+        JoystickButton rightStick = new JoystickButton(controller, Constants.RIGHT_STICK_NUMBER);
+    }
+    
 
     /**
      * Use this to pass the autonomous command to the main {@link Robot} class.
