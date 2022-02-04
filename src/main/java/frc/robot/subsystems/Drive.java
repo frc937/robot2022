@@ -8,7 +8,10 @@ import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.*;
+import com.kauailabs.navx.frc.AHRS;
+
 import frc.robot.Constants;
+import frc.robot.Robot;
 
 public class Drive extends SubsystemBase {
 
@@ -19,6 +22,8 @@ public class Drive extends SubsystemBase {
     WPI_TalonSRX rearRight;
 
     MecanumDrive drivetrain;
+
+    AHRS ahrs;
 
     /** Creates a new drivetrain subsystem. */
     public Drive() {
@@ -49,9 +54,10 @@ public class Drive extends SubsystemBase {
         drivetrain = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
     }
 
-    public void move(double x, double y, double z,) {
+
+    public void move(double x, double y, double z) {
         /* Sets the default drive mode to Cartesian */
-        drivetrain.driveCartesian(x, y, z);
+        drivetrain.driveCartesian(x, y, z, ahrs.getAngle());
     }
 
     @Override
