@@ -15,7 +15,7 @@ import frc.robot.Robot;
 
 public class Drive extends SubsystemBase {
 
-    /** Variables */
+    /* Variables */
     WPI_TalonSRX frontLeft;
     WPI_TalonSRX rearLeft;
     WPI_TalonSRX frontRight;
@@ -27,24 +27,36 @@ public class Drive extends SubsystemBase {
 
     /** Creates a new drivetrain subsystem. */
     public Drive() {
-        /** Initializes drive motor controllers */
+        /* Initializes drive motor controllers */
         frontLeft = new WPI_TalonSRX(Constants.ID_TALON_FRONT_LEFT);
         rearLeft = new WPI_TalonSRX(Constants.ID_TALON_REAR_LEFT);
         frontRight = new WPI_TalonSRX(Constants.ID_TALON_FRONT_RIGHT);
         rearRight = new WPI_TalonSRX(Constants.ID_TALON_REAR_RIGHT);
 
-        /** Sets default drive directions */
+        /* Sets default drive directions */
         frontLeft.setInverted(false);
         rearLeft.setInverted(false);
         frontRight.setInverted(false);
         rearRight.setInverted(false);
         
-        /** Initializes a mecanum drivetrain */ 
+        /* WHEN SETTING UP PID IN A BIT
+         * Instead of writing the same config statements for each
+         * motor and creating tonnes of boilerplate, we could create 
+         * a method that configures a Talon object that we pass to
+         * it.
+         * Also, if it turns out that we need to configure lots of 
+         * different parts in this manner, we could create a big static
+         * class with lots of static methods to configure different
+         * components (similar to Constants).
+         */
+
+        /* Initializes a mecanum drivetrain */ 
         drivetrain = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
     }
 
+
     public void move(double x, double y, double z) {
-        /** Sets the default drive mode to Cartesian */
+        /* Sets the default drive mode to Cartesian */
         drivetrain.driveCartesian(x, y, z, ahrs.getAngle());
     }
 
