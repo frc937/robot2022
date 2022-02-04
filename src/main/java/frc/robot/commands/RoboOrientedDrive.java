@@ -27,4 +27,15 @@ public class RoboOrientedDrive extends CommandBase {
 
     }
 
+    @Override
+    public void end(boolean interrupted) {
+        drivetrain.stop();
+
+    }
+
+    @Override
+    public boolean isFinished() {
+        return false;
+    }
+
 }
