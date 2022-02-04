@@ -7,7 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.RoboOrientedDrive;
+import frc.robot.commands.DriveRobotOriented;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Drive;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -25,7 +25,7 @@ public class RobotContainer {
     private final Drive driveSubsystem = new Drive();
 
     private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-    private final RoboOrientedDrive driveRO = new RoboOrientedDrive(driveSubsystem);
+    private final DriveRobotOriented driveRO = new DriveRobotOriented(driveSubsystem);
 
     public static XboxController controller = new XboxController(Constants.CONTROLLER_NUMBER);
 

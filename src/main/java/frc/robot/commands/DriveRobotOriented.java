@@ -6,7 +6,7 @@ import frc.robot.RobotContainer;
 import frc.robot.subsystems.Drive;
 
 
-public class RoboOrientedDrive extends CommandBase {
+public class DriveRobotOriented extends CommandBase {
 
     /* Variables */
     private final Drive drivetrain;
@@ -14,7 +14,7 @@ public class RoboOrientedDrive extends CommandBase {
     private double mecanumY;
     private double mecanumZ;
 
-    public RoboOrientedDrive(Drive driveSubsystem) {
+    public DriveRobotOriented(Drive driveSubsystem) {
         drivetrain = driveSubsystem;
         addRequirements(driveSubsystem);
 
