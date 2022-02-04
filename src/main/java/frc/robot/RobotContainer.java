@@ -68,5 +68,44 @@ public class RobotContainer {
         public Command getDriveROCommand() {
             return driveRO;
         }
+    
+    public static double getLeftXAxis() {
+        return controller.getLeftX();
+    }
+
+    public static double getScaledLeftXAxis() {
+        return scaleAxis(getLeftXAxis());
+       }
+
+
+    public static double getLeftYAxis() {
+        return controller.getLeftX();
+    }
+
+    public static double getScaledLeftYAxis() {
+       return scaleAxis(getLeftYAxis());
+    }
+
+
+    public static double getRightXAxis() {
+        return controller.getRightX();
+    }
+
+    public static double getScaledRightXAxis() {
+        return scaleAxis(getRightXAxis());
+    }
+
+
+    public static double getRightYAxis() {
+        return controller.getRightY();
+    }
+
+    public static double getScaledRightYAxis() {
+        return scaleAxis(getRightYAxis());
+    }
+
+    private static double scaleAxis(double a) {
+        return Math.signum(a) * Math.pow(a, 4);
+    }
 
 }
