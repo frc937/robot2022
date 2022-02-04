@@ -10,8 +10,9 @@ public class RoboOrientedDrive extends CommandBase {
 
     /* Variables */
     private final Drive drivetrain;
-    // private double RoboOrientedY;
-    // private double RoboOrientedX;
+    private double mecanumX;
+    private double mecanumY;
+    private double mecanumZ;
 
     public RoboOrientedDrive(Drive driveSubsystem) {
         drivetrain = driveSubsystem;
@@ -27,9 +28,10 @@ public class RoboOrientedDrive extends CommandBase {
     @Override
     public void execute() {
         /* Gets the left and right axes of the robot and uses that to move */
-        // RoboOrientedY = RobotContainer.controller.getLeftY();
-        // RoboOrientedX = RobotContainer.controller.getLeftX();
-        drivetrain.move(RobotContainer.getScaledLeftXAxis(), RobotContainer.getScaledLeftYAxis(), RobotContainer.getScaledRightXAxis());
+        mecanumX = RobotContainer.getScaledLeftXAxis();
+        mecanumY = RobotContainer.getScaledLeftYAxis();
+        mecanumZ = RobotContainer.getScaledRightXAxis();
+        drivetrain.move(mecanumX, mecanumY, mecanumZ);
 
     }
 
