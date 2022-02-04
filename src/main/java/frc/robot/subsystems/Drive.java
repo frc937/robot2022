@@ -61,6 +61,10 @@ public class Drive extends SubsystemBase {
         drivetrain.driveCartesian(x, y, z);
     }
 
+    public void moveField(double y, double x, double z) {
+        drivetrain.driveCartesian(y, x, z, ahrs.getAngle());
+    }
+
     public void stop() {
         frontLeft.stopMotor();
         frontRight.stopMotor();
