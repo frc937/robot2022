@@ -55,7 +55,7 @@ public class Drive extends SubsystemBase {
     }
 
 
-    public void move(double y, double x, double z) {
+    public void moveRobot(double y, double x, double z) {
         /* Sets the default drive mode to Cartesian */
         //drivetrain.driveCartesian(x, y, z, ahrs.getAngle());
         drivetrain.driveCartesian(y, x, z);
