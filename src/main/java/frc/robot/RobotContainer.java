@@ -12,6 +12,7 @@ import frc.robot.commands.DriveRobotOriented;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Drive;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -28,6 +29,7 @@ public class RobotContainer {
     private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
     private final DriveRobotOriented driveRO = new DriveRobotOriented(driveSubsystem);
     private final DriveFieldOriented driveFO = new DriveFieldOriented(driveSubsystem);
+    private final InstantCommand resetGyro = new InstantCommand(driveSubsystem::resetGyro, driveSubsystem);
 
     public static XboxController controller = new XboxController(Constants.CONTROLLER_NUMBER);
 
