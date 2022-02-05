@@ -32,6 +32,16 @@ public final class Constants {
     public static final int DIO_PIN_CONTROL_WHEEL_ENCODER_0 = 2;
     public static final int DIO_PIN_CONTROL_WHEEL_ENCODER_1 = 3;
 
+    /* PID gains for shooter flywheel */
+    public static final int kFLYWHEEL_P = 1;
+    public static final int kFLYWHEEL_I = 0;
+    public static final int kFLYWHEEL_D = 0;
+
+    /* PID gains for shooter control wheel */
+    public static final int kCONTROL_WHEEL_P = 1;
+    public static final int kCONTROL_WHEEL_I = 0;
+    public static final int kCONTROL_WHEEL_D = 0;
+    
     /* Controller ID */
     public static final int CONTROLLER_NUMBER = 0;
 
