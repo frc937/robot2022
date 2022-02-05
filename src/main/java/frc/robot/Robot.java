@@ -29,6 +29,7 @@ public class Robot extends TimedRobot {
         // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
         // autonomous chooser on the dashboard.
         container = new RobotContainer();
+        defaultDriveCommand = container.getDriveROCommand();
     }
 
     /**
@@ -78,6 +79,7 @@ public class Robot extends TimedRobot {
         if (m_autonomousCommand != null) {
             m_autonomousCommand.cancel();
         }
+        defaultDriveCommand.schedule();
     }
 
     /** This function is called periodically during operator control. */
