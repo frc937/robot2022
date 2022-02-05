@@ -14,14 +14,28 @@ package frc.robot;
  */
 public final class Constants {
 
-    /** Drive motor CAN IDs */
+    /* Drive motor CAN IDs */
     public static final int ID_TALON_FRONT_LEFT = 0;
     public static final int ID_TALON_FRONT_RIGHT = 1;
     public static final int ID_TALON_REAR_LEFT = 2;
     public static final int ID_TALON_REAR_RIGHT = 3;
 
+    /* SPARK MAX CAN IDs for shooter */
+    public static final int ID_SPARKMAX_FLYWHEEL = 4;
+    public static final int ID_SPARKMAX_CONTROL_WHEEL = 5;
+
+    /* DIO pin numbers for shooter flywheel encoder */
+    public static final int DIO_PIN_FLYWHEEL_ENCODER_0 = 0;
+    public static final int DIO_PIN_FLYWHEEL_ENCODER_1 = 1;
+
+    /* DIO pin numbers for shooter control wheel encoder */
+    public static final int DIO_PIN_CONTROL_WHEEL_ENCODER_0 = 2;
+    public static final int DIO_PIN_CONTROL_WHEEL_ENCODER_1 = 3;
+
+    /* Controller ID */
     public static final int CONTROLLER_NUMBER = 0;
 
+    /* Controller button numbers */
     public static final int A_NUMBER = 1;
     public static final int B_NUMBER = 2;
     public static final int X_NUMBER = 3;
