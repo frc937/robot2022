@@ -59,6 +59,9 @@ public class RobotContainer {
 
         // This button binding is arbitrary, should probably be changed later
         backButton.whenPressed(resetGyro);
+
+        // Field oriented while stick pressed, we should make sure this is viable on the human end
+        leftStick.whileHeld(driveFO);
     }
     
 
@@ -74,10 +77,6 @@ public class RobotContainer {
 
     public Command getDriveROCommand() {
         return driveRO;
-    }
-
-    public Command getDriveFOCommand() {
-        return driveFO;
     }
     
     public static double getLeftXAxis() {
