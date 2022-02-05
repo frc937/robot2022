@@ -70,6 +70,10 @@ public class Drive extends SubsystemBase {
         rearRight.stopMotor();
     }
 
+    public void resetGyro() {
+        ahrs.reset();
+    }
+
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
