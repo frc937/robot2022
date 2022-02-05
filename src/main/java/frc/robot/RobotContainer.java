@@ -56,6 +56,9 @@ public class RobotContainer {
         JoystickButton startButton = new JoystickButton(controller, Constants.START_NUMBER);
         JoystickButton leftStick = new JoystickButton(controller, Constants.LEFT_STICK_NUMBER);
         JoystickButton rightStick = new JoystickButton(controller, Constants.RIGHT_STICK_NUMBER);
+
+        // This button binding is arbitrary, should probably be changed later
+        backButton.whenPressed(resetGyro);
     }
     
 
