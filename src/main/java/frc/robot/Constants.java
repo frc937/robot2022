@@ -14,6 +14,10 @@ package frc.robot;
  */
 public final class Constants {
 
+    /*
+     * TODO: TUNE ALLLLLLL OF THESE
+     */
+
     /* Drive motor CAN IDs */
     public static final int ID_TALON_FRONT_LEFT = 0;
     public static final int ID_TALON_FRONT_RIGHT = 1;
@@ -33,12 +37,18 @@ public final class Constants {
     public static final int kFLYWHEEL_I = 0;
     public static final int kFLYWHEEL_D = 0;
 
+    /* Flywheel feedforward settings */
+    /* 
+     * This, like the I and D above, may not actually be necessary for what we want to do.
+     * I'm going to do more research into PID and figure out if we actually need this or not.
+     */
+    public static final double FLYWHEEL_kSVOLTS = 0;
+    public static final double FLYWHEEL_kVVOLT_SECONDS_PER_ROTATION = 0;
+
     /* Speed to run the control wheel at */
-    /* TODO: TUNE THIS */
     public static final double CONTROL_WHEEL_SPEED = 0.1;
 
     /* Speed to run the flywheel at. I THINK it's in RPM. */
-    /* TODO: TUNE THIS TOO */
     public static final double FLYWHEEL_SETPOINT = 10;
     
     /* Controller ID */

@@ -11,6 +11,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj.Encoder;
 
 public class Shooter extends PIDSubsystem {
@@ -19,6 +20,8 @@ public class Shooter extends PIDSubsystem {
     private CANSparkMax controlWheel;
 
     private Encoder flywheelEncoder;
+
+    private SimpleMotorFeedforward flywheelFeedForward;
 
     /** Creates a new Shooter. */
     public Shooter() {
@@ -29,17 +32,27 @@ public class Shooter extends PIDSubsystem {
 
         flywheelEncoder = new Encoder(Constants.DIO_PIN_FLYWHEEL_ENCODER_0, Constants.DIO_PIN_FLYWHEEL_ENCODER_1);
 
+        flywheelFeedForward = new SimpleMotorFeedforward(Constants.FLYWHEEL_kSVOLTS, Constants.FLYWHEEL_kVVOLT_SECONDS_PER_ROTATION);
+
         setSetpoint(Constants.FLYWHEEL_SETPOINT);
     }
 
     @Override
     public void useOutput(double output, double setpoint) {
-        flywheel.setVoltage(output + setpoint);
+        flywheel.setVoltage(output + flywheelFeedForward.calculate(setpoint));
     }
 
     @Override
     public double getMeasurement() {
         return flywheelEncoder.getRate();
+    }
+
+    public boolean atSetpoint() {
+        /* 
+         * THIS NAME DOES NOT COMPLY WITH THIS PROJECT'S NAMING STANDARDS.
+         * Unfortunately, we're stuck with it, because WPILib created the name automatically.
+         */
+        return m_controller.atSetpoint();
     }
 
     public void runFeeder() {
