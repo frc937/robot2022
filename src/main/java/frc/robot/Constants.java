@@ -28,19 +28,18 @@ public final class Constants {
     public static final int DIO_PIN_FLYWHEEL_ENCODER_0 = 0;
     public static final int DIO_PIN_FLYWHEEL_ENCODER_1 = 1;
 
-    /* DIO pin numbers for shooter control wheel encoder */
-    public static final int DIO_PIN_CONTROL_WHEEL_ENCODER_0 = 2;
-    public static final int DIO_PIN_CONTROL_WHEEL_ENCODER_1 = 3;
-
     /* PID gains for shooter flywheel */
     public static final int kFLYWHEEL_P = 1;
     public static final int kFLYWHEEL_I = 0;
     public static final int kFLYWHEEL_D = 0;
 
-    /* PID gains for shooter control wheel */
-    public static final int kCONTROL_WHEEL_P = 1;
-    public static final int kCONTROL_WHEEL_I = 0;
-    public static final int kCONTROL_WHEEL_D = 0;
+    /* Speed to run the control wheel at */
+    /* TODO: TUNE THIS */
+    public static final double CONTROL_WHEEL_SPEED = 0.1;
+
+    /* Speed to run the flywheel at. I THINK it's in RPM. */
+    /* TODO: TUNE THIS TOO */
+    public static final double FLYWHEEL_SETPOINT = 10;
     
     /* Controller ID */
     public static final int CONTROLLER_NUMBER = 0;

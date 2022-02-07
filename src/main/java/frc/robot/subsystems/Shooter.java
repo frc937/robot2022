@@ -19,7 +19,6 @@ public class Shooter extends PIDSubsystem {
     private CANSparkMax controlWheel;
 
     private Encoder flywheelEncoder;
-    private Encoder controlWheelEncoder;
 
     /** Creates a new Shooter. */
     public Shooter() {
@@ -29,10 +28,27 @@ public class Shooter extends PIDSubsystem {
         controlWheel = new CANSparkMax(Constants.ID_SPARKMAX_CONTROL_WHEEL, MotorType.kBrushed);
 
         flywheelEncoder = new Encoder(Constants.DIO_PIN_FLYWHEEL_ENCODER_0, Constants.DIO_PIN_FLYWHEEL_ENCODER_1);
-        controlWheelEncoder= new Encoder(Constants.DIO_PIN_CONTROL_WHEEL_ENCODER_0, Constants.DIO_PIN_CONTROL_WHEEL_ENCODER_1);
+
+        setSetpoint(Constants.FLYWHEEL_SETPOINT);
     }
 
-    
+    @Override
+    public void useOutput(double output, double setpoint) {
+        flywheel.setVoltage(output + setpoint);
+    }
+
+    @Override
+    public double getMeasurement() {
+        return flywheelEncoder.getRate();
+    }
+
+    public void runFeeder() {
+        controlWheel.set(Constants.CONTROL_WHEEL_SPEED);
+    }
+
+    public void stopFeeder() {
+        controlWheel.set(0);
+    }
 
     @Override
     public void periodic() {
