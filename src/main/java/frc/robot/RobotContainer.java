@@ -65,8 +65,8 @@ public class RobotContainer {
         return m_autoCommand;
         }
 
-        public Command getDriveROCommand() {
-            return driveRO;
-        }
+    public Command getDriveROCommand() {
+        return driveRO;
+    }
 
 }
