@@ -6,12 +6,10 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.*;
 import com.kauailabs.navx.frc.AHRS;
 
 import frc.robot.Constants;
-import frc.robot.Robot;
 
 public class Drive extends SubsystemBase {
 
@@ -55,9 +53,25 @@ public class Drive extends SubsystemBase {
     }
 
 
-    public void move(double x, double y, double z) {
+    public void moveRobot(double y, double x, double z) {
         /* Sets the default drive mode to Cartesian */
-        drivetrain.driveCartesian(x, y, z, ahrs.getAngle());
+        //drivetrain.driveCartesian(x, y, z, ahrs.getAngle());
+        drivetrain.driveCartesian(y, x, z);
+    }
+
+    public void moveField(double y, double x, double z) {
+        drivetrain.driveCartesian(y, x, z, ahrs.getAngle());
+    }
+
+    public void stop() {
+        frontLeft.stopMotor();
+        frontRight.stopMotor();
+        rearLeft.stopMotor();
+        rearRight.stopMotor();
+    }
+
+    public void resetGyro() {
+        ahrs.reset();
     }
 
     @Override
@@ -69,4 +83,5 @@ public class Drive extends SubsystemBase {
     public void simulationPeriodic() {
         // This method will be called once per scheduler run during simulation
     }
+
 }

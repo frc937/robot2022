@@ -7,10 +7,12 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.RoboOrientedDrive;
+import frc.robot.commands.DriveFieldOriented;
+import frc.robot.commands.DriveRobotOriented;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Drive;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -25,7 +27,9 @@ public class RobotContainer {
     private final Drive driveSubsystem = new Drive();
 
     private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-    private final RoboOrientedDrive driveRO = new RoboOrientedDrive(driveSubsystem);
+    private final DriveRobotOriented driveRO = new DriveRobotOriented(driveSubsystem);
+    private final DriveFieldOriented driveFO = new DriveFieldOriented(driveSubsystem);
+    private final InstantCommand resetGyro = new InstantCommand(driveSubsystem::resetGyro, driveSubsystem);
 
     public static XboxController controller = new XboxController(Constants.CONTROLLER_NUMBER);
 
@@ -52,6 +56,12 @@ public class RobotContainer {
         JoystickButton startButton = new JoystickButton(controller, Constants.START_NUMBER);
         JoystickButton leftStick = new JoystickButton(controller, Constants.LEFT_STICK_NUMBER);
         JoystickButton rightStick = new JoystickButton(controller, Constants.RIGHT_STICK_NUMBER);
+
+        // This button binding is arbitrary, should probably be changed later
+        backButton.whenPressed(resetGyro);
+
+        // Field oriented while stick pressed, we should make sure this is viable on the human end
+        leftStick.whileHeld(driveFO);
     }
     
 
@@ -63,10 +73,49 @@ public class RobotContainer {
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
         return m_autoCommand;
-        }
+    }
 
-        public Command getDriveROCommand() {
-            return driveRO;
-        }
+    public Command getDriveROCommand() {
+        return driveRO;
+    }
+    
+    public static double getLeftXAxis() {
+        return controller.getLeftX();
+    }
+
+    public static double getScaledLeftXAxis() {
+        return scaleAxis(getLeftXAxis());
+       }
+
+
+    public static double getLeftYAxis() {
+        return controller.getLeftX();
+    }
+
+    public static double getScaledLeftYAxis() {
+       return scaleAxis(getLeftYAxis());
+    }
+
+
+    public static double getRightXAxis() {
+        return controller.getRightX();
+    }
+
+    public static double getScaledRightXAxis() {
+        return scaleAxis(getRightXAxis());
+    }
+
+
+    public static double getRightYAxis() {
+        return controller.getRightY();
+    }
+
+    public static double getScaledRightYAxis() {
+        return scaleAxis(getRightYAxis());
+    }
+
+    private static double scaleAxis(double a) {
+        return Math.signum(a) * Math.pow(a, 4);
+    }
 
 }
