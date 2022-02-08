@@ -24,6 +24,9 @@ public final class Constants {
     public static final int ID_SPARKMAX_FLYWHEEL = 4;
     public static final int ID_SPARKMAX_CONTROL_WHEEL = 5;
 
+    /* SPARK MAX CAN IDs for climber */
+    public static final int ID_SPARKMAX_WINCH = 6;
+
     /* DIO pin numbers for shooter flywheel encoder */
     public static final int DIO_PIN_FLYWHEEL_ENCODER_0 = 0;
     public static final int DIO_PIN_FLYWHEEL_ENCODER_1 = 1;
