@@ -43,6 +43,10 @@ public final class Constants {
     /* Speed to run the flywheel at. I THINK it's in RPM. */
     /* TODO: TUNE THIS TOO */
     public static final double FLYWHEEL_SETPOINT = 10;
+
+    /* Speed to run the winch at. Supposedly it's in RPM */
+    /* TODO: TUNE THIS TOO TOO */
+    public static final double WINCH_SPEED = 0.1;
     
     /* Controller ID */
     public static final int CONTROLLER_NUMBER = 0;
