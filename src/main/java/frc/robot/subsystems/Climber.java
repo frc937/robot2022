@@ -22,7 +22,10 @@ public class Climber {
     }
 
     public void stopClimber() {
+
         winch.set(0);
+        
     }
+
 
 }

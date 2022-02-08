@@ -15,4 +15,17 @@ public class Climber {
 
     }
 
+    public void runClimber() {
+        
+        winch.set(Constants.WINCH_SPEED);
+
+    }
+
+    public void stopClimber() {
+
+        winch.set(0);
+        
+    }
+
+
 }
