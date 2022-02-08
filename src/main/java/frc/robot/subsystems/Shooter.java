@@ -37,16 +37,26 @@ public class Shooter extends PIDSubsystem {
         setSetpoint(Constants.FLYWHEEL_SETPOINT);
     }
 
+    /**
+     * Automagically called by WPILib
+     */
     @Override
     public void useOutput(double output, double setpoint) {
-        flywheel.setVoltage(output + flywheelFeedForward.calculate(setpoint));
+        flywheel.set(output + flywheelFeedForward.calculate(setpoint));
     }
 
+    /**
+     * Automagically called by WPILib
+     */
     @Override
     public double getMeasurement() {
         return flywheelEncoder.getRate();
     }
 
+    /**
+     * Returns if the flywheel is at its setpoint, i.e. its target speed.
+     * @return A boolean; true if the flywheel is at its setpoint
+     */
     public boolean atSetpoint() {
         /* 
          * THIS NAME DOES NOT COMPLY WITH THIS PROJECT'S NAMING STANDARDS.
@@ -55,14 +65,31 @@ public class Shooter extends PIDSubsystem {
         return m_controller.atSetpoint();
     }
 
+    /**
+     * Turns on the feeder motor to the speed set in {@link frc.robot.Constants}.
+     */
     public void runFeeder() {
         controlWheel.set(Constants.CONTROL_WHEEL_SPEED);
     }
 
+    /**
+     * Stops the feeder motor.
+     */
     public void stopFeeder() {
         controlWheel.set(0);
     }
 
+    /**
+     * Safety method to bring ALL motors controlled by this subsystem to a complete stop.
+     */
+    public void stopAll() {
+        flywheel.set(0);
+        controlWheel.set(0);
+    }
+
+    /**
+     * Subsystem periodic, called once per scheduler run. Not used here.
+     */
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
