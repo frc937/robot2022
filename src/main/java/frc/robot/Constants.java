@@ -52,6 +52,14 @@ public final class Constants {
 
     /* Speed to run the flywheel at. I THINK it's in RPM. */
     public static final double FLYWHEEL_SETPOINT = 10;
+
+    /* Intake sparkmax IDs */
+    public static final int ID_SPARKMAX_SCRUNGLES = 6;
+    public static final int ID_SPARKMAX_CONVEYOR = 7;
+
+    /* Intake speeds */
+    public static final double SCRUNGLE_SPEED = 0.1;
+    public static final double CONVEYOR_SPEED = 0.1;
     
     /* Controller ID */
     public static final int CONTROLLER_NUMBER = 0;
