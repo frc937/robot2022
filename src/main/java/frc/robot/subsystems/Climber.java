@@ -5,7 +5,7 @@ import frc.robot.Constants;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-public class Climber {
+public class Climber extends SubsystemBase {
 
     /* Variables */
     private CANSparkMax winch;
