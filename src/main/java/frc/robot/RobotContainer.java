@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.RoboOrientedDrive;
+import frc.robot.commands.RunControlWheel;
 import frc.robot.commands.RunFlywheel;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Drive;
@@ -30,6 +31,7 @@ public class RobotContainer {
     private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
     private final RoboOrientedDrive driveRO = new RoboOrientedDrive(driveSubsystem);
     private final RunFlywheel runFlywheel = new RunFlywheel(shooter);
+    private final RunControlWheel runControlWheel = new RunControlWheel(shooter);
 
     public static XboxController controller = new XboxController(Constants.CONTROLLER_NUMBER);
 
@@ -56,6 +58,8 @@ public class RobotContainer {
         JoystickButton startButton = new JoystickButton(controller, Constants.START_NUMBER);
         JoystickButton leftStick = new JoystickButton(controller, Constants.LEFT_STICK_NUMBER);
         JoystickButton rightStick = new JoystickButton(controller, Constants.RIGHT_STICK_NUMBER);
+
+        bButton.whenHeld(runControlWheel);
     }
     
 
