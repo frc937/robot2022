@@ -62,6 +62,10 @@ public class RobotContainer {
         JoystickButton startButton = new JoystickButton(controller, Constants.START_NUMBER);
         JoystickButton leftStick = new JoystickButton(controller, Constants.LEFT_STICK_NUMBER);
         JoystickButton rightStick = new JoystickButton(controller, Constants.RIGHT_STICK_NUMBER);
+
+        /* TOTALLY arbitrary button bindings, TODO give them real ones */
+        aButton.whenHeld(runScrungles);
+        leftBumper.whenHeld(runConveyor);
     }
     
 
