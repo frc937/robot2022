@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Intake;
 
-public class RunConveyor extends CommandBase {
+public class RunConveyorForward extends CommandBase {
     Intake intake;
 
     /** Creates a new RunConveyor. */
-    public RunConveyor(Intake intake) {
+    public RunConveyorForward(Intake intake) {
         this.intake = intake;
         addRequirements(intake);
     }
@@ -20,7 +20,7 @@ public class RunConveyor extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        intake.runConveyor();
+        intake.runConveyorForward();
     }
 
     // Called every time the scheduler runs while the command is scheduled.

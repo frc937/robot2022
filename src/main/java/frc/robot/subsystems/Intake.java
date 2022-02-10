@@ -30,8 +30,12 @@ public class Intake extends SubsystemBase {
         scrungles.set(0);
     }
 
-    public void runConveyor() {
+    public void runConveyorForward() {
         conveyor.set(Constants.CONVEYOR_SPEED);
+    }
+
+    public void runConveyorReverse() {
+        conveyor.set(Constants.CONVEYOR_SPEED * -1);
     }
 
     public void stopConveyor() {
