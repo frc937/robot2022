@@ -8,10 +8,13 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.RoboOrientedDrive;
+import frc.robot.commands.RunConveyor;
+import frc.robot.commands.RunScrungles;
 import frc.robot.commands.RunFlywheel;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -26,10 +29,13 @@ public class RobotContainer {
     private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
     private final Drive driveSubsystem = new Drive();
     private final Shooter shooter = new Shooter();
+    private final Intake intake = new Intake();
 
     private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
     private final RoboOrientedDrive driveRO = new RoboOrientedDrive(driveSubsystem);
     private final RunFlywheel runFlywheel = new RunFlywheel(shooter);
+    private final RunScrungles runScrungles = new RunScrungles(intake);
+    private final RunConveyor runConveyor = new RunConveyor(intake);
 
     public static XboxController controller = new XboxController(Constants.CONTROLLER_NUMBER);
 
