@@ -38,6 +38,11 @@ public class Intake extends SubsystemBase {
         conveyor.set(0);
     }
 
+    public void stopAll() {
+        scrungles.set(0);
+        conveyor.set(0);
+    }
+
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
