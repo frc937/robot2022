@@ -12,8 +12,11 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
+import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.revrobotics.ColorSensorV3;
 import com.revrobotics.ColorMatch;
@@ -31,6 +34,8 @@ public class Shooter extends PIDSubsystem {
     private ColorSensorV3 colorSensor;
     private ColorMatch colorMatcher;
 
+    private SendableChooser allianceChoice;
+
     /** Creates a new Shooter. */
     public Shooter() {
         super(new PIDController(Constants.kFLYWHEEL_P, Constants.kFLYWHEEL_I, Constants.kFLYWHEEL_D));
@@ -43,6 +48,9 @@ public class Shooter extends PIDSubsystem {
         flywheelFeedForward = new SimpleMotorFeedforward(Constants.FLYWHEEL_kSVOLTS, Constants.FLYWHEEL_kVVOLT_SECONDS_PER_ROTATION);
 
         setSetpoint(Constants.FLYWHEEL_SETPOINT);
+
+        allianceChoice.setDefaultOption("Red", 0);
+        allianceChoice.addOption("Blue", 1);
     }
 
     /**
