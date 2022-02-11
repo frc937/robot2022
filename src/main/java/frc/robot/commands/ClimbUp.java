@@ -21,6 +21,8 @@ public class ClimbUp extends CommandBase {
     @Override
     public void initialize() {
 
+        climberInABox.runClimberForward();
+
     }
     
     @Override

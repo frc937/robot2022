@@ -20,8 +20,14 @@ public class Climber extends SubsystemBase {
 
     }
 
-    public void runClimber() {
+    public void runClimberForward() {
         winch.set(Constants.WINCH_SPEED);
+    }
+
+    public void runClimberReverse() {
+
+        winch.set(Constants.WINCH_SPEED * -1);
+
     }
 
     public void stopClimber() {
