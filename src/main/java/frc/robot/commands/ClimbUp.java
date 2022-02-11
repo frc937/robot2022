@@ -12,9 +12,9 @@ public class ClimbUp extends CommandBase {
     /* Initializes the ClimbUp method */
     public ClimbUp(Climber subsystemClimb) {
 
-        subsystemClimb = climberInABox;
+        climberInABox = subsystemClimb;
 
-        addRequirements(climberInABox);
+        addRequirements(subsystemClimb);
 
     }
 
@@ -25,7 +25,7 @@ public class ClimbUp extends CommandBase {
     
     @Override
     public void end(boolean interrupted) {
-        ClimbUp.stopClimber();
+        climberInABox.stopClimber();
     }
 
     @Override
