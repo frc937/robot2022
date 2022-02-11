@@ -11,7 +11,8 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 public class Climber extends SubsystemBase {
 
     /* Variables */
-    private CANSparkMax winch;
+    private CANSparkMax winch0;
+    private CANSparkMax winch1;
     private double winchSpeed;
 
     private Encoder winchEncoder;
@@ -20,24 +21,28 @@ public class Climber extends SubsystemBase {
     public Climber() {
 
         /* Initializes winch motor */
-        winch = new CANSparkMax(Constants.ID_SPARKMAX_WINCH, MotorType.kBrushed);
+        winch0 = new CANSparkMax(Constants.ID_SPARKMAX_WINCH_0, MotorType.kBrushed);
+        winch1 = new CANSparkMax(Constants.ID_SPARKMAX_WINCH_1, MotorType.kBrushed);
 
         winchEncoder = new Encoder(Constants.DIO_PIN_WINCH_ENCODER_0, Constants.DIO_PIN_WINCH_ENCODER_1);
 
     }
 
     public void runClimberForward() {
-        winch.set(Constants.WINCH_SPEED);
+        winch0.set(Constants.WINCH_SPEED);
+        winch1.follow(winch0);
     }
 
     public void stopClimber() {
-        winch.set(0);
+        winch0.set(0);
+        winch1.follow(winch0);
     }
 
     public void reset() {
 
         winchSpeed = -0.30;
-        winch.set(winchSpeed);
+        winch0.set(winchSpeed);
+        winch1.follow(winch0);
 
     }
 
