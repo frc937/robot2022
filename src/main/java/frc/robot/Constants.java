@@ -31,6 +31,10 @@ public final class Constants {
     public static final int DIO_PIN_FLYWHEEL_ENCODER_0 = 0;
     public static final int DIO_PIN_FLYWHEEL_ENCODER_1 = 1;
 
+    /* DIO pin numbers for climber winch encoder */
+    public static final int DIO_PIN_WINCH_ENCODER_0 = 2;
+    public static final int DIO_PIN_WINCH_ENCODER_1 = 3;
+
     /* PID gains for shooter flywheel */
     public static final int kFLYWHEEL_P = 1;
     public static final int kFLYWHEEL_I = 0;
