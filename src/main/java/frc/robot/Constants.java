@@ -41,6 +41,11 @@ public final class Constants {
     public static final int kFLYWHEEL_I = 0;
     public static final int kFLYWHEEL_D = 0;
 
+    /* PID gains for climber winch */
+    public static final int kWINCH_P = 1;
+    public static final int kWINCH_I = 0;
+    public static final int kWINCH_D = 0;
+
     /* Speed to run the control wheel at */
     /* TODO: TUNE THIS */
     public static final double CONTROL_WHEEL_SPEED = 0.1;
