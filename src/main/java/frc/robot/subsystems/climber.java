@@ -11,6 +11,7 @@ public class Climber extends SubsystemBase {
 
     /* Variables */
     private CANSparkMax winch;
+    private double winchSpeed;
     
     /* Creates a new Climber Subsystem */
     public Climber() {
@@ -24,14 +25,16 @@ public class Climber extends SubsystemBase {
         winch.set(Constants.WINCH_SPEED);
     }
 
-    public void runClimberReverse() {
-
-        winch.set(Constants.WINCH_SPEED * -1);
-
-    }
-
     public void stopClimber() {
         winch.set(0);
     }
+
+    public void reset() {
+
+        winchSpeed = -0.30;
+        winch.set(winchSpeed);
+
+    }
+
 
 }
