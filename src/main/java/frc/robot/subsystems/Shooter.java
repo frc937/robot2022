@@ -105,7 +105,11 @@ public class Shooter extends PIDSubsystem {
      * Turns on the feeder motor to the speed set in {@link frc.robot.Constants}.
      */
     public void runFeeder() {
-        controlWheel.set(Constants.CONTROL_WHEEL_SPEED);
+        if (canShoot()) {
+            controlWheel.set(Constants.CONTROL_WHEEL_SPEED);
+        } else {
+            /* TODO: find some way of alerting the driver that they tried to shoot the wrong alliance color */
+        }
     }
 
     /**
