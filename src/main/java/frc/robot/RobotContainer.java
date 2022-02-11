@@ -9,8 +9,11 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.DriveFieldOriented;
 import frc.robot.commands.DriveRobotOriented;
+import frc.robot.commands.ClimbForward;
+import frc.robot.commands.ClimberReset;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.Climber;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -25,11 +28,14 @@ public class RobotContainer {
     // The robot's subsystems and commands are defined here...
     private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
     private final Drive driveSubsystem = new Drive();
+    private final Climber climberSubsystem = new Climber();
 
     private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
     private final DriveRobotOriented driveRO = new DriveRobotOriented(driveSubsystem);
     private final DriveFieldOriented driveFO = new DriveFieldOriented(driveSubsystem);
     private final InstantCommand resetGyro = new InstantCommand(driveSubsystem::resetGyro, driveSubsystem);
+    private final ClimbForward climbForward = new ClimbForward(climberSubsystem);
+    private final ClimberReset climberReset = new ClimberReset(climberSubsystem);
 
     public static XboxController controller = new XboxController(Constants.CONTROLLER_NUMBER);
 
@@ -56,6 +62,11 @@ public class RobotContainer {
         JoystickButton startButton = new JoystickButton(controller, Constants.START_NUMBER);
         JoystickButton leftStick = new JoystickButton(controller, Constants.LEFT_STICK_NUMBER);
         JoystickButton rightStick = new JoystickButton(controller, Constants.RIGHT_STICK_NUMBER);
+
+        // Change these buttons when a more convenient controller layout becomes obvious
+        /* Buttons for the climber in a box */
+        bButton.whenHeld(climbForward);
+        xButton.whenHeld(climberReset);
 
         // This button binding is arbitrary, should probably be changed later
         backButton.whenPressed(resetGyro);
