@@ -4,13 +4,13 @@ import frc.robot.subsystems.Climber;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class ClimbUp extends CommandBase {
+public class ClimbForward extends CommandBase {
 
     /* Variables */
     private Climber climberInABox;
 
     /* Initializes the ClimbUp method */
-    public ClimbUp(Climber subsystemClimb) {
+    public ClimbForward(Climber subsystemClimb) {
 
         climberInABox = subsystemClimb;
 
