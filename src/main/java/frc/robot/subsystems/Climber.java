@@ -43,22 +43,21 @@ public class Climber extends PIDSubsystem {
     }
 
     public void runClimberForward() {
-        winch0.set(Constants.WINCH_SPEED);
+        setSetpoint(Constants.WINCH_SPEED);
         winch1.follow(winch0);
     }
 
     public void stopClimber() {
-        winch0.set(0);
+        setSetpoint(0);
         winch1.follow(winch0);
     }
 
     public void reset() {
 
         winchSpeed = -0.30;
-        winch0.set(winchSpeed);
+        setSetpoint(winchSpeed);
         winch1.follow(winch0);
 
     }
-
 
 }
