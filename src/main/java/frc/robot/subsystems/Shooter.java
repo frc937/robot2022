@@ -13,6 +13,10 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.I2C;
+
+import com.revrobotics.ColorSensorV3;
+import com.revrobotics.ColorMatch;
 
 public class Shooter extends PIDSubsystem {
 
@@ -22,6 +26,10 @@ public class Shooter extends PIDSubsystem {
     private Encoder flywheelEncoder;
 
     private SimpleMotorFeedforward flywheelFeedForward;
+
+    private I2C.Port colorSensorPort;
+    private ColorSensorV3 colorSensor;
+    private ColorMatch colorMatcher;
 
     /** Creates a new Shooter. */
     public Shooter() {
