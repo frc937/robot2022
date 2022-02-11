@@ -102,7 +102,7 @@ public class Shooter extends PIDSubsystem {
     }
 
     /**
-     * Turns on the feeder motor to the speed set in {@link frc.robot.Constants}.
+     * Turns on the feeder motor to the speed set in {@link frc.robot.Constants} IF the ball loaded into the robot is the same color as our alliance color.
      */
     public void runFeeder() {
         if (canShoot()) {
