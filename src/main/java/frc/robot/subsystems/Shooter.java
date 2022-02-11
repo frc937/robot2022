@@ -124,6 +124,13 @@ public class Shooter extends PIDSubsystem {
         controlWheel.set(0);
     }
 
+    /**
+     * Returns true if the ball loaded into the robot is the same color as our alliance color.
+     * 
+     * <p>This is so that we don't shoot a ball that isn't our alliance color, since if we score with
+     * the opposing alliance's ball, they get the point.
+     * @return If we can shoot without potentially scoring for the opposing alliance
+     */
     public boolean canShoot() {
         Color detectedColor = colorSensor.getColor();
         ColorMatchResult colorMatchResult = colorMatcher.matchClosestColor(detectedColor);
