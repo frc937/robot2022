@@ -13,6 +13,7 @@ import frc.robot.commands.RunConveyorReverse;
 import frc.robot.commands.RunScrungles;
 import frc.robot.commands.RunFlywheel;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -29,6 +30,7 @@ public class RobotContainer {
     private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
     private final Drive driveSubsystem = new Drive();
     private final Shooter shooter = new Shooter();
+    private final Intake intake = new Intake();
 
     private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
     private final RoboOrientedDrive driveRO = new RoboOrientedDrive(driveSubsystem);
