@@ -24,7 +24,7 @@ public class RunControlWheel extends CommandBase {
             shooter.runFeeder();
         } else {
             /* TODO: figure out what this button combo is and put it there */
-            SmartDashboard.putString("Tried to shoot wrong color", "WARNING: YOU HAVE ATTEMPTED TO SHOOT THE WRONG ALLIANCE COLOR.\nTo override, press the override button combo.")
+            SmartDashboard.putString("Tried to shoot wrong color", "WARNING: YOU HAVE ATTEMPTED TO SHOOT THE WRONG ALLIANCE COLOR.\nTo override, press the override button combo.");
         }
     }
 
