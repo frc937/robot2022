@@ -19,7 +19,11 @@ public class RunControlWheel extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        shooter.runFeeder();
+        if (shooter.canShoot()) {
+            shooter.runFeeder();
+        } else {
+            /* TODO add alert for driver */
+        }
     }
 
     // Called every time the scheduler runs while the command is scheduled.
