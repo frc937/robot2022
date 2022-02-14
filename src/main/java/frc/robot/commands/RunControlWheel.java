@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Shooter;
 
@@ -22,7 +23,8 @@ public class RunControlWheel extends CommandBase {
         if (shooter.canShoot()) {
             shooter.runFeeder();
         } else {
-            /* TODO add alert for driver */
+            /* TODO: figure out what this button combo is and put it there */
+            SmartDashboard.putString("Tried to shoot wrong color", "WARNING: YOU HAVE ATTEMPTED TO SHOOT THE WRONG ALLIANCE COLOR.\nTo override, press the override button combo.")
         }
     }
 
