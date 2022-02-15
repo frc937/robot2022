@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.RoboOrientedDrive;
+import frc.robot.commands.RunControlWheel;
+import frc.robot.commands.RunControlWheelOverride;
 import frc.robot.commands.RunConveyorForward;
 import frc.robot.commands.RunConveyorReverse;
 import frc.robot.commands.RunScrungles;
@@ -38,6 +40,8 @@ public class RobotContainer {
     private final RunScrungles runScrungles = new RunScrungles(intake);
     private final RunConveyorForward runConveyorForward = new RunConveyorForward(intake);
     private final RunConveyorReverse runConveyorReverse = new RunConveyorReverse(intake);
+    private final RunControlWheel runControlWheel = new RunControlWheel(shooter);
+    private final RunControlWheelOverride runControlWheelOverride = new RunControlWheelOverride(shooter);
 
     public static XboxController controller = new XboxController(Constants.CONTROLLER_NUMBER);
 
@@ -69,6 +73,8 @@ public class RobotContainer {
         aButton.whenHeld(runScrungles);
         leftBumper.whenHeld(runConveyorForward);
         rightBumper.whenHeld(runConveyorReverse);
+        bButton.whenHeld(runControlWheel);
+
     }
     
 
