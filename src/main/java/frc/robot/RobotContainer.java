@@ -74,7 +74,7 @@ public class RobotContainer {
         leftBumper.whenHeld(runConveyorForward);
         rightBumper.whenHeld(runConveyorReverse);
         bButton.whenHeld(runControlWheel);
-
+        xButton.whenHeld(runControlWheelOverride);
     }
     
 
