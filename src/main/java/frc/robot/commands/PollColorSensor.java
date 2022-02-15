@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.Shooter;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.Intake;
 
 public class PollColorSensor extends CommandBase {
     /** Creates a new PollColorSensor. */
