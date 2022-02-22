@@ -7,10 +7,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.PollColorSensor;
 import frc.robot.commands.RoboOrientedDrive;
 import frc.robot.commands.RunControlWheel;
-import frc.robot.commands.RunControlWheelOverride;
 import frc.robot.commands.RunConveyorForward;
 import frc.robot.commands.RunConveyorReverse;
 import frc.robot.commands.RunScrungles;
@@ -42,9 +40,6 @@ public class RobotContainer {
     private final RunConveyorForward runConveyorForward = new RunConveyorForward(intake);
     private final RunConveyorReverse runConveyorReverse = new RunConveyorReverse(intake);
     private final RunControlWheel runControlWheel = new RunControlWheel(shooter);
-    private final RunControlWheelOverride runControlWheelOverride = new RunControlWheelOverride(shooter);
-    private final PollColorSensor pollColorSensor = new PollColorSensor(shooter);
-
     public static XboxController controller = new XboxController(Constants.CONTROLLER_NUMBER);
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -76,7 +71,6 @@ public class RobotContainer {
         leftBumper.whenHeld(runConveyorForward);
         rightBumper.whenHeld(runConveyorReverse);
         bButton.whenHeld(runControlWheel);
-        xButton.whenHeld(runControlWheelOverride);
     }
     
 
@@ -100,10 +94,6 @@ public class RobotContainer {
      */
     public Command getRunFlywheelCommand() {
         return runFlywheel;
-    }
-
-    public Command getPollColorSensorCommand() {
-        return pollColorSensor;
     }
 
     public Command getConveyorReverseCommand() {
