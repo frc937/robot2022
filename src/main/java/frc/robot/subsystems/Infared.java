@@ -12,21 +12,40 @@ public class Infared {
     /* Variables */
     private Rev2mDistanceSensor distMXP;
 
-    // Putting I2C before Port here seems to break stuff, although it may be needed.
-    private Port infraredSensorPort0;
-    private Port infraredSensorPort1;
+    // Putting I2C before Port here seems to break stuff, although it may be needed
+    //private Port infraredSensorPort0;
+    //private Port infraredSensorPort1;
     private Rev2mDistanceSensor infraredSensor0;
     private Rev2mDistanceSensor infraredSensor1;
 
+    // These variables have currently replaced the previous to follow an example. 
+    private int infraredSensorPort0;
+    private int infraredSensorPort1;
+    private I2C multiplexer;
+
     public Infared() {
+
+        /* TODO: These ports are placeholders, the range is 0-7 */
+        infraredSensorPort0 = 4;
+        infraredSensorPort1 = 2;
+
+        multiplexer = new I2C(I2C.Port.kOnboard, 0x70);
+
+        multiplexer.write(0x70, 1 << infraredSensorPort0);
+        infraredSensor0 = new Rev2mDistanceSensor(Port.kOnboard);
+        multiplexer.write(0x70, 1 << infraredSensorPort1);
+        infraredSensor1 = new Rev2mDistanceSensor(Port.kOnboard);
+
 
         // Putting I2C before Port here seems to break stuff, although it may be needed.
         /* TODO: These ports are not seperated and do need to be seperated */
-        infraredSensorPort0 = Port.kOnboard;
-        infraredSensorPort1 = Port.kOnboard;
+        
+        /* This code has been commented out to follow an example */
+        //infraredSensorPort0 = Port.kOnboard;
+        //infraredSensorPort1 = Port.kOnboard;
         /* In the rev docs for ir sensors, this variable is labeled distOnboard */
-        infraredSensor0 = new Rev2mDistanceSensor(infraredSensorPort0);
-        infraredSensor1 = new Rev2mDistanceSensor(infraredSensorPort1);
+        //infraredSensor0 = new Rev2mDistanceSensor(infraredSensorPort0);
+        //infraredSensor1 = new Rev2mDistanceSensor(infraredSensorPort1);
 
         /* TODO: This needs to be put in a better spot, currently it's in a placeholder spot */
         /**
@@ -46,11 +65,16 @@ public class Infared {
 
     }
 
-    public double infraredDist() {
+    public double[] periodic() {
 
-        return infraredSensor0.getRange();
-        //return infraredSensor1.getRange();
+        multiplexer.write(0x70, 1 << infraredSensorPort0);
+        double distance0 = infraredSensor0.getRange();
+        multiplexer.write(0x70, 1 << infraredSensorPort1);
+        double distance1 = infraredSensor1.getRange();
 
+        double[] infraredRangeValues = {distance0, distance1};
+
+        return infraredRangeValues;
 
     }
 
