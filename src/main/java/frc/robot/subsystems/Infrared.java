@@ -7,7 +7,7 @@ import com.revrobotics.*;
 import com.revrobotics.Rev2mDistanceSensor;
 import com.revrobotics.Rev2mDistanceSensor.Port;
 
-public class Infared {
+public class Infrared {
     
     /* Variables */
     private Rev2mDistanceSensor distMXP;
@@ -23,7 +23,7 @@ public class Infared {
     private int infraredSensorPort1;
     private I2C multiplexer;
 
-    public Infared() {
+    public Infrared() {
 
         /* TODO: These ports are placeholders, the range is 0-7 */
         infraredSensorPort0 = 4;
