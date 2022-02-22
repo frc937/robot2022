@@ -18,6 +18,7 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -68,9 +69,8 @@ public class RobotContainer {
 
         /* TOTALLY arbitrary button bindings, TODO give them real ones */
         aButton.whenHeld(runScrungles);
-        leftBumper.whenHeld(runConveyorForward);
-        rightBumper.whenHeld(runConveyorReverse);
         bButton.whenHeld(runControlWheel);
+        xButton.whenHeld(new ConditionalCommand(runConveyorForward, runConveyorReverse, shooter::canShoot));
     }
     
 
