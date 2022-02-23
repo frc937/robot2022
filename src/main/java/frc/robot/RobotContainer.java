@@ -17,6 +17,7 @@ import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Shooter;
+import frc.robot.TwoButtonCombo;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -66,11 +67,13 @@ public class RobotContainer {
         JoystickButton startButton = new JoystickButton(controller, Constants.START_NUMBER);
         JoystickButton leftStick = new JoystickButton(controller, Constants.LEFT_STICK_NUMBER);
         JoystickButton rightStick = new JoystickButton(controller, Constants.RIGHT_STICK_NUMBER);
+        TwoButtonCombo xAndY = new TwoButtonCombo(controller, Constants.X_NUMBER, Constants.Y_NUMBER);
 
         /* TOTALLY arbitrary button bindings, TODO give them real ones */
         aButton.whenHeld(runScrungles);
         bButton.whenHeld(runControlWheel);
         xButton.whenHeld(new ConditionalCommand(runConveyorForward, runConveyorReverse, shooter::canShoot));
+        xAndY.whenHeld(runConveyorForward);
     }
     
 
