@@ -7,6 +7,9 @@ import com.revrobotics.*;
 import com.revrobotics.Rev2mDistanceSensor;
 import com.revrobotics.Rev2mDistanceSensor.Port;
 
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class Infrared {
     
     /* Variables */
@@ -65,18 +68,23 @@ public class Infrared {
 
     }
 
-    public double[] periodic() {
+    /* Gets the distance from the infrared and puts it in an array */
+    public void periodic() {
 
+        /* TODO: change the distance at which the sensor detects a ball, it's currently a placeholder */
         multiplexer.write(0x70, 1 << infraredSensorPort0);
         double distance0 = infraredSensor0.getRange();
         multiplexer.write(0x70, 1 << infraredSensorPort1);
         double distance1 = infraredSensor1.getRange();
 
-        double[] infraredRangeValues = {distance0, distance1};
-
-        return infraredRangeValues;
+        if (distance0 <= 1) {
+            // CHUCK NORRIS
+        }
+    
+        if (distance1 <= 1) {
+            // GABRIE was here
+        }
 
     }
 
 }
-
