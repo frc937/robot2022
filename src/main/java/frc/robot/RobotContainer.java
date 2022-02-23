@@ -72,7 +72,7 @@ public class RobotContainer {
         /* TOTALLY arbitrary button bindings, TODO give them real ones */
         aButton.whenHeld(runScrungles);
         bButton.whenHeld(runControlWheel);
-        xButton.whenHeld(new ConditionalCommand(runConveyorForward, runConveyorReverse, shooter::canShoot));
+        xButton.whenHeld(new ConditionalCommand(runConveyorForward, runConveyorReverse, intake::canShoot));
         xAndY.whenHeld(runConveyorForward);
     }
     
