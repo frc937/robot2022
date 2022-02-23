@@ -17,7 +17,6 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 public class Robot extends TimedRobot {
     private Command m_autonomousCommand;
     private Command runFlywheel;
-    private Command pollColorSensor;
 
     private RobotContainer container;
 
@@ -31,7 +30,6 @@ public class Robot extends TimedRobot {
         // autonomous chooser on the dashboard.
         container = new RobotContainer();
         runFlywheel = container.getRunFlywheelCommand();
-        pollColorSensor = container.getPollColorSensorCommand();
     }
 
     /**
@@ -87,7 +85,6 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         runFlywheel.schedule();
-        pollColorSensor.schedule();
     }
 
     @Override
