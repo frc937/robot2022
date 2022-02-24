@@ -7,16 +7,26 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Intake;
 
+/**
+ * A command to run the Skrungles, the initial intake mechanism for the robot.
+ * 
+ * <p>Designed to be used with .whenHeld() or similar methods.
+ */
 public class RunScrungles extends CommandBase {
     Intake intake;
 
-    /** Creates a new RunScrungles. */
+    /** 
+     * Creates a new RunScrungles.
+     * @param intake Takes an intake subsytem for dependency injection
+     */
     public RunScrungles(Intake intake) {
         this.intake = intake;
         addRequirements(intake);
     }
 
-    // Called when the command is initially scheduled.
+    /** 
+     * Called when the command is initially scheduled. Turns on the skrungles.
+     */
     @Override
     public void initialize() {
         intake.runScrungles();
@@ -26,13 +36,17 @@ public class RunScrungles extends CommandBase {
     @Override
     public void execute() {}
 
-    // Called once the command ends or is interrupted.
+    /**
+     * Called once the command ends or is interrupted. Turns off the skrungles.
+     */
     @Override
     public void end(boolean interrupted) {
         intake.stopScrungles();
     }
 
-    // Returns true when the command should end.
+    /** 
+     * Returns true when the command should end. Will always return false as this command is designed to be used with .whenHeld or a similar method.
+     */
     @Override
     public boolean isFinished() {
         return false;

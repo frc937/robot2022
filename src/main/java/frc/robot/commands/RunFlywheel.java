@@ -36,7 +36,7 @@ public class RunFlywheel extends PIDCommand {
     }
 
     /**
-     * Initialization for RunFlywheel command. Starts the flywheel set done to true, which is returned by isFinished.
+     * Initialization for RunFlywheel command. Starts the flywheel and sets done to true, which is returned by isFinished.
      */
     @Override
     public void initialize() {

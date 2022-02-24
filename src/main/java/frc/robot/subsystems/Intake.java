@@ -19,6 +19,9 @@ import com.revrobotics.ColorSensorV3;
 import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorMatchResult;
 
+/**
+ * Intake subsystem. Handles Wibbly Skrungles, the initial mechanism to bring balls off the floor and into the robot, and the conveyor that moves and indexes balls within the robot.
+ */
 public class Intake extends SubsystemBase {
     private CANSparkMax scrungles;
     private CANSparkMax conveyor;
@@ -60,26 +63,44 @@ public class Intake extends SubsystemBase {
         SmartDashboard.putData(allianceChoice);
     }
 
+    /**
+     * Runs the Wibbly Skrungles.
+     */
     public void runScrungles() {
         scrungles.set(Constants.SCRUNGLE_SPEED);
     }
 
+    /**
+     * Stops the Wibbly Skrungles.
+     */
     public void stopScrungles() {
         scrungles.set(0);
     }
 
+    /**
+     * Runs the conveyor forward, to move balls further into the robot and closer to the shooter.
+     */
     public void runConveyorForward() {
         conveyor.set(Constants.CONVEYOR_SPEED);
     }
 
+    /**
+     * Runs the conveyor backwards, to move balls out of the robot.
+     */
     public void runConveyorReverse() {
         conveyor.set(Constants.CONVEYOR_SPEED * -1);
     }
 
+    /**
+     * Stops the conveyor.
+     */
     public void stopConveyor() {
         conveyor.set(0);
     }
 
+    /**
+     * Safety method that stops all motors associated with this subsystem.
+     */
     public void stopAll() {
         scrungles.set(0);
         conveyor.set(0);

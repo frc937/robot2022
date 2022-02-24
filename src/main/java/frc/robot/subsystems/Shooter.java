@@ -14,6 +14,11 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj.Encoder;
 
+/**
+ * Shooter subsystem. Handles the shooter we use to launch balls into the target.
+ * 
+ * <p>Is a PIDSubsystem because we need veolocity PID handled by WPI on the flywheel to ensure it always runs at a constant speed so we're always on target.
+ */
 public class Shooter extends PIDSubsystem {
 
     private CANSparkMax flywheel;
@@ -27,6 +32,7 @@ public class Shooter extends PIDSubsystem {
     public Shooter() {
         super(new PIDController(Constants.kFLYWHEEL_P, Constants.kFLYWHEEL_I, Constants.kFLYWHEEL_D));
 
+        /* A lot of this PID stuff will need tuning, like I'm not entirely sure we need a feedforward for this */
         flywheel = new CANSparkMax(Constants.ID_SPARKMAX_FLYWHEEL, MotorType.kBrushed);
         controlWheel = new CANSparkMax(Constants.ID_SPARKMAX_CONTROL_WHEEL, MotorType.kBrushed);
 
@@ -38,7 +44,11 @@ public class Shooter extends PIDSubsystem {
     }
 
     /**
-     * Automagically called by WPILib
+     * Sets the flywheel. Takes an output and a setpoint cause PID.
+     * 
+     * <p> These params should be set from the values in {@link frc.robot.Constants}.
+     * @param output The output used by PID
+     * @param setpoint The PID setpoint
      */
     @Override
     public void useOutput(double output, double setpoint) {
@@ -46,7 +56,8 @@ public class Shooter extends PIDSubsystem {
     }
 
     /**
-     * Automagically called by WPILib
+     * Returns the flywheel speed.
+     * @return The current flywheel speed.
      */
     @Override
     public double getMeasurement() {

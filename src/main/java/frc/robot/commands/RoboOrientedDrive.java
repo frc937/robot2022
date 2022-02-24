@@ -25,7 +25,7 @@ public class RoboOrientedDrive extends CommandBase {
         RoboOrientedZ = RobotContainer.controller.getLeftY();
         RoboOrientedX = RobotContainer.controller.getLeftX();
         /* The parentheses here still need a third (Z) axis to go off of. */
-        drivetrain.move(RoboOrientedX,RoboOrientedZ, );
+        drivetrain.move(RoboOrientedX,RoboOrientedZ, 0);
 
     }
 
