@@ -98,8 +98,4 @@ public class RobotContainer {
     public Command getRunFlywheelCommand() {
         return runFlywheel;
     }
-
-    public Command getConveyorReverseCommand() {
-        return runConveyorReverse;
-    }
 }
