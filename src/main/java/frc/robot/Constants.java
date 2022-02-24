@@ -59,11 +59,11 @@ public final class Constants {
     public static final double[] BLUE_BALL = {0.143, 0.427, 0.429};
 
     /* Intake sparkmax IDs */
-    public static final int ID_SPARKMAX_SCRUNGLES = 6;
+    public static final int ID_SPARKMAX_SKRUNGLES = 6;
     public static final int ID_SPARKMAX_CONVEYOR = 7;
 
     /* Intake speeds */
-    public static final double SCRUNGLE_SPEED = 0.1;
+    public static final double SKRUNGLE_SPEED = 0.1;
     public static final double CONVEYOR_SPEED = 0.1;
     
     /* Controller ID */

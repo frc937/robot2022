@@ -12,14 +12,14 @@ import frc.robot.subsystems.Intake;
  * 
  * <p>Designed to be used with .whenHeld() or similar methods.
  */
-public class RunScrungles extends CommandBase {
+public class RunSkrungles extends CommandBase {
     Intake intake;
 
     /** 
-     * Creates a new RunScrungles.
+     * Creates a new RunSkrungles.
      * @param intake Takes an intake subsytem for dependency injection
      */
-    public RunScrungles(Intake intake) {
+    public RunSkrungles(Intake intake) {
         this.intake = intake;
         addRequirements(intake);
     }
@@ -29,7 +29,7 @@ public class RunScrungles extends CommandBase {
      */
     @Override
     public void initialize() {
-        intake.runScrungles();
+        intake.runSkrungles();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -41,7 +41,7 @@ public class RunScrungles extends CommandBase {
      */
     @Override
     public void end(boolean interrupted) {
-        intake.stopScrungles();
+        intake.stopSkrungles();
     }
 
     /** 

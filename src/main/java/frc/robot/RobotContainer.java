@@ -11,7 +11,7 @@ import frc.robot.commands.RoboOrientedDrive;
 import frc.robot.commands.RunControlWheel;
 import frc.robot.commands.RunConveyorForward;
 import frc.robot.commands.RunConveyorReverse;
-import frc.robot.commands.RunScrungles;
+import frc.robot.commands.RunSkrungles;
 import frc.robot.commands.RunFlywheel;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Intake;
@@ -38,7 +38,7 @@ public class RobotContainer {
     private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
     private final RoboOrientedDrive driveRO = new RoboOrientedDrive(driveSubsystem);
     private final RunFlywheel runFlywheel = new RunFlywheel(shooter);
-    private final RunScrungles runScrungles = new RunScrungles(intake);
+    private final RunSkrungles runSkrungles = new RunSkrungles(intake);
     private final RunConveyorForward runConveyorForward = new RunConveyorForward(intake);
     private final RunConveyorReverse runConveyorReverse = new RunConveyorReverse(intake);
     private final RunControlWheel runControlWheel = new RunControlWheel(shooter);
@@ -69,7 +69,7 @@ public class RobotContainer {
         TwoButtonCombo xAndY = new TwoButtonCombo(controller, Constants.X_NUMBER, Constants.Y_NUMBER);
 
         /* TOTALLY arbitrary button bindings, TODO give them real ones */
-        aButton.whenHeld(runScrungles);
+        aButton.whenHeld(runSkrungles);
         bButton.whenHeld(runControlWheel);
         xButton.whenHeld(new ConditionalCommand(runConveyorForward, runConveyorReverse, intake::canShoot));
         xAndY.whenHeld(runConveyorForward);

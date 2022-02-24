@@ -23,7 +23,7 @@ import com.revrobotics.ColorMatchResult;
  * Intake subsystem. Handles Wibbly Skrungles, the initial mechanism to bring balls off the floor and into the robot, and the conveyor that moves and indexes balls within the robot.
  */
 public class Intake extends SubsystemBase {
-    private CANSparkMax scrungles;
+    private CANSparkMax skrungles;
     private CANSparkMax conveyor;
 
     private I2C.Port colorSensorPort;
@@ -37,10 +37,10 @@ public class Intake extends SubsystemBase {
 
     /** Creates a new Intake. */
     public Intake() {
-        scrungles = new CANSparkMax(Constants.ID_SPARKMAX_SCRUNGLES, MotorType.kBrushed);
+        skrungles = new CANSparkMax(Constants.ID_SPARKMAX_SKRUNGLES, MotorType.kBrushed);
         conveyor = new CANSparkMax(Constants.ID_SPARKMAX_CONVEYOR, MotorType.kBrushed);
 
-        scrungles.setInverted(false);
+        skrungles.setInverted(false);
         conveyor.setInverted(false);
 
         /* TODO: This might not be the right port */
@@ -66,15 +66,15 @@ public class Intake extends SubsystemBase {
     /**
      * Runs the Wibbly Skrungles.
      */
-    public void runScrungles() {
-        scrungles.set(Constants.SCRUNGLE_SPEED);
+    public void runSkrungles() {
+        skrungles.set(Constants.SKRUNGLE_SPEED);
     }
 
     /**
      * Stops the Wibbly Skrungles.
      */
-    public void stopScrungles() {
-        scrungles.set(0);
+    public void stopSkrungles() {
+        skrungles.set(0);
     }
 
     /**
@@ -102,7 +102,7 @@ public class Intake extends SubsystemBase {
      * Safety method that stops all motors associated with this subsystem.
      */
     public void stopAll() {
-        scrungles.set(0);
+        skrungles.set(0);
         conveyor.set(0);
     }
 
