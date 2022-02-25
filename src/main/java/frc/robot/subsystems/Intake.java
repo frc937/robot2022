@@ -11,6 +11,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
@@ -26,7 +27,7 @@ public class Intake extends SubsystemBase {
     private CANSparkMax skrungles;
     private CANSparkMax conveyor;
 
-    private I2C.Port colorSensorPort;
+    private I2C multiplexer;
     private ColorSensorV3 colorSensor;
     private ColorMatch colorMatcher;
 
@@ -44,9 +45,10 @@ public class Intake extends SubsystemBase {
         conveyor.setInverted(false);
 
         /* TODO: This might not be the right port */
-        colorSensorPort = I2C.Port.kOnboard;
+        multiplexer = new I2C(I2C.Port.kOnboard, 0x70);
 
-        colorSensor = new ColorSensorV3(colorSensorPort);
+        multiplexer.write(0x70, 1 << Constants.COLOR_SENSOR_PORT);
+        colorSensor = new ColorSensorV3(Port.kOnboard);
 
         colorMatcher = new ColorMatch();
         

@@ -53,6 +53,9 @@ public final class Constants {
     /* Speed to run the flywheel at. I THINK it's in RPM. */
     public static final double FLYWHEEL_SETPOINT = 10;
 
+    /* Multiplexer port for color sensor */
+    public static final int COLOR_SENSOR_PORT = 1;
+
     /* Shooter/intake color sensor calibration values */
     /* TODO: these are stolen from REV's examples, and won't be accurate to the actual ball colors. calibrate them. */
     public static final double[] RED_BALL = {0.561, 0.232, 0.114};
