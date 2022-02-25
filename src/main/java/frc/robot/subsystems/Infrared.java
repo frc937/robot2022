@@ -36,9 +36,6 @@ public class Infrared {
         multiplexer.write(0x70, 1 << infraredSensorPort1);
         infraredSensor1 = new Rev2mDistanceSensor(Port.kOnboard);
 
-        addChild("infrared0",infraredSensor0);
-        addChild("infrared1",infraredSensor1);
-
         /**
         * Before measurements can be read from the sensor, setAutomaticMode(true)
         * must be called. This starts a background thread which will periodically
