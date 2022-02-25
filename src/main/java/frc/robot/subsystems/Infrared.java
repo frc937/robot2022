@@ -8,7 +8,6 @@ import com.revrobotics.Rev2mDistanceSensor;
 import com.revrobotics.Rev2mDistanceSensor.Port;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Infrared {
     
@@ -16,8 +15,6 @@ public class Infrared {
     private Rev2mDistanceSensor distMXP;
 
     // Putting I2C before Port here seems to break stuff, although it may be needed
-    //private Port infraredSensorPort0;
-    //private Port infraredSensorPort1;
     private Rev2mDistanceSensor infraredSensor0;
     private Rev2mDistanceSensor infraredSensor1;
 
@@ -42,24 +39,6 @@ public class Infrared {
         addChild("infrared0",infraredSensor0);
         addChild("infrared1",infraredSensor1);
 
-        // Putting I2C before Port here seems to break stuff, although it may be needed.
-        /* TODO: These ports are not seperated and do need to be seperated */
-        
-        /* This code has been commented out to follow an example */
-        //infraredSensorPort0 = Port.kOnboard;
-        //infraredSensorPort1 = Port.kOnboard;
-        /* In the rev docs for ir sensors, this variable is labeled distOnboard */
-        //infraredSensor0 = new Rev2mDistanceSensor(infraredSensorPort0);
-        //infraredSensor1 = new Rev2mDistanceSensor(infraredSensorPort1);
-
-        /* TODO: This needs to be put in a better spot, currently it's in a placeholder spot */
-        /**
-        * Rev 2m distance sensor can be initialized with the Onboard I2C port
-        * or the MXP port. Both can run simultaneously.
-        */
-        //distMXP = new Rev2mDistanceSensor(Port.kMXP);
-
-        /* TODO: This needs to be put in a better spot, currently it's in a placeholder spot */
         /**
         * Before measurements can be read from the sensor, setAutomaticMode(true)
         * must be called. This starts a background thread which will periodically
@@ -70,16 +49,16 @@ public class Infrared {
 
     }
 
-    /* Gets the distance from the infrared and puts it in an array */
     public void periodic() {
 
         /* TODO: change the distance at which the sensor detects a ball, it's currently a placeholder */
+        /* Gets the range of the sensors and stores them in a variable */
         multiplexer.write(0x70, 1 << infraredSensorPort0);
         double distance0 = infraredSensor0.getRange();
         multiplexer.write(0x70, 1 << infraredSensorPort1);
         double distance1 = infraredSensor1.getRange();
 
-        /* TODO: These names suck. Change them */
+        /* TODO: These names (infrared0/infrared1 and Present/Missing) suck. Change them */
         /* Lets the driver know via SmartDashboard if there is a ball in a specific spot */
         if (distance0 <= 1) {
             SmartDashboard.putString("infrared0", "Present");
@@ -94,7 +73,7 @@ public class Infrared {
         else {
             SmartDashboard.putString("infrared1", "Missing");
         }
-        
+
     }
 
 }
