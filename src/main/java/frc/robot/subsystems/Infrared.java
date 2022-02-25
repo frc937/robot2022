@@ -39,6 +39,8 @@ public class Infrared {
         multiplexer.write(0x70, 1 << infraredSensorPort1);
         infraredSensor1 = new Rev2mDistanceSensor(Port.kOnboard);
 
+        addChild("infrared0",infraredSensor0);
+        addChild("infrared1",infraredSensor1);
 
         // Putting I2C before Port here seems to break stuff, although it may be needed.
         /* TODO: These ports are not seperated and do need to be seperated */
@@ -55,7 +57,7 @@ public class Infrared {
         * Rev 2m distance sensor can be initialized with the Onboard I2C port
         * or the MXP port. Both can run simultaneously.
         */
-        distMXP = new Rev2mDistanceSensor(Port.kMXP);
+        //distMXP = new Rev2mDistanceSensor(Port.kMXP);
 
         /* TODO: This needs to be put in a better spot, currently it's in a placeholder spot */
         /**
@@ -77,14 +79,22 @@ public class Infrared {
         multiplexer.write(0x70, 1 << infraredSensorPort1);
         double distance1 = infraredSensor1.getRange();
 
+        /* TODO: These names suck. Change them */
+        /* Lets the driver know via SmartDashboard if there is a ball in a specific spot */
         if (distance0 <= 1) {
-            // CHUCK NORRIS
+            SmartDashboard.putString("infrared0", "Present");
+        }
+        else {
+            SmartDashboard.putString("infrared0", "Missing");
         }
     
         if (distance1 <= 1) {
-            // GABRIE was here
+            SmartDashboard.putString("infrared1", "Present");
         }
-
+        else {
+            SmartDashboard.putString("infrared1", "Missing");
+        }
+        
     }
 
 }
