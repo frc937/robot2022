@@ -3,24 +3,18 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.I2C;
 
-import com.revrobotics.*;
 import com.revrobotics.Rev2mDistanceSensor;
 import com.revrobotics.Rev2mDistanceSensor.Port;
 
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-
 public class Infrared {
-    
-    /* Variables */
-    private Rev2mDistanceSensor distMXP;
 
-    // Putting I2C before Port here seems to break stuff, although it may be needed
+    /* Variables */
     private Rev2mDistanceSensor infraredSensor0;
     private Rev2mDistanceSensor infraredSensor1;
 
-    // These variables have currently replaced the previous to follow an example. 
     private int infraredSensorPort0;
     private int infraredSensorPort1;
+    
     private I2C multiplexer;
 
     public Infrared() {
