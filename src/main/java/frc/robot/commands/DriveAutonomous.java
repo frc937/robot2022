@@ -5,28 +5,48 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.RobotContainer;
+import frc.robot.subsystems.Drive;
 
 public class DriveAutonomous extends CommandBase {
-  /** Creates a new DriveAutonomous. */
-  public DriveAutonomous() {
-    // Use addRequirements() here to declare subsystem dependencies.
+
+  /* Variables */
+  private final Drive drivetrain;
+  private double mecanumX;
+  private double mecanumY;
+  private double mecanumZ;
+
+  public DriveAutonomous(Drive driveSubsystem) {
+      drivetrain = driveSubsystem;
+      addRequirements(driveSubsystem);
+
   }
 
-  // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+      SmartDashboard.putString("Drive Perspective", "Autonomous");
+  }
 
-  // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+      /* Gets the left and right axes of the robot and uses that to move */
+      mecanumX = RobotContainer.getScaledLeftXAxis();
+      mecanumY = RobotContainer.getScaledLeftYAxis();
+      mecanumZ = RobotContainer.getScaledRightXAxis();
+      drivetrain.moveRobot(mecanumY, mecanumX, mecanumZ);
 
-  // Called once the command ends or is interrupted.
+  }
+
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+      drivetrain.stop();
 
-  // Returns true when the command should end.
+  }
+
   @Override
   public boolean isFinished() {
-    return false;
+      return false;
   }
+
 }
