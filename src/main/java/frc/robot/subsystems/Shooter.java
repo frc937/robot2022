@@ -4,76 +4,51 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj2.command.PIDSubsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
+import com.revrobotics.CANEncoder;
+import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
-import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.math.controller.SimpleMotorFeedforward;
-import edu.wpi.first.wpilibj.Encoder;
 
 /**
  * Shooter subsystem. Handles the shooter we use to launch balls into the target.
  * 
  * <p>Is a PIDSubsystem because we need veolocity PID handled by WPI on the flywheel to ensure it always runs at a constant speed so we're always on target.
  */
-public class Shooter extends PIDSubsystem {
+public class Shooter extends SubsystemBase {
 
     private CANSparkMax flywheel;
     private CANSparkMax controlWheel;
 
-    private Encoder flywheelEncoder;
+    private CANEncoder flywheelEncoder;
 
-    private SimpleMotorFeedforward flywheelFeedForward;
+    private CANPIDController flywheelPID;
 
     /** Creates a new Shooter. */
     public Shooter() {
-        super(new PIDController(Constants.kFLYWHEEL_P, Constants.kFLYWHEEL_I, Constants.kFLYWHEEL_D));
-
-        /* A lot of this PID stuff will need tuning, like I'm not entirely sure we need a feedforward for this */
         flywheel = new CANSparkMax(Constants.ID_SPARKMAX_FLYWHEEL, MotorType.kBrushed);
         controlWheel = new CANSparkMax(Constants.ID_SPARKMAX_CONTROL_WHEEL, MotorType.kBrushed);
 
-        flywheelEncoder = new Encoder(Constants.DIO_PIN_FLYWHEEL_ENCODER_0, Constants.DIO_PIN_FLYWHEEL_ENCODER_1);
+        flywheelEncoder = flywheel.getEncoder();
 
-        flywheelFeedForward = new SimpleMotorFeedforward(Constants.FLYWHEEL_kSVOLTS, Constants.FLYWHEEL_kVVOLT_SECONDS_PER_ROTATION);
+        flywheelPID = flywheel.getPIDController();
 
-        setSetpoint(Constants.FLYWHEEL_SETPOINT);
+        /* This may need to set more constants, like setIZone(), setFF(), or setOutputRange(). idk for now. */
+        flywheelPID.setP(Constants.kFLYWHEEL_P);
+        flywheelPID.setI(Constants.kFLYWHEEL_I);
+        flywheelPID.setD(Constants.kFLYWHEEL_D);
+        flywheel.burnFlash();
     }
 
-    /**
-     * Sets the flywheel. Takes an output and a setpoint cause PID.
-     * 
-     * <p> These params should be set from the values in {@link frc.robot.Constants}.
-     * @param output The output used by PID
-     * @param setpoint The PID setpoint
-     */
-    @Override
-    public void useOutput(double output, double setpoint) {
-        flywheel.set(output + flywheelFeedForward.calculate(setpoint));
+    public void setVelocity(double velocity) {
+        flywheelPID.setReference(velocity, ControlType.kVelocity);
     }
 
-    /**
-     * Returns the flywheel speed.
-     * @return The current flywheel speed.
-     */
-    @Override
-    public double getMeasurement() {
-        return flywheelEncoder.getRate();
-    }
-
-    /**
-     * Returns if the flywheel is at its setpoint, i.e. its target speed.
-     * @return A boolean; true if the flywheel is at its setpoint
-     */
-    public boolean atSetpoint() {
-        /* 
-         * THIS NAME DOES NOT COMPLY WITH THIS PROJECT'S NAMING STANDARDS.
-         * Unfortunately, we're stuck with it, because WPILib created the name automatically.
-         */
-        return m_controller.atSetpoint();
+    public void stopFlywheel() {
+        flywheel.set(0);
     }
 
     /**
