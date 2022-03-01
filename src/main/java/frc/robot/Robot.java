@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  */
 public class Robot extends TimedRobot {
     private Command m_autonomousCommand;
-    private Command defaultDriveCommand;
+    private Command runFlywheel;
 
     private RobotContainer container;
 
@@ -29,7 +29,7 @@ public class Robot extends TimedRobot {
         // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
         // autonomous chooser on the dashboard.
         container = new RobotContainer();
-        defaultDriveCommand = container.getDriveROCommand();
+        runFlywheel = container.getRunFlywheelCommand();
     }
 
     /**
@@ -79,12 +79,14 @@ public class Robot extends TimedRobot {
         if (m_autonomousCommand != null) {
             m_autonomousCommand.cancel();
         }
-        defaultDriveCommand.schedule();
     }
 
     /** This function is called periodically during operator control. */
     @Override
-    public void teleopPeriodic() {}
+    public void teleopPeriodic() {
+        /* Makes sure the flywheel is always running */
+        runFlywheel.schedule();
+    }
 
     @Override
     public void testInit() {

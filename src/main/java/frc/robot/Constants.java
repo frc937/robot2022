@@ -14,6 +14,12 @@ package frc.robot;
  */
 public final class Constants {
 
+    /*
+     * ****************************
+     * TODO: TUNE ALLLLLLL OF THESE
+     * ****************************
+     */
+
     /* Drive motor CAN IDs */
     public static final int ID_TALON_FRONT_LEFT = 0;
     public static final int ID_TALON_FRONT_RIGHT = 1;
@@ -24,39 +30,41 @@ public final class Constants {
     public static final int ID_SPARKMAX_FLYWHEEL = 4;
     public static final int ID_SPARKMAX_CONTROL_WHEEL = 5;
 
-    /* SPARK MAX CAN IDs for climber */
-    public static final int ID_SPARKMAX_WINCH_0 = 6;
-    public static final int ID_SPARKMAX_WINCH_1 = 7;
-
     /* DIO pin numbers for shooter flywheel encoder */
     public static final int DIO_PIN_FLYWHEEL_ENCODER_0 = 0;
     public static final int DIO_PIN_FLYWHEEL_ENCODER_1 = 1;
-
-    /* DIO pin numbers for climber winch encoder */
-    public static final int DIO_PIN_WINCH_ENCODER_0 = 2;
-    public static final int DIO_PIN_WINCH_ENCODER_1 = 3;
 
     /* PID gains for shooter flywheel */
     public static final int kFLYWHEEL_P = 1;
     public static final int kFLYWHEEL_I = 0;
     public static final int kFLYWHEEL_D = 0;
 
-    /* PID gains for climber winch */
-    public static final int kWINCH_P = 1;
-    public static final int kWINCH_I = 0;
-    public static final int kWINCH_D = 0;
+    /* Flywheel feedforward settings */
+    /* 
+     * This, like the I and D above, may not actually be necessary for what we want to do.
+     * I'm going to do more research into PID and figure out if we actually need this or not.
+     */
+    public static final double FLYWHEEL_kSVOLTS = 0;
+    public static final double FLYWHEEL_kVVOLT_SECONDS_PER_ROTATION = 0;
 
     /* Speed to run the control wheel at */
-    /* TODO: TUNE THIS */
     public static final double CONTROL_WHEEL_SPEED = 0.1;
 
     /* Speed to run the flywheel at. I THINK it's in RPM. */
-    /* TODO: TUNE THIS TOO */
     public static final double FLYWHEEL_SETPOINT = 10;
 
-    /* Speed to run the winch at. Supposedly it's in RPM */
-    /* TODO: TUNE THIS TOO TOO */
-    public static final double WINCH_SPEED = 0.5;
+    /* Shooter/intake color sensor calibration values */
+    /* TODO: these are stolen from REV's examples, and won't be accurate to the actual ball colors. calibrate them. */
+    public static final double[] RED_BALL = {0.561, 0.232, 0.114};
+    public static final double[] BLUE_BALL = {0.143, 0.427, 0.429};
+
+    /* Intake sparkmax IDs */
+    public static final int ID_SPARKMAX_SKRUNGLES = 6;
+    public static final int ID_SPARKMAX_CONVEYOR = 7;
+
+    /* Intake speeds */
+    public static final double SKRUNGLE_SPEED = 0.1;
+    public static final double CONVEYOR_SPEED = 0.1;
     
     /* Controller ID */
     public static final int CONTROLLER_NUMBER = 0;

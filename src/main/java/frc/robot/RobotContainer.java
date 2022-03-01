@@ -7,17 +7,19 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.DriveFieldOriented;
-import frc.robot.commands.DriveRobotOriented;
-import frc.robot.commands.ClimbForward;
-import frc.robot.commands.ClimberReset;
-import frc.robot.commands.DriveAutonomous;
+import frc.robot.commands.RoboOrientedDrive;
+import frc.robot.commands.RunControlWheel;
+import frc.robot.commands.RunConveyorForward;
+import frc.robot.commands.RunConveyorReverse;
+import frc.robot.commands.RunSkrungles;
+import frc.robot.commands.RunFlywheel;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Drive;
-import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.Shooter;
+import frc.robot.TwoButtonCombo;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -27,24 +29,23 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-    // The robot's subsystems and commands are defined here...
+    /* The robot's subsystems and commands are defined here... */
     private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
     private final Drive driveSubsystem = new Drive();
-    private final Climber climberSubsystem = new Climber();
+    private final Shooter shooter = new Shooter();
+    private final Intake intake = new Intake();
 
     private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-    private final DriveRobotOriented driveRO = new DriveRobotOriented(driveSubsystem);
-    private final DriveFieldOriented driveFO = new DriveFieldOriented(driveSubsystem);
-    private final InstantCommand resetGyro = new InstantCommand(driveSubsystem::resetGyro, driveSubsystem);
-    private final ClimbForward climbForward = new ClimbForward(climberSubsystem);
-    private final ClimberReset climberReset = new ClimberReset(climberSubsystem);
-    private final DriveAutonomous driveA = new DriveAutonomous(driveSubsystem);
-
+    private final RoboOrientedDrive driveRO = new RoboOrientedDrive(driveSubsystem);
+    private final RunFlywheel runFlywheel = new RunFlywheel(shooter);
+    private final RunSkrungles runSkrungles = new RunSkrungles(intake);
+    private final RunConveyorForward runConveyorForward = new RunConveyorForward(intake);
+    private final RunConveyorReverse runConveyorReverse = new RunConveyorReverse(intake);
+    private final RunControlWheel runControlWheel = new RunControlWheel(shooter);
     public static XboxController controller = new XboxController(Constants.CONTROLLER_NUMBER);
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
-        // Configure the button bindings
         configureButtonBindings();
     }
 
@@ -65,17 +66,13 @@ public class RobotContainer {
         JoystickButton startButton = new JoystickButton(controller, Constants.START_NUMBER);
         JoystickButton leftStick = new JoystickButton(controller, Constants.LEFT_STICK_NUMBER);
         JoystickButton rightStick = new JoystickButton(controller, Constants.RIGHT_STICK_NUMBER);
+        TwoButtonCombo xAndY = new TwoButtonCombo(controller, Constants.X_NUMBER, Constants.Y_NUMBER);
 
-        // Change these buttons when a more convenient controller layout becomes obvious
-        /* Buttons for the climber in a box */
-        bButton.whenHeld(climbForward);
-        xButton.whenHeld(climberReset);
-
-        // This button binding is arbitrary, should probably be changed later
-        backButton.whenPressed(resetGyro);
-
-        // Field oriented while stick pressed, we should make sure this is viable on the human end
-        leftStick.whileHeld(driveFO);
+        /* TOTALLY arbitrary button bindings, TODO give them real ones */
+        aButton.whenHeld(runSkrungles);
+        bButton.whenHeld(runControlWheel);
+        xButton.whenHeld(new ConditionalCommand(runConveyorForward, runConveyorReverse, intake::canShoot));
+        xAndY.whenHeld(runConveyorForward);
     }
     
 
@@ -85,52 +82,19 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand() {
-        // An runs driveA will run in autonomous
-        return new ParallelCommandGroup(driveA);
-        // return m_autoCommand;
+        // An ExampleCommand will run in autonomous
+        return m_autoCommand;
     }
 
     public Command getDriveROCommand() {
         return driveRO;
     }
-
-    public static double getLeftXAxis() {
-        return controller.getLeftX();
+    
+    /**
+     * Used to pass the command to run the flywheel to {@link Robot}
+     * @return The command to run the flywheel
+     */
+    public Command getRunFlywheelCommand() {
+        return runFlywheel;
     }
-
-    public static double getScaledLeftXAxis() {
-        return scaleAxis(getLeftXAxis());
-       }
-
-
-    public static double getLeftYAxis() {
-        return controller.getLeftX();
-    }
-
-    public static double getScaledLeftYAxis() {
-       return scaleAxis(getLeftYAxis());
-    }
-
-
-    public static double getRightXAxis() {
-        return controller.getRightX();
-    }
-
-    public static double getScaledRightXAxis() {
-        return scaleAxis(getRightXAxis());
-    }
-
-
-    public static double getRightYAxis() {
-        return controller.getRightY();
-    }
-
-    public static double getScaledRightYAxis() {
-        return scaleAxis(getRightYAxis());
-    }
-
-    private static double scaleAxis(double a) {
-        return Math.signum(a) * Math.pow(a, 4);
-    }
-
 }
