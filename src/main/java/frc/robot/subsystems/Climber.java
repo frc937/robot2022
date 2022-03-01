@@ -16,7 +16,7 @@ public class Climber extends PIDSubsystem {
     private CANSparkMax winch0;
     private CANSparkMax winch1;
     private double winchSpeed;
-
+    
     private Encoder winchEncoder;
     
     /* Creates a new Climber Subsystem */

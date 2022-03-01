@@ -11,11 +11,13 @@ import frc.robot.commands.DriveFieldOriented;
 import frc.robot.commands.DriveRobotOriented;
 import frc.robot.commands.ClimbForward;
 import frc.robot.commands.ClimberReset;
+import frc.robot.commands.DriveAutonomous;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Climber;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -36,6 +38,7 @@ public class RobotContainer {
     private final InstantCommand resetGyro = new InstantCommand(driveSubsystem::resetGyro, driveSubsystem);
     private final ClimbForward climbForward = new ClimbForward(climberSubsystem);
     private final ClimberReset climberReset = new ClimberReset(climberSubsystem);
+    private final DriveAutonomous driveA = new DriveAutonomous(driveSubsystem);
 
     public static XboxController controller = new XboxController(Constants.CONTROLLER_NUMBER);
 
@@ -82,14 +85,15 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand() {
-        // An ExampleCommand will run in autonomous
-        return m_autoCommand;
+        // An runs driveA will run in autonomous
+        return new ParallelCommandGroup(driveA);
+        // return m_autoCommand;
     }
 
     public Command getDriveROCommand() {
         return driveRO;
     }
-    
+
     public static double getLeftXAxis() {
         return controller.getLeftX();
     }
