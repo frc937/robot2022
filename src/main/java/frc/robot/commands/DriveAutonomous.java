@@ -31,7 +31,7 @@ public class DriveAutonomous extends CommandBase {
     @Override
     public void execute() {
         /* TODO: Change this value, it's a placeholder */
-        mecanumX = 5;
+        mecanumX = -5;
         drivetrain.moveRobot(mecanumY, mecanumX, mecanumZ);
 
     }

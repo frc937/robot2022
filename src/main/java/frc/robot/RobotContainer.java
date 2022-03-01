@@ -107,8 +107,8 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand() {
-        /* Autonomous runs driveA then JFSLK:J */
-        return new ParallelCommandGroup(driveA);
+        /* Autonomous runs driveA then Shooter */
+        return new ParallelCommandGroup(driveA, runControlWheel);
         //return m_autocommand;
     }
 
