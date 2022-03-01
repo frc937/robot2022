@@ -30,14 +30,27 @@ public final class Constants {
     public static final int ID_SPARKMAX_FLYWHEEL = 4;
     public static final int ID_SPARKMAX_CONTROL_WHEEL = 5;
 
+    /* SPARK MAX CAN IDs for climber */
+    public static final int ID_SPARKMAX_WINCH_0 = 6;
+    public static final int ID_SPARKMAX_WINCH_1 = 7;
+
     /* DIO pin numbers for shooter flywheel encoder */
     public static final int DIO_PIN_FLYWHEEL_ENCODER_0 = 0;
     public static final int DIO_PIN_FLYWHEEL_ENCODER_1 = 1;
+
+    /* DIO pin numbers for climber winch encoder */
+    public static final int DIO_PIN_WINCH_ENCODER_0 = 2;
+    public static final int DIO_PIN_WINCH_ENCODER_1 = 3;
 
     /* PID gains for shooter flywheel */
     public static final int kFLYWHEEL_P = 1;
     public static final int kFLYWHEEL_I = 0;
     public static final int kFLYWHEEL_D = 0;
+
+    /* PID gains for climber winch */
+    public static final int kWINCH_P = 1;
+    public static final int kWINCH_I = 0;
+    public static final int kWINCH_D = 0;
 
     /* Flywheel feedforward settings */
     /* 
@@ -52,6 +65,9 @@ public final class Constants {
 
     /* Speed to run the flywheel at. I THINK it's in RPM. */
     public static final double FLYWHEEL_SETPOINT = 10;
+
+    /* Speed to run the winch at. Supposedly it's in RPM */
+    public static final double WINCH_SPEED = 0.5;
 
     /* Shooter/intake color sensor calibration values */
     /* TODO: these are stolen from REV's examples, and won't be accurate to the actual ball colors. calibrate them. */

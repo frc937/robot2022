@@ -30,10 +30,8 @@ public class DriveAutonomous extends CommandBase {
 
     @Override
     public void execute() {
-        /* Gets the left and right axes of the robot and uses that to move */
-        // mecanumX = RobotContainer.getScaledLeftXAxis();
-        // mecanumY = RobotContainer.getScaledLeftYAxis();
-        // mecanumZ = RobotContainer.getScaledRightXAxis();
+        /* TODO: Change this value, it's a placeholder */
+        mecanumX = 5;
         drivetrain.moveRobot(mecanumY, mecanumX, mecanumZ);
 
     }
