@@ -10,20 +10,12 @@ public class Infrared {
 
     /* Variables */
     private Rev2mDistanceSensor infraredSensor;
-
-    private int infraredSensorPort;
-    
-    private I2C multiplexer;
+    private Port infraredSensorPort;
 
     public Infrared() {
 
-        /* TODO: This port is a placeholder, the range is 0-7 */
-        infraredSensorPort = 4;
-
-        multiplexer = new I2C(I2C.Port.kOnboard, 0x70);
-
-        multiplexer.write(0x70, 1 << infraredSensorPort);
-        infraredSensor = new Rev2mDistanceSensor(Port.kOnboard);
+        infraredSensorPort = Port.kOnboard;
+        infraredSensor = new Rev2mDistanceSensor(infraredSensorPort);
 
         /**
         * Before measurements can be read from the sensor, setAutomaticMode(true)
@@ -36,16 +28,17 @@ public class Infrared {
 
     public void periodic() {
 
-        /* TODO: change the distance at which the sensor detects a ball, it's currently a placeholder */
+
         /* Gets the range of the sensors and stores them in a variable */
-        multiplexer.write(0x70, 1 << infraredSensorPort);
         double distance = infraredSensor.getRange();
 
-        /* TODO: These names (infrared0/infrared1 and Present/Missing) suck. Change them */
+        /* TODO: change the distance at which the sensor detects a ball, it's currently a placeholder */
+        /* TODO: These names Present/Missing suck. infraredUndefined Change them */
         /* Lets the driver know via SmartDashboard if there is a ball in a specific spot */
         if (distance <= 1) {
             SmartDashboard.putString("infraredUndefined", "Present");
         }
+        
         else {
             SmartDashboard.putString("infraredUndefined", "Missing");
         }
