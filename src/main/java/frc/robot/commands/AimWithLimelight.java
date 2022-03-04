@@ -9,11 +9,20 @@ import frc.robot.Constants;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Limelight;
 
+/**
+ * A command to use the Limelight to aim the robot
+ * 
+ * <p>Currently set up to be used with .whenHeld() or similar methods, but could easily be altered to work as a oneshot.
+ */
 public class AimWithLimelight extends CommandBase {
     private Drive drive;
     private Limelight limelight;
 
-    /** Creates a new AimWithLimelight. */
+    /** 
+     * Creates a new AimWithLimelight.
+     * @param drive Takes a drive subsystem for dependency injection
+     * @param limelight Takes a limelight subsystem for dependency injection
+     */
     public AimWithLimelight(Drive drive, Limelight limelight) {
         this.drive = drive;
         this.limelight = limelight;
@@ -24,7 +33,9 @@ public class AimWithLimelight extends CommandBase {
     @Override
     public void initialize() {}
 
-    // Called every time the scheduler runs while the command is scheduled.
+    /**
+     * Called every time the scheduler runs while the command is scheduled. Moves the robot to aim into the upper hub.
+     */
     @Override
     public void execute() {
         if (limelight.hasValidTarget()) {
