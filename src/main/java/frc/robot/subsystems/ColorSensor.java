@@ -47,6 +47,22 @@ public class ColorSensor extends SubsystemBase {
 
     }
 
+    public void periodic() {
+
+        /* Gets the distance between the color sensor's IR sensor and the object */
+        int distance = colorSensor.getProximity();
+
+        /* TODO: This value is a placeholder, while it should work, it might need tweaking */
+        /* Tells the driver if the ball is in the conveyor mechanism */
+        if (distance > 1000) {
+            SmartDashboard.putString("Conveyor", "Present");
+        }
+        else {
+            SmartDashboard.putString("Conveyor", "Missing");
+        }
+
+    }
+
     /**
      * Returns true if the ball loaded into the robot is the same color as our alliance color.
      * 
@@ -54,12 +70,12 @@ public class ColorSensor extends SubsystemBase {
      * the opposing alliance's ball, they get the point.
      * @return If we can shoot without potentially scoring for the opposing alliance
      */
+
     public boolean canShoot() {
         Color detectedColor = colorSensor.getColor();
         ColorMatchResult colorMatchResult = colorMatcher.matchClosestColor(detectedColor);
 
         return colorMatchResult.color.equals(allianceChoice);
     }
-
 
 }
