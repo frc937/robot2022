@@ -42,6 +42,11 @@ public final class Constants {
     public static final int DIO_PIN_WINCH_ENCODER_0 = 2;
     public static final int DIO_PIN_WINCH_ENCODER_1 = 3;
 
+    /* PID gains for drive */
+    public static final int kDRIVE_P = 1;
+    public static final int kDRIVE_I = 0;
+    public static final int kDRIVE_D = 0;
+
     /* PID gains for shooter flywheel */
     public static final int kFLYWHEEL_P = 1;
     public static final int kFLYWHEEL_I = 0;
@@ -52,11 +57,17 @@ public final class Constants {
     public static final int kWINCH_I = 0;
     public static final int kWINCH_D = 0;
 
-    /* Flywheel feedforward settings */
+
     /* 
      * This, like the I and D above, may not actually be necessary for what we want to do.
      * I'm going to do more research into PID and figure out if we actually need this or not.
      */
+
+    /* Drive feedforward settings */
+    public static final double DRIVE_kSVOLTS = 0;
+    public static final double DRIVE_kVVOLT_SECONDS_PER_ROTATION = 0;
+
+    /* Flywheel feedforward settings */
     public static final double FLYWHEEL_kSVOLTS = 0;
     public static final double FLYWHEEL_kVVOLT_SECONDS_PER_ROTATION = 0;
 

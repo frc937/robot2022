@@ -4,14 +4,16 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.PIDSubsystem;
 import com.ctre.phoenix.motorcontrol.can.*;
 import com.kauailabs.navx.frc.AHRS;
 
 import frc.robot.Constants;
 
-public class Drive extends SubsystemBase {
+public class Drive extends PIDSubsystem {
 
     /* Variables */
     WPI_TalonSRX frontLeft;
@@ -25,6 +27,9 @@ public class Drive extends SubsystemBase {
 
     /** Creates a new drivetrain subsystem. */
     public Drive() {
+
+        super(new PIDController(Constants.kDRIVE_P, Constants.kDRIVE_I, Constants.kDRIVE_D));
+
         /* Initializes drive motor controllers */
         frontLeft = new WPI_TalonSRX(Constants.ID_TALON_FRONT_LEFT);
         rearLeft = new WPI_TalonSRX(Constants.ID_TALON_REAR_LEFT);
@@ -82,6 +87,20 @@ public class Drive extends SubsystemBase {
     @Override
     public void simulationPeriodic() {
         // This method will be called once per scheduler run during simulation
+    }
+
+
+    @Override
+    protected void useOutput(double output, double setpoint) {
+        // TODO Auto-generated method stub
+        
+    }
+
+
+    @Override
+    protected double getMeasurement() {
+        // TODO Auto-generated method stub
+        return 0;
     }
 
 }
