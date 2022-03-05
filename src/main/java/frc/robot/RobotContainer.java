@@ -6,6 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.util.Color;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.DriveFieldOriented;
 import frc.robot.commands.DriveRobotOriented;
@@ -21,6 +22,7 @@ import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.ColorSensor;
 import frc.robot.subsystems.Shooter;
 import frc.robot.TwoButtonCombo;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -42,6 +44,7 @@ public class RobotContainer {
     private final Shooter shooter = new Shooter();
     private final Intake intake = new Intake();
     private final Climber climberSubsystem = new Climber();
+    private final ColorSensor colorSensor = new ColorSensor();
 
     private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
     private final DriveRobotOriented driveRO = new DriveRobotOriented(driveSubsystem);
@@ -90,7 +93,7 @@ public class RobotContainer {
         /* Buttons for shooter/intake */
         aButton.whenHeld(runSkrungles);
         bButton.whenHeld(runControlWheel);
-        xButton.whenHeld(new ConditionalCommand(runConveyorForward, runConveyorReverse, intake::canShoot));
+        xButton.whenHeld(new ConditionalCommand(runConveyorForward, runConveyorReverse, colorSensor::canShoot));
         xAndY.whenHeld(runConveyorForward);
 
         backButton.whenPressed(resetGyro);
