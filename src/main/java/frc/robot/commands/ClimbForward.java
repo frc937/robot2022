@@ -11,7 +11,7 @@ import edu.wpi.first.math.controller.PIDController;
 public class ClimbForward extends PIDCommand {
 
     /* Variables */
-    // this variable maybe shouldn't be static, but I don't know enough java to fix it when it's private
+    /* this variable maybe shouldn't be static, but I don't know enough java to fix it when it's private */
     static Climber climberInABox;
 
     /* Initializes the ClimbUp method */

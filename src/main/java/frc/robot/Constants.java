@@ -60,6 +60,10 @@ public final class Constants {
     public static final double FLYWHEEL_kSVOLTS = 0;
     public static final double FLYWHEEL_kVVOLT_SECONDS_PER_ROTATION = 0;
 
+    /* Winch feedforward settings */
+    public static final double WINCH_kSVOLTS = 0;
+    public static final double WINCH_kVVOLT_SECONDS_PER_ROTATION = 0;
+
     /* Speed to run the control wheel at */
     public static final double CONTROL_WHEEL_SPEED = 0.1;
 
