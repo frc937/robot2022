@@ -14,6 +14,7 @@ public class Infrared {
 
     public Infrared() {
 
+        /* TODO: This might not be the right port */
         infraredSensorPort = Port.kOnboard;
         infraredSensor = new Rev2mDistanceSensor(infraredSensorPort);
 
@@ -38,7 +39,7 @@ public class Infrared {
         if (distance <= 1) {
             SmartDashboard.putString("infraredUndefined", "Present");
         }
-        
+
         else {
             SmartDashboard.putString("infraredUndefined", "Missing");
         }
