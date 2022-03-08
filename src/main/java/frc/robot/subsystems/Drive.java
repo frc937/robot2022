@@ -6,6 +6,8 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.*;
 import com.kauailabs.navx.frc.AHRS;
 
@@ -26,10 +28,10 @@ public class Drive extends SubsystemBase {
     /** Creates a new drivetrain subsystem. */
     public Drive() {
         /* Initializes drive motor controllers */
-        frontLeft = new WPI_TalonSRX(Constants.ID_TALON_FRONT_LEFT);
-        rearLeft = new WPI_TalonSRX(Constants.ID_TALON_REAR_LEFT);
-        frontRight = new WPI_TalonSRX(Constants.ID_TALON_FRONT_RIGHT);
-        rearRight = new WPI_TalonSRX(Constants.ID_TALON_REAR_RIGHT);
+        frontLeft = configTalon(Constants.ID_TALON_FRONT_LEFT);
+        rearLeft = configTalon(Constants.ID_TALON_REAR_LEFT);
+        frontRight = configTalon(Constants.ID_TALON_FRONT_RIGHT);
+        rearRight = configTalon(Constants.ID_TALON_REAR_RIGHT);
 
         /* Sets default drive directions */
         frontLeft.setInverted(false);
@@ -50,6 +52,34 @@ public class Drive extends SubsystemBase {
 
         /* Initializes a mecanum drivetrain */ 
         drivetrain = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
+    }
+
+    /**
+     * A method to create and configure Talon SRXs for the drivetrain for us so we don't have to have a tonne of boilerplate.
+     * @param id The CAN ID of the Talon to configure
+     * @return The configured Talon.
+     */
+    private WPI_TalonSRX configTalon(int id) {
+        WPI_TalonSRX talon = new WPI_TalonSRX(id);
+
+        talon.configFactoryDefault();
+
+        talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+
+        /* add one to the ID cause the arr is off by one (see Constants.java) */
+        talon.setSensorPhase(Constants.DRIVE_SENSOR_PHASE[id + 1]);
+
+        talon.setInverted(Constants.DRIVE_INVERTED[id + 1]);
+
+        /* Phoenix examples has peak output, nominal output, and close-loop error config here. I don't really know what those do, so I'm not worrying about them for now. */
+
+        /* PIDF gains. Loop will always just be the default one, since we aren't using any of the other loops. */
+        talon.config_kP(0, Constants.DRIVE_GAINS[0]);
+        talon.config_kI(0, Constants.DRIVE_GAINS[1]);
+        talon.config_kD(0, Constants.DRIVE_GAINS[2]);
+        talon.config_kF(0, Constants.DRIVE_GAINS[3]);
+
+        return talon;
     }
 
 
