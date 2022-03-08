@@ -21,10 +21,11 @@ public final class Constants {
      */
 
     /* Drive motor CAN IDs */
-    public static final int ID_TALON_FRONT_LEFT = 0;
-    public static final int ID_TALON_FRONT_RIGHT = 1;
-    public static final int ID_TALON_REAR_LEFT = 2;
-    public static final int ID_TALON_REAR_RIGHT = 3;
+    /* Officially TUNED */
+    public static final int ID_TALON_FRONT_LEFT = 2;
+    public static final int ID_TALON_FRONT_RIGHT = 3;
+    public static final int ID_TALON_REAR_LEFT = 1;
+    public static final int ID_TALON_REAR_RIGHT = 4;
 
     /* SPARK MAX CAN IDs for shooter */
     public static final int ID_SPARKMAX_FLYWHEEL = 4;
