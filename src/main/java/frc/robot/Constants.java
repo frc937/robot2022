@@ -32,18 +32,21 @@ public final class Constants {
     public static final int ID_TALON_REAR_LEFT = 2;
     public static final int ID_TALON_REAR_RIGHT = 3;
 
-    /* Sensor phases for each motor controller.
+    /* 
+     * Sensor phases for each motor controller.
      * These are in the order of their CAN IDs, but because of the way arrays work, they are off by one from their actual IDs.
      * For example, in order to get the phase for the FL controller, one would call DRIVE_SENSOR_PHASE[Constants.ID_TALON_FRONT_LEFT + 1].
      */
     public static final boolean[] DRIVE_SENSOR_PHASE = {false, false, false, false};
 
-    /* Invert values for each motor controller.
+    /* 
+     * Invert values for each motor controller.
      * Off by one, see above.
      */
     public static final boolean[] DRIVE_INVERTED = {false, false, false, false};
 
-    /* Gains for drive PID.
+    /* 
+     * Gains for drive PID.
      * Format is DRIVE_GAINS[kP, kI, kD, kF]
      */
     public static final double[] DRIVE_GAINS = {0.0, 0.0, 0.0, 0.0};
