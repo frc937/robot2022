@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.*;
 import com.kauailabs.navx.frc.AHRS;
@@ -80,6 +81,19 @@ public class Drive extends SubsystemBase {
 
     public void moveField(double y, double x, double z) {
         drivetrain.driveCartesian(y, x, z, ahrs.getAngle());
+    }
+
+    /**
+     * Position PID move method. Params are setpoints. See CTRE's docs for units.
+     * @param y Y setpoint. Positive is right.
+     * @param x X setpoint. Positive is forward.
+     * @param z Z setpoint. Positive is clockwise (I THINK).
+     */
+    public void movePositionPID(double y, double x, double z) {
+        frontLeft.set(ControlMode.Position, (x-y-z));
+        rearLeft.set(ControlMode.Position, (-x-y-z));
+        frontRight.set(ControlMode.Position, (x+y+z));
+        rearRight.set(ControlMode.Position, (-x+y+z));
     }
 
     public void stop() {
