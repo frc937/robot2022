@@ -30,6 +30,11 @@ public class Climber extends SubsystemBase {
     /* Creates a new Climber Subsystem */
     public Climber() {
 
+        winch0 = new CANSparkMax(Constants.ID_SPARKMAX_WINCH_0, MotorType.kBrushed);
+        winch1 = new CANSparkMax(Constants.ID_SPARKMAX_WINCH_1, MotorType.kBrushed);
+
+        winch1.follow(winch0);
+
         /* Initializes winch motor */
         winchEncoder = winch0.getEncoder();
 
