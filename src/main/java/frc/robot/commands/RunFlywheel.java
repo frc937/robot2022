@@ -4,8 +4,7 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.wpilibj2.command.PIDCommand;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Shooter;
 
@@ -13,23 +12,12 @@ import frc.robot.subsystems.Shooter;
 /**
  * Command to run the flywheel. Run as a defualt command.
  */
-public class RunFlywheel extends PIDCommand {
+public class RunFlywheel extends CommandBase {
     Shooter shooter;
     boolean done;
 
     /** Constructor for RunFlywheel */
     public RunFlywheel(Shooter shooter) {
-        super(
-            // The controller that the command will use
-            new PIDController(Constants.kFLYWHEEL_P, Constants.kFLYWHEEL_I, Constants.kFLYWHEEL_D),
-            // This should return the measurement
-            shooter::getMeasurement,
-            // This should return the setpoint (can also be a constant)
-            Constants.FLYWHEEL_SETPOINT,
-            // This uses the output
-            output -> {
-                // Use the output here
-            });
         addRequirements(shooter);
         this.shooter = shooter;
         done = false;
@@ -40,7 +28,7 @@ public class RunFlywheel extends PIDCommand {
      */
     @Override
     public void initialize() {
-        shooter.enable();
+        shooter.setVelocity(Constants.FLYWHEEL_SPEED);
         done = true;
     }
 

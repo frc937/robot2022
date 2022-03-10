@@ -63,8 +63,11 @@ public final class Constants {
     /* Speed to run the control wheel at */
     public static final double CONTROL_WHEEL_SPEED = 0.1;
 
-    /* Speed to run the flywheel at. I THINK it's in RPM. */
-    public static final double FLYWHEEL_SETPOINT = 10;
+    /* Speed to run the flywheel at. */
+    public static final double FLYWHEEL_SPEED = 10;
+
+    /* Multiplexer port for color sensor */
+    public static final int COLOR_SENSOR_PORT = 1;
 
     /* Speed to run the winch at. Supposedly it's in RPM */
     public static final double WINCH_SPEED = 0.5;
