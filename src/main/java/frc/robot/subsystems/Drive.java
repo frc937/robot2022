@@ -102,9 +102,9 @@ public class Drive extends SubsystemBase {
 
     /**
      * Velocity PID move method. Params are between -1 and 1, standard joystick notation things.
-     * @param y Y setpoint. Positive is right.
-     * @param x X setpoint. Positive is forward.
-     * @param z Z setpoint. Positive is clockwise (I THINK).
+     * @param y Y setpoint. Between -1 and 1. Positive is right.
+     * @param x X setpoint. Between -1 and 1. Positive is forward.
+     * @param z Z setpoint. Between -1 and 1. Positive is clockwise (I THINK).
      */
     public void moveVelocityPID(double y, double x, double z) {
         /* multiply vars so -1 to +1 as input works */
