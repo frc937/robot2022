@@ -101,18 +101,16 @@ public class Drive extends SubsystemBase {
     }
 
     /**
-     * Velocity PID move method. Params are setpoints, meaning that the wheels will move to whatever speed is passed. Units are native sensor units per 100ms, so for our sensors, 4096 would be 1 full rotation per 100ms.
+     * Velocity PID move method. Params are between -1 and 1, standard joystick notation things.
      * @param y Y setpoint. Positive is right.
      * @param x X setpoint. Positive is forward.
      * @param z Z setpoint. Positive is clockwise (I THINK).
      */
-    /* 
-     * TODO: Should figure out a way to make this work for a controller.
-     * i.e. Make it so that setpoints are between -1 (full throttle reverse, but PID) and 1 (full throttle forward, but PID)
-     * 
-     * Also, as of right now, I AM NOT ENTIRELY SURE THIS METHOD WILL WORK. It may crap itself and lock the motors to whatever velocity is passed to it... which is scary.
-     */
     public void moveVelocityPID(double y, double x, double z) {
+        /* multiply vars so -1 to +1 as input works */
+        y = y * 450.0 * 4096 / 600;
+        x = x * 450.0 * 4096 / 600;
+        z = z * 450.0 * 4096 / 600;
         frontLeft.set(ControlMode.Velocity, (x-y-z));
         rearLeft.set(ControlMode.Velocity, (-x-y-z));
         frontRight.set(ControlMode.Velocity, (x+y+z));
