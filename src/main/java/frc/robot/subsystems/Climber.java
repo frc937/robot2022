@@ -48,8 +48,8 @@ public class Climber extends SubsystemBase {
 
     }
 
-    public void setVelocity(double velocity) {
-        winchPID.setReference(velocity, ControlType.kVelocity);
+    public void setPosition(double position) {
+        winchPID.setReference(position, ControlType.kPosition);
     }
 
     public void runClimberForward() {
