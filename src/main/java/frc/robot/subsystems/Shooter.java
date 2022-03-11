@@ -7,10 +7,10 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-import com.revrobotics.CANEncoder;
-import com.revrobotics.CANPIDController;
+import com.revrobotics.RelativeEncoder;
+import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.ControlType;
+import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 /**
@@ -23,9 +23,9 @@ public class Shooter extends SubsystemBase {
     private CANSparkMax flywheel;
     private CANSparkMax controlWheel;
 
-    private CANEncoder flywheelEncoder;
+    private RelativeEncoder flywheelEncoder;
 
-    private CANPIDController flywheelPID;
+    private SparkMaxPIDController flywheelPID;
 
     /** Creates a new Shooter. */
     public Shooter() {
