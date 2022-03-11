@@ -33,8 +33,8 @@ public class ColorSensor extends SubsystemBase {
 
         colorMatcher = new ColorMatch();
         
-        redBall = ColorMatch.makeColor(Constants.RED_BALL[0], Constants.RED_BALL[1], Constants.RED_BALL[2]);
-        blueBall = ColorMatch.makeColor(Constants.BLUE_BALL[0], Constants.BLUE_BALL[1], Constants.BLUE_BALL[2]);
+        redBall = new Color(Constants.RED_BALL[0], Constants.RED_BALL[1], Constants.RED_BALL[2]);
+        blueBall = new Color(Constants.BLUE_BALL[0], Constants.BLUE_BALL[1], Constants.BLUE_BALL[2]);
 
         colorMatcher.addColorMatch(redBall);
         colorMatcher.addColorMatch(blueBall);
