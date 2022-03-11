@@ -41,7 +41,7 @@ public class RobotContainer {
     /* The robot's subsystems and commands are defined here... */
     private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
     private final Drive driveSubsystem = new Drive();
-    private final Shooter shooter = new Shooter();
+    /*private final Shooter shooter = new Shooter();*/
     private final Intake intake = new Intake();
     private final Climber climberSubsystem = new Climber();
     private final ColorSensor colorSensor = new ColorSensor();
@@ -53,11 +53,11 @@ public class RobotContainer {
     private final InstantCommand resetGyro = new InstantCommand(driveSubsystem::resetGyro, driveSubsystem);
     private final ClimbForward climbForward = new ClimbForward(climberSubsystem);
     private final ClimberReset climberReset = new ClimberReset(climberSubsystem);
-    private final RunFlywheel runFlywheel = new RunFlywheel(shooter);
+    /*private final RunFlywheel runFlywheel = new RunFlywheel(shooter);*/
     private final RunSkrungles runSkrungles = new RunSkrungles(intake);
     private final RunConveyorForward runConveyorForward = new RunConveyorForward(intake);
     private final RunConveyorReverse runConveyorReverse = new RunConveyorReverse(intake);
-    private final RunControlWheel runControlWheel = new RunControlWheel(shooter);
+    /*private final RunControlWheel runControlWheel = new RunControlWheel(shooter);*/
     
     public static XboxController controller = new XboxController(Constants.CONTROLLER_NUMBER);
 
@@ -92,7 +92,7 @@ public class RobotContainer {
 
         /* Buttons for shooter/intake */
         aButton.whenHeld(runSkrungles);
-        bButton.whenHeld(runControlWheel);
+        /*bButton.whenHeld(runControlWheel);*/
         xButton.whenHeld(new ConditionalCommand(runConveyorForward, runConveyorReverse, colorSensor::canShoot));
         xAndY.whenHeld(runConveyorForward);
 
@@ -111,7 +111,7 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         /* Autonomous runs driveA then Shooter */
-        return new ParallelCommandGroup(driveA, runControlWheel);
+        return new ParallelCommandGroup(driveA/*, runControlWheel*/);
         //return m_autocommand;
     }
 
@@ -124,7 +124,9 @@ public class RobotContainer {
      * @return The command to run the flywheel
      */
     public Command getRunFlywheelCommand() {
-        return runFlywheel;
+        /*return runFlywheel;*/
+        /* example command, testing purposes only */
+        return m_autoCommand;
     }
 
     public static double getLeftXAxis() {
