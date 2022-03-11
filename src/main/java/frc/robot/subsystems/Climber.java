@@ -54,19 +54,16 @@ public class Climber extends SubsystemBase {
 
     public void runClimberForward() {
         winch0.set(Constants.WINCH_SPEED);
-        winch1.follow(winch0);
     }
 
     public void stopClimber() {
         winch0.set(0);
-        winch1.follow(winch0);
     }
 
     public void reset() {
 
         winchSpeed = -0.30;
         winch0.set(winchSpeed);
-        winch1.follow(winch0);
 
     }
 
@@ -75,7 +72,6 @@ public class Climber extends SubsystemBase {
      */
     public void stopAll() {
         winch0.set(0);
-        winch1.follow(winch0);
     }
 
 }
