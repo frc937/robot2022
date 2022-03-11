@@ -48,6 +48,9 @@ public class Climber extends SubsystemBase {
 
     }
 
+    /*
+     * TODO: add something here to convert whatever units the setpoint is in to real-world units
+     */
     public void setPosition(double position) {
         winchPID.setReference(position, ControlType.kPosition);
     }
