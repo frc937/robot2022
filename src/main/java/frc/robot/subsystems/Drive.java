@@ -84,13 +84,16 @@ public class Drive extends SubsystemBase {
     }
 
     /**
-     * Position PID move method. Params are setpoints, meaning that the wheels will servo to whatever position is passed. One full rotation of the wheels is 4096.
+     * Position PID move method. Params are in inches of movement on that axis, so movePositionPID(1.0, 0.0, 0.0); would move the bot 1 inch to the right.
      * @param y Y setpoint. Positive is right.
      * @param x X setpoint. Positive is forward.
      * @param z Z setpoint. Positive is clockwise (I THINK).
      */
-    /* TODO: We may want to multiply all of the inputs by 4096 before they're passed to the set() methods, so that 1 input = 1 full rotation of the wheels. */
     public void movePositionPID(double y, double x, double z) {
+        /* multiply vars so 1 input = 1 inch of movement */
+        x = (x * 4096) / (8 * Math.PI);
+        y = (y * 4096) / (8 * Math.PI);
+        z = (z * 4096) / (8 * Math.PI);
         frontLeft.set(ControlMode.Position, (x-y-z));
         rearLeft.set(ControlMode.Position, (-x-y-z));
         frontRight.set(ControlMode.Position, (x+y+z));
