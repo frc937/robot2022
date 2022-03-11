@@ -51,6 +51,12 @@ public final class Constants {
      */
     public static final double[] DRIVE_GAINS = {0.0, 0.0, 0.0, 0.0};
 
+    /*
+     * Maximum number of RPMs drive velocity PID will have us drive at.
+     * 450 should put us at about 12 feet per second
+     */
+    public static final double DRIVE_VELOCITY_PID_MAX_SPEED = 450.0;
+
     /* SPARK MAX CAN IDs for shooter */
     public static final int ID_SPARKMAX_FLYWHEEL = 4;
     public static final int ID_SPARKMAX_CONTROL_WHEEL = 5;

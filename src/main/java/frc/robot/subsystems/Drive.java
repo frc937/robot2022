@@ -108,9 +108,9 @@ public class Drive extends SubsystemBase {
      */
     public void moveVelocityPID(double y, double x, double z) {
         /* multiply vars so -1 to +1 as input works */
-        y = y * 450.0 * 4096 / 600;
-        x = x * 450.0 * 4096 / 600;
-        z = z * 450.0 * 4096 / 600;
+        y = y * Constants.DRIVE_VELOCITY_PID_MAX_SPEED * 4096 / 600;
+        x = x * Constants.DRIVE_VELOCITY_PID_MAX_SPEED * 4096 / 600;
+        z = z * Constants.DRIVE_VELOCITY_PID_MAX_SPEED * 4096 / 600;
         frontLeft.set(ControlMode.Velocity, (x-y-z));
         rearLeft.set(ControlMode.Velocity, (-x-y-z));
         frontRight.set(ControlMode.Velocity, (x+y+z));
