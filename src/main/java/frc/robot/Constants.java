@@ -28,12 +28,12 @@ public final class Constants {
     public static final int ID_TALON_REAR_RIGHT = 4;
 
     /* SPARK MAX CAN IDs for shooter */
-    public static final int ID_SPARKMAX_FLYWHEEL = 4;
-    public static final int ID_SPARKMAX_CONTROL_WHEEL = 5;
+    public static final int ID_SPARKMAX_FLYWHEEL = 5;
+    public static final int ID_SPARKMAX_CONTROL_WHEEL = 6;
 
     /* SPARK MAX CAN IDs for climber */
-    public static final int ID_SPARKMAX_WINCH_0 = 6;
-    public static final int ID_SPARKMAX_WINCH_1 = 7;
+    public static final int ID_SPARKMAX_WINCH_0 = 7;
+    public static final int ID_SPARKMAX_WINCH_1 = 8;
 
     /* DIO pin numbers for shooter flywheel encoder */
     public static final int DIO_PIN_FLYWHEEL_ENCODER_0 = 0;
@@ -79,8 +79,8 @@ public final class Constants {
     public static final double[] BLUE_BALL = {0.143, 0.427, 0.429};
 
     /* Intake sparkmax IDs */
-    public static final int ID_SPARKMAX_SKRUNGLES = 6;
-    public static final int ID_SPARKMAX_CONVEYOR = 7;
+    public static final int ID_SPARKMAX_SKRUNGLES = 9;
+    public static final int ID_SPARKMAX_CONVEYOR = 10;
 
     /* Intake speeds */
     public static final double SKRUNGLE_SPEED = 0.1;
