@@ -84,7 +84,7 @@ public class Drive extends SubsystemBase {
     }
 
     /**
-     * Position PID move method. Params are setpoints. See CTRE's docs for units.
+     * Position PID move method. Params are setpoints, meaning that the wheels will servo to whatever position is passed. One full rotation of the wheels is 4096.
      * @param y Y setpoint. Positive is right.
      * @param x X setpoint. Positive is forward.
      * @param z Z setpoint. Positive is clockwise (I THINK).
