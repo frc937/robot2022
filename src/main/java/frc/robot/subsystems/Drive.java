@@ -89,11 +89,31 @@ public class Drive extends SubsystemBase {
      * @param x X setpoint. Positive is forward.
      * @param z Z setpoint. Positive is clockwise (I THINK).
      */
+    /* TODO: We may want to multiply all of the inputs by 4096 before they're passed to the set() methods, so that 1 input = 1 full rotation of the wheels. */
     public void movePositionPID(double y, double x, double z) {
         frontLeft.set(ControlMode.Position, (x-y-z));
         rearLeft.set(ControlMode.Position, (-x-y-z));
         frontRight.set(ControlMode.Position, (x+y+z));
         rearRight.set(ControlMode.Position, (-x+y+z));
+    }
+
+    /**
+     * Velocity PID move method. Params are setpoints, meaning that the wheels will move to whatever speed is passed. Units are native sensor units per 100ms, so for our sensors, 4096 would be 1 full rotation per 100ms.
+     * @param y Y setpoint. Positive is right.
+     * @param x X setpoint. Positive is forward.
+     * @param z Z setpoint. Positive is clockwise (I THINK).
+     */
+    /* 
+     * TODO: Should figure out a way to make this work for a controller.
+     * i.e. Make it so that setpoints are between -1 (full throttle reverse, but PID) and 1 (full throttle forward, but PID)
+     * 
+     * Also, as of right now, I AM NOT ENTIRELY SURE THIS METHOD WILL WORK. It may crap itself and lock the motors to whatever velocity is passed to it... which is scary.
+     */
+    public void moveVelocityPID(double y, double x, double z) {
+        frontLeft.set(ControlMode.Velocity, (x-y-z));
+        rearLeft.set(ControlMode.Velocity, (-x-y-z));
+        frontRight.set(ControlMode.Velocity, (x+y+z));
+        rearRight.set(ControlMode.Velocity, (-x+y+z));
     }
 
     public void stop() {
