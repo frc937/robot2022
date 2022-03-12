@@ -100,7 +100,7 @@ public class RobotContainer {
 
         backButton.whenPressed(resetGyro);
 
-        leftBumper.toggleWhenActive(driveFO);
+        leftStick.toggleWhenActive(driveFO);
 
 
     }
