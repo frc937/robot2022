@@ -64,6 +64,8 @@ public class RobotContainer {
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
         configureButtonBindings();
+
+        driveSubsystem.setDefaultCommand(driveRO);
     }
 
     /**
@@ -87,8 +89,8 @@ public class RobotContainer {
 
         /* TODO: Change these buttons when a more convenient controller layout becomes obvious */
         /* Buttons for the climber in a box */
-        leftBumper.whenHeld(climbForward);
-        rightBumper.whenHeld(climberReset);
+        /*leftBumper.whenHeld(climbForward);
+        rightBumper.whenHeld(climberReset);*/
 
         /* Buttons for shooter/intake */
         aButton.whenHeld(runSkrungles);
@@ -98,8 +100,8 @@ public class RobotContainer {
 
         backButton.whenPressed(resetGyro);
 
-        /* Field oriented while stick pressed, we should make sure this is viable on the human end */
-        leftStick.whileHeld(driveFO);
+        leftBumper.toggleWhenActive(driveFO);
+
 
     }
     
