@@ -9,30 +9,13 @@ import frc.robot.Constants;
 public class Conveyor extends SubsystemBase {
 
     /* Variables */
-    private CANSparkMax skrungles;
     private CANSparkMax conveyor;
 
-    /** Creates a new Intake. */
+    /** Creates a new Conveyor. */
     public Conveyor() {
-        skrungles = new CANSparkMax(Constants.ID_SPARKMAX_SKRUNGLES, MotorType.kBrushed);
         conveyor = new CANSparkMax(Constants.ID_SPARKMAX_CONVEYOR, MotorType.kBrushed);
 
-        skrungles.setInverted(false);
         conveyor.setInverted(false);
-    }
-
-    /**
-     * Runs the Wibbly Skrungles.
-     */
-    public void runSkrungles() {
-        skrungles.set(Constants.SKRUNGLE_SPEED);
-    }
-
-    /**
-     * Stops the Wibbly Skrungles.
-     */
-    public void stopSkrungles() {
-        skrungles.set(0);
     }
 
     /**
@@ -53,14 +36,6 @@ public class Conveyor extends SubsystemBase {
      * Stops the conveyor.
      */
     public void stopConveyor() {
-        conveyor.set(0);
-    }
-
-    /**
-     * Safety method that stops all motors associated with this subsystem.
-     */
-    public void stopAll() {
-        skrungles.set(0);
         conveyor.set(0);
     }
 
