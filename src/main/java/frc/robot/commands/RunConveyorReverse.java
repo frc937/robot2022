@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Conveyor;
 import frc.robot.subsystems.Intake;
 
 /**
@@ -13,15 +14,15 @@ import frc.robot.subsystems.Intake;
  * <p>Designed to be used with .whenHeld() or simliar methods.
  */
 public class RunConveyorReverse extends CommandBase {
-    Intake intake;
+    Conveyor conveyor;
 
     /** 
      * Creates a new RunConveyor. 
      * @param intake Takes an intake subsystem for dependency injection
     */
-    public RunConveyorReverse(Intake intake) {
-        this.intake = intake;
-        addRequirements(intake);
+    public RunConveyorReverse(Conveyor conveyorSubsystem) {
+        conveyor = conveyorSubsystem;
+        addRequirements(conveyorSubsystem);
     }
 
     /** 
@@ -29,7 +30,7 @@ public class RunConveyorReverse extends CommandBase {
      */
     @Override
     public void initialize() {
-        intake.runConveyorReverse();
+        conveyor.runConveyorReverse();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -41,7 +42,7 @@ public class RunConveyorReverse extends CommandBase {
      */
     @Override
     public void end(boolean interrupted) {
-        intake.stopConveyor();
+        conveyor.stopConveyor();
     }
 
     /** 
