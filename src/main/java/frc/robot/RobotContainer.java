@@ -57,11 +57,11 @@ public class RobotContainer {
     private final InstantCommand resetGyro = new InstantCommand(driveSubsystem::resetGyro, driveSubsystem);
     /*private final ClimbForward climbForward = new ClimbForward(climberSubsystem);
     private final ClimberReset climberReset = new ClimberReset(climberSubsystem);*/
-    private final RunFlywheel runFlywheel = new RunFlywheel(shooter);
-    private final RunSkrungles runSkrungles = new RunSkrungles(intake);
-    private final RunConveyorForward runConveyorForward = new RunConveyorForward(intake);
-    private final RunConveyorReverse runConveyorReverse = new RunConveyorReverse(intake);
-    private final RunIndexWheel runControlWheel = new RunIndexWheel(shooter);
+    private final RunFlywheel runFlywheel = new RunFlywheel(flywheelSubsystem);
+    private final RunSkrungles runSkrungles = new RunSkrungles(skrunglesSubsystem);
+    private final RunConveyorForward runConveyorForward = new RunConveyorForward(conveyorSubsystem);
+    private final RunConveyorReverse runConveyorReverse = new RunConveyorReverse(conveyorSubsystem);
+    private final RunIndexWheel runControlWheel = new RunIndexWheel(indexSubsystem);
     
     public static XboxController controller = new XboxController(Constants.CONTROLLER_NUMBER);
 
