@@ -5,7 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Skrungles;
 
 /**
  * A command to run the Skrungles, the initial intake mechanism for the robot.
@@ -13,15 +13,15 @@ import frc.robot.subsystems.Intake;
  * <p>Designed to be used with .whenHeld() or similar methods.
  */
 public class RunSkrungles extends CommandBase {
-    Intake intake;
+    Skrungles skrungles;
 
     /** 
      * Creates a new RunSkrungles.
      * @param intake Takes an intake subsytem for dependency injection
      */
-    public RunSkrungles(Intake intake) {
-        this.intake = intake;
-        addRequirements(intake);
+    public RunSkrungles(Skrungles skrunglesSubsystem) {
+        skrungles = skrunglesSubsystem;
+        addRequirements(skrunglesSubsystem);
     }
 
     /** 
@@ -29,7 +29,7 @@ public class RunSkrungles extends CommandBase {
      */
     @Override
     public void initialize() {
-        intake.runSkrungles();
+        skrungles.runSkrungles();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -41,7 +41,7 @@ public class RunSkrungles extends CommandBase {
      */
     @Override
     public void end(boolean interrupted) {
-        intake.stopSkrungles();
+        skrungles.stopSkrungles();
     }
 
     /** 
