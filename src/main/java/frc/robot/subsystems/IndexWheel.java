@@ -17,14 +17,14 @@ public class IndexWheel extends SubsystemBase {
     /**
      * Turns on the index motor to the speed set in {@link frc.robot.Constants} IF the ball loaded into the robot is the same color as our alliance color.
      */
-    public void runFeeder() {
+    public void runIndex() {
         indexWheel.set(Constants.CONTROL_WHEEL_SPEED);
     }
 
     /**
-     * Stops the feeder motor.
+     * Stops the index motor.
      */
-    public void stopFeeder() {
+    public void stopIndex() {
         indexWheel.set(0);
     }
 
