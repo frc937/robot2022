@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
+import frc.robot.subsystems.Flywheel;
 import frc.robot.subsystems.Shooter;
 
 /* This is very intentionally NOT inlined, because we may want to do power optimizations later. */
@@ -13,13 +14,13 @@ import frc.robot.subsystems.Shooter;
  * Command to run the flywheel. Run as a defualt command.
  */
 public class RunFlywheel extends CommandBase {
-    Shooter shooter;
+    Flywheel flywheel;
     boolean done;
 
     /** Constructor for RunFlywheel */
-    public RunFlywheel(Shooter shooter) {
-        addRequirements(shooter);
-        this.shooter = shooter;
+    public RunFlywheel(Flywheel flywheelSubsystem) {
+        addRequirements(flywheelSubsystem);
+        flywheel = flywheelSubsystem;
         done = false;
     }
 
@@ -28,7 +29,7 @@ public class RunFlywheel extends CommandBase {
      */
     @Override
     public void initialize() {
-        shooter.setVelocity(Constants.FLYWHEEL_SPEED);
+        flywheel.setVelocity(Constants.FLYWHEEL_SPEED);
         done = true;
     }
 
