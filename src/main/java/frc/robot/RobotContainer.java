@@ -19,9 +19,13 @@ import frc.robot.commands.RunConveyorReverse;
 import frc.robot.commands.RunSkrungles;
 import frc.robot.commands.RunFlywheel;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Flywheel;
+import frc.robot.subsystems.IndexWheel;
+import frc.robot.subsystems.Skrungles;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ColorSensor;
+import frc.robot.subsystems.Conveyor;
 import frc.robot.TwoButtonCombo;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -41,6 +45,10 @@ public class RobotContainer {
     private final Drive driveSubsystem = new Drive();
     /*private final Climber climberSubsystem = new Climber();*/
     /*private final ColorSensor colorSensor = new ColorSensor();*/
+    private final Conveyor conveyorSubsystem = new Conveyor();
+    private final Flywheel flywheelSubsystem = new Flywheel();
+    private final IndexWheel indexSubsystem = new IndexWheel();
+    private final Skrungles skrunglesSubsystem = new Skrungles();
 
     private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
     private final DriveRobotOriented driveRO = new DriveRobotOriented(driveSubsystem);
