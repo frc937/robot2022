@@ -17,6 +17,7 @@ import frc.robot.commands.RunControlWheel;
 import frc.robot.commands.RunConveyorForward;
 import frc.robot.commands.RunConveyorReverse;
 import frc.robot.commands.RunSkrungles;
+import frc.robot.commands.RunSkrunglesAndConveyor;
 import frc.robot.commands.RunFlywheel;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Intake;
@@ -43,18 +44,19 @@ public class RobotContainer {
     private final Drive driveSubsystem = new Drive();
     private final Shooter shooter = new Shooter();
     private final Intake intake = new Intake();
-    private final Climber climberSubsystem = new Climber();
-    private final ColorSensor colorSensor = new ColorSensor();
+    /*private final Climber climberSubsystem = new Climber();*/
+    /*private final ColorSensor colorSensor = new ColorSensor();*/
 
     private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
     private final DriveRobotOriented driveRO = new DriveRobotOriented(driveSubsystem);
     private final DriveFieldOriented driveFO = new DriveFieldOriented(driveSubsystem);
     private final DriveAutonomous driveA = new DriveAutonomous(driveSubsystem);
     private final InstantCommand resetGyro = new InstantCommand(driveSubsystem::resetGyro, driveSubsystem);
-    private final ClimbForward climbForward = new ClimbForward(climberSubsystem);
-    private final ClimberReset climberReset = new ClimberReset(climberSubsystem);
+    /*private final ClimbForward climbForward = new ClimbForward(climberSubsystem);
+    private final ClimberReset climberReset = new ClimberReset(climberSubsystem);*/
     private final RunFlywheel runFlywheel = new RunFlywheel(shooter);
     private final RunSkrungles runSkrungles = new RunSkrungles(intake);
+    private final RunSkrunglesAndConveyor runSkrunglesAndConveyor = new RunSkrunglesAndConveyor(intake);
     private final RunConveyorForward runConveyorForward = new RunConveyorForward(intake);
     private final RunConveyorReverse runConveyorReverse = new RunConveyorReverse(intake);
     private final RunControlWheel runControlWheel = new RunControlWheel(shooter);
@@ -93,14 +95,16 @@ public class RobotContainer {
         rightBumper.whenHeld(climberReset);*/
 
         /* Buttons for shooter/intake */
-        aButton.whenHeld(runSkrungles);
+        aButton.whenHeld(runSkrunglesAndConveyor);
         bButton.whenHeld(runControlWheel);
-        xButton.whenHeld(new ConditionalCommand(runConveyorForward, runConveyorReverse, colorSensor::canShoot));
-        xAndY.whenHeld(runConveyorForward);
+        /*xButton.whenHeld(new ConditionalCommand(runConveyorForward, runConveyorReverse, colorSensor::canShoot));*/
+
+        xButton.whenHeld(new InstantCommand(shooter::testFlywheel, shooter));
+        yButton.whenHeld(new InstantCommand(shooter::stopFlywheel, shooter));
 
         backButton.whenPressed(resetGyro);
 
-        leftStick.toggleWhenActive(driveFO);
+        leftStick.toggleWhenPressed(driveFO);
 
 
     }
@@ -139,7 +143,7 @@ public class RobotContainer {
 
 
     public static double getLeftYAxis() {
-        return controller.getLeftX();
+        return controller.getLeftY();
     }
 
     public static double getScaledLeftYAxis() {
@@ -148,7 +152,7 @@ public class RobotContainer {
 
 
     public static double getRightXAxis() {
-        return controller.getRightX();
+        return controller.getRightX() * -1.0;
     }
 
     public static double getScaledRightXAxis() {
@@ -157,7 +161,7 @@ public class RobotContainer {
 
 
     public static double getRightYAxis() {
-        return controller.getRightY();
+        return controller.getRightY() * -1.0;
     }
 
     public static double getScaledRightYAxis() {

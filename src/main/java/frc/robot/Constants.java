@@ -28,12 +28,13 @@ public final class Constants {
     public static final int ID_TALON_REAR_RIGHT = 4;
 
     /* SPARK MAX CAN IDs for shooter */
-    public static final int ID_SPARKMAX_FLYWHEEL = 5;
-    public static final int ID_SPARKMAX_CONTROL_WHEEL = 6;
+    public static final int ID_SPARKMAX_FLYWHEEL = 7;
+    public static final int ID_SPARKMAX_CONTROL_WHEEL = 5;
 
     /* SPARK MAX CAN IDs for climber */
-    public static final int ID_SPARKMAX_WINCH_0 = 7;
-    public static final int ID_SPARKMAX_WINCH_1 = 8;
+    /* Currently dummy IDs since we're saving climbers for cow town */
+    public static final int ID_SPARKMAX_WINCH_0 = 9;
+    public static final int ID_SPARKMAX_WINCH_1 = 10;
 
     /* DIO pin numbers for shooter flywheel encoder */
     public static final int DIO_PIN_FLYWHEEL_ENCODER_0 = 0;
@@ -62,10 +63,10 @@ public final class Constants {
     public static final double FLYWHEEL_kVVOLT_SECONDS_PER_ROTATION = 0;
 
     /* Speed to run the control wheel at */
-    public static final double CONTROL_WHEEL_SPEED = 0.1;
+    public static final double CONTROL_WHEEL_SPEED = 0.4;
 
     /* Speed to run the flywheel at. */
-    public static final double FLYWHEEL_SPEED = 10;
+    public static final double FLYWHEEL_SPEED = 1.0;
 
     /* Multiplexer port for color sensor */
     public static final int COLOR_SENSOR_PORT = 1;
@@ -79,12 +80,12 @@ public final class Constants {
     public static final double[] BLUE_BALL = {0.143, 0.427, 0.429};
 
     /* Intake sparkmax IDs */
-    public static final int ID_SPARKMAX_SKRUNGLES = 9;
-    public static final int ID_SPARKMAX_CONVEYOR = 10;
+    public static final int ID_SPARKMAX_SKRUNGLES = 8;
+    public static final int ID_SPARKMAX_CONVEYOR = 6;
 
     /* Intake speeds */
-    public static final double SKRUNGLE_SPEED = 0.1;
-    public static final double CONVEYOR_SPEED = 0.1;
+    public static final double SKRUNGLE_SPEED = 0.7;
+    public static final double CONVEYOR_SPEED = 0.3;
 
     /* 
      * ***************

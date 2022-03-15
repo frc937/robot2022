@@ -6,6 +6,8 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.*;
 import com.kauailabs.navx.frc.AHRS;
 
@@ -32,10 +34,15 @@ public class Drive extends SubsystemBase {
         rearRight = new WPI_TalonSRX(Constants.ID_TALON_REAR_RIGHT);
 
         /* Sets default drive directions */
-        frontLeft.setInverted(false);
-        rearLeft.setInverted(false);
+        frontLeft.setInverted(true);
+        rearLeft.setInverted(true);
         frontRight.setInverted(false);
         rearRight.setInverted(false);
+
+        frontLeft.setNeutralMode(NeutralMode.Brake);
+        rearLeft.setNeutralMode(NeutralMode.Brake);
+        frontRight.setNeutralMode(NeutralMode.Brake);
+        rearRight.setNeutralMode(NeutralMode.Brake);
         
         /* WHEN SETTING UP PID IN A BIT
          * Instead of writing the same config statements for each

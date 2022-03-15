@@ -23,7 +23,7 @@ public class Shooter extends SubsystemBase {
     private CANSparkMax flywheel;
     private CANSparkMax controlWheel;
 
-    private RelativeEncoder flywheelEncoder;
+    /*private RelativeEncoder flywheelEncoder;*/
 
     private SparkMaxPIDController flywheelPID;
 
@@ -32,7 +32,7 @@ public class Shooter extends SubsystemBase {
         flywheel = new CANSparkMax(Constants.ID_SPARKMAX_FLYWHEEL, MotorType.kBrushed);
         controlWheel = new CANSparkMax(Constants.ID_SPARKMAX_CONTROL_WHEEL, MotorType.kBrushed);
 
-        flywheelEncoder = flywheel.getEncoder();
+        /*flywheelEncoder = flywheel.getEncoder();*/
 
         flywheelPID = flywheel.getPIDController();
 
@@ -45,6 +45,10 @@ public class Shooter extends SubsystemBase {
 
     public void setVelocity(double velocity) {
         flywheelPID.setReference(velocity, ControlType.kVelocity);
+    }
+
+    public void testFlywheel() {
+        flywheel.set(0.7);
     }
 
     public void stopFlywheel() {
