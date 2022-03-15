@@ -12,14 +12,14 @@ import frc.robot.subsystems.Shooter;
  * 
  * <p>Used to push the ball into the flywheel so it can be shot
  */
-public class RunControlWheel extends CommandBase {
+public class RunIndexWheel extends CommandBase {
     Shooter shooter;
 
     /**
      * Creates a new RunControlWheel. 
      * @param shooter Takes a shooter subsystem for dependency injection
     */
-    public RunControlWheel(Shooter shooter) {
+    public RunIndexWheel(Shooter shooter) {
         this.shooter = shooter;
         addRequirements(shooter);
     }
