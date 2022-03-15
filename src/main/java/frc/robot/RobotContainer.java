@@ -61,7 +61,7 @@ public class RobotContainer {
     private final RunSkrungles runSkrungles = new RunSkrungles(skrunglesSubsystem);
     private final RunConveyorForward runConveyorForward = new RunConveyorForward(conveyorSubsystem);
     private final RunConveyorReverse runConveyorReverse = new RunConveyorReverse(conveyorSubsystem);
-    private final RunIndexWheel runControlWheel = new RunIndexWheel(indexSubsystem);
+    private final RunIndexWheel runIndex = new RunIndexWheel(indexSubsystem);
     
     public static XboxController controller = new XboxController(Constants.CONTROLLER_NUMBER);
 
@@ -97,7 +97,8 @@ public class RobotContainer {
         rightBumper.whenHeld(climberReset);*/
 
         /* Buttons for shooter/intake */
-        bButton.whenHeld(runControlWheel);
+        aButton.whenHeld(runSkrungles.alongWith(runConveyorForward));
+        bButton.whenHeld(runIndex);
         /*xButton.whenHeld(new ConditionalCommand(runConveyorForward, runConveyorReverse, colorSensor::canShoot));*/
 
         xButton.whenPressed(new InstantCommand(flywheelSubsystem::testFlywheel, flywheelSubsystem));
@@ -118,7 +119,7 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         /* Autonomous runs driveA then Shooter */
-        return new ParallelCommandGroup(driveA, runControlWheel);
+        return new ParallelCommandGroup(driveA, runIndex);
         //return m_autocommand;
     }
 
