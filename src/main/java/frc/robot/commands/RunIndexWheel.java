@@ -5,7 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.IndexWheel;
 
 /**
  * A command to run the control wheel for the shooter
@@ -13,15 +13,15 @@ import frc.robot.subsystems.Shooter;
  * <p>Used to push the ball into the flywheel so it can be shot
  */
 public class RunIndexWheel extends CommandBase {
-    Shooter shooter;
+    IndexWheel index;
 
     /**
      * Creates a new RunControlWheel. 
      * @param shooter Takes a shooter subsystem for dependency injection
     */
-    public RunIndexWheel(Shooter shooter) {
-        this.shooter = shooter;
-        addRequirements(shooter);
+    public RunIndexWheel(IndexWheel indexSubsystem) {
+        index = indexSubsystem;
+        addRequirements(indexSubsystem);
     }
 
     /**
@@ -29,7 +29,7 @@ public class RunIndexWheel extends CommandBase {
      */
     @Override
     public void initialize() {
-        shooter.runFeeder();
+        index.runIndex();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -41,7 +41,7 @@ public class RunIndexWheel extends CommandBase {
      */
     @Override
     public void end(boolean interrupted) {
-        shooter.stopFeeder();
+        index.stopIndex();
     }
 
     /** 
