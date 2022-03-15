@@ -16,8 +16,8 @@ public class IndexWheel extends SubsystemBase {
 
     private SparkMaxPIDController flywheelPID;
 
-    /** Creates a new Shooter. */
-    public Shooter() {
+    /** Creates a new Index Wheel. */
+    public IndexWheel() {
         flywheel = new CANSparkMax(Constants.ID_SPARKMAX_FLYWHEEL, MotorType.kBrushed);
         controlWheel = new CANSparkMax(Constants.ID_SPARKMAX_CONTROL_WHEEL, MotorType.kBrushed);
 
