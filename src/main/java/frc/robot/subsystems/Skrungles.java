@@ -10,7 +10,7 @@ public class Skrungles extends SubsystemBase {
     /* Variables */
     private CANSparkMax skrungles;
 
-    /** Creates a new Intake. */
+    /** Creates a new Wibbly Skrungles. */
     public Skrungles() {
         skrungles = new CANSparkMax(Constants.ID_SPARKMAX_SKRUNGLES, MotorType.kBrushed);
 
