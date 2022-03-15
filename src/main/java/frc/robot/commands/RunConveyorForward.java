@@ -5,7 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Conveyor;
 
 /**
  * A command to run the conveyor forward, to move the balls further into the robot and closer to the shooter.
@@ -13,15 +13,15 @@ import frc.robot.subsystems.Intake;
  * <p>Designed to be used with .whenHeld() or similar methods.
  */
 public class RunConveyorForward extends CommandBase {
-    Intake intake;
+    Conveyor conveyor;
 
     /** 
      * Creates a new RunConveyor. 
      * @param intake Takes an intake subsystem for dependency injection
     */
-    public RunConveyorForward(Intake intake) {
-        this.intake = intake;
-        addRequirements(intake);
+    public RunConveyorForward(Conveyor conveyorSubsystem) {
+        conveyor = conveyorSubsystem;
+        addRequirements(conveyorSubsystem);
     }
 
     /** 
@@ -29,7 +29,7 @@ public class RunConveyorForward extends CommandBase {
      */
     @Override
     public void initialize() {
-        intake.runConveyorForward();
+        conveyor.runConveyorForward();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -41,7 +41,7 @@ public class RunConveyorForward extends CommandBase {
      */
     @Override
     public void end(boolean interrupted) {
-        intake.stopConveyor();
+        conveyor.stopConveyor();
     }
 
     /** 
