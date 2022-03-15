@@ -10,16 +10,12 @@ import frc.robot.Constants;
 public class Flywheel extends SubsystemBase {
 
     private CANSparkMax flywheel;
-    private CANSparkMax controlWheel;
-
     /*private RelativeEncoder flywheelEncoder;*/
-
     private SparkMaxPIDController flywheelPID;
 
     /** Creates a new Flywheel. */
     public Flywheel() {
         flywheel = new CANSparkMax(Constants.ID_SPARKMAX_FLYWHEEL, MotorType.kBrushed);
-        controlWheel = new CANSparkMax(Constants.ID_SPARKMAX_CONTROL_WHEEL, MotorType.kBrushed);
 
         /*flywheelEncoder = flywheel.getEncoder();*/
 
@@ -42,28 +38,6 @@ public class Flywheel extends SubsystemBase {
 
     public void stopFlywheel() {
         flywheel.set(0);
-    }
-
-    /**
-     * Turns on the feeder motor to the speed set in {@link frc.robot.Constants} IF the ball loaded into the robot is the same color as our alliance color.
-     */
-    public void runFeeder() {
-        controlWheel.set(Constants.CONTROL_WHEEL_SPEED);
-    }
-
-    /**
-     * Stops the feeder motor.
-     */
-    public void stopFeeder() {
-        controlWheel.set(0);
-    }
-
-    /**
-     * Safety method to bring ALL motors controlled by this subsystem to a complete stop.
-     */
-    public void stopAll() {
-        flywheel.set(0);
-        controlWheel.set(0);
     }
 
     /**
