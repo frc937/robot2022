@@ -7,25 +7,25 @@ import frc.robot.Constants;
 
 public class IndexWheel extends SubsystemBase {
 
-    private CANSparkMax controlWheel;
+    private CANSparkMax indexWheel;
 
     /** Creates a new Index Wheel. */
     public IndexWheel() {
-        controlWheel = new CANSparkMax(Constants.ID_SPARKMAX_CONTROL_WHEEL, MotorType.kBrushed);
+        indexWheel = new CANSparkMax(Constants.ID_SPARKMAX_CONTROL_WHEEL, MotorType.kBrushed);
     }
 
     /**
-     * Turns on the feeder motor to the speed set in {@link frc.robot.Constants} IF the ball loaded into the robot is the same color as our alliance color.
+     * Turns on the index motor to the speed set in {@link frc.robot.Constants} IF the ball loaded into the robot is the same color as our alliance color.
      */
     public void runFeeder() {
-        controlWheel.set(Constants.CONTROL_WHEEL_SPEED);
+        indexWheel.set(Constants.CONTROL_WHEEL_SPEED);
     }
 
     /**
      * Stops the feeder motor.
      */
     public void stopFeeder() {
-        controlWheel.set(0);
+        indexWheel.set(0);
     }
 
     /**
