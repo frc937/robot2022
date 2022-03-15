@@ -100,8 +100,8 @@ public class RobotContainer {
         bButton.whenHeld(runControlWheel);
         /*xButton.whenHeld(new ConditionalCommand(runConveyorForward, runConveyorReverse, colorSensor::canShoot));*/
 
-        xButton.whenHeld(new InstantCommand(shooter::testFlywheel, shooter));
-        yButton.whenHeld(new InstantCommand(shooter::stopFlywheel, shooter));
+        xButton.whenHeld(new InstantCommand(flywheelSubsystem::testFlywheel, flywheelSubsystem));
+        yButton.whenHeld(new InstantCommand(flywheelSubsystem::stopFlywheel, flywheelSubsystem));
 
         backButton.whenPressed(resetGyro);
 
