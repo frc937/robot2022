@@ -13,18 +13,15 @@ import frc.robot.commands.DriveRobotOriented;
 import frc.robot.commands.DriveAutonomous;
 import frc.robot.commands.ClimbForward;
 import frc.robot.commands.ClimberReset;
-import frc.robot.commands.RunControlWheel;
+import frc.robot.commands.RunIndexWheel;
 import frc.robot.commands.RunConveyorForward;
 import frc.robot.commands.RunConveyorReverse;
 import frc.robot.commands.RunSkrungles;
-import frc.robot.commands.RunSkrunglesAndConveyor;
 import frc.robot.commands.RunFlywheel;
 import frc.robot.subsystems.ExampleSubsystem;
-import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ColorSensor;
-import frc.robot.subsystems.Shooter;
 import frc.robot.TwoButtonCombo;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -42,8 +39,6 @@ public class RobotContainer {
     /* The robot's subsystems and commands are defined here... */
     private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
     private final Drive driveSubsystem = new Drive();
-    private final Shooter shooter = new Shooter();
-    private final Intake intake = new Intake();
     /*private final Climber climberSubsystem = new Climber();*/
     /*private final ColorSensor colorSensor = new ColorSensor();*/
 
@@ -56,10 +51,9 @@ public class RobotContainer {
     private final ClimberReset climberReset = new ClimberReset(climberSubsystem);*/
     private final RunFlywheel runFlywheel = new RunFlywheel(shooter);
     private final RunSkrungles runSkrungles = new RunSkrungles(intake);
-    private final RunSkrunglesAndConveyor runSkrunglesAndConveyor = new RunSkrunglesAndConveyor(intake);
     private final RunConveyorForward runConveyorForward = new RunConveyorForward(intake);
     private final RunConveyorReverse runConveyorReverse = new RunConveyorReverse(intake);
-    private final RunControlWheel runControlWheel = new RunControlWheel(shooter);
+    private final RunIndexWheel runControlWheel = new RunIndexWheel(shooter);
     
     public static XboxController controller = new XboxController(Constants.CONTROLLER_NUMBER);
 
@@ -95,7 +89,6 @@ public class RobotContainer {
         rightBumper.whenHeld(climberReset);*/
 
         /* Buttons for shooter/intake */
-        aButton.whenHeld(runSkrunglesAndConveyor);
         bButton.whenHeld(runControlWheel);
         /*xButton.whenHeld(new ConditionalCommand(runConveyorForward, runConveyorReverse, colorSensor::canShoot));*/
 
