@@ -11,6 +11,7 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.DriveFieldOriented;
 import frc.robot.commands.DriveRobotOriented;
 import frc.robot.commands.DriveAutonomous;
+import frc.robot.commands.AimWithLimelight;
 import frc.robot.commands.ClimbForward;
 import frc.robot.commands.ClimberReset;
 import frc.robot.commands.RunIndexWheel;
@@ -21,6 +22,7 @@ import frc.robot.commands.RunFlywheel;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Flywheel;
 import frc.robot.subsystems.IndexWheel;
+import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Skrungles;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Climber;
@@ -49,6 +51,7 @@ public class RobotContainer {
     private final Flywheel flywheelSubsystem = new Flywheel();
     private final IndexWheel indexSubsystem = new IndexWheel();
     private final Skrungles skrunglesSubsystem = new Skrungles();
+    private final Limelight limelight = new Limelight();
 
     private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
     private final DriveRobotOriented driveRO = new DriveRobotOriented(driveSubsystem);
@@ -62,6 +65,7 @@ public class RobotContainer {
     private final RunConveyorForward runConveyorForward = new RunConveyorForward(conveyorSubsystem);
     private final RunConveyorReverse runConveyorReverse = new RunConveyorReverse(conveyorSubsystem);
     private final RunIndexWheel runIndex = new RunIndexWheel(indexSubsystem);
+    private final AimWithLimelight aimWithLimelight = new AimWithLimelight(driveSubsystem, limelight);
     
     public static XboxController controller = new XboxController(Constants.CONTROLLER_NUMBER);
 
@@ -101,8 +105,10 @@ public class RobotContainer {
         bButton.whenHeld(runIndex);
         /*xButton.whenHeld(new ConditionalCommand(runConveyorForward, runConveyorReverse, colorSensor::canShoot));*/
 
-        xButton.whenPressed(new InstantCommand(flywheelSubsystem::testFlywheel, flywheelSubsystem));
-        yButton.whenPressed(new InstantCommand(flywheelSubsystem::stopFlywheel, flywheelSubsystem));
+        /*xButton.whenPressed(new InstantCommand(flywheelSubsystem::testFlywheel, flywheelSubsystem));
+        yButton.whenPressed(new InstantCommand(flywheelSubsystem::stopFlywheel, flywheelSubsystem));*/
+
+        xButton.whenHeld(aimWithLimelight);
 
         backButton.whenPressed(resetGyro);
 

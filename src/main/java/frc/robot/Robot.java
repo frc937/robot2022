@@ -87,7 +87,7 @@ public class Robot extends TimedRobot {
 
         // This will need to be moved to autonomousInit but needs to be here for testing
         if (defaultFlywheelCommand != null) {
-            defaultFlywheelCommand.schedule();
+            /*defaultFlywheelCommand.schedule();*/
         }
     }
 

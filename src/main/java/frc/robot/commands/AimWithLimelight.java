@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import java.lang.Math;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Drive;
@@ -45,8 +46,8 @@ public class AimWithLimelight extends CommandBase {
             if (z > Constants.LIMELIGHT_SPEED_LIMIT) {
                 z = Constants.LIMELIGHT_SPEED_LIMIT;
             }
-            
-            drive.moveRobot(0.0, x, z);
+
+            drive.moveRobot(x * -1.0, 0.0, z);
         }
     }
 
