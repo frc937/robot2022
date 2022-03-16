@@ -58,6 +58,20 @@ public class Limelight extends SubsystemBase {
     }
 
     /**
+     * Turns on the Limelight's LEDs.
+     */
+    public void turnOnLEDs() {
+        limelightTable.getEntry("ledMode").setNumber(3.0);
+    }
+
+    /**
+     * Turns off the Limelight's LEDs.
+     */
+    public void turnOffLEDs() {
+        limelightTable.getEntry("ledMode").setNumber(1.0);
+    }
+
+    /**
      * Returns true if the Limelight has a valid target.
      * @return A boolean; true if the Limelight has a valid target.
      */
