@@ -12,6 +12,8 @@ public class IndexWheel extends SubsystemBase {
     /** Creates a new Index Wheel. */
     public IndexWheel() {
         indexWheel = new CANSparkMax(Constants.ID_SPARKMAX_CONTROL_WHEEL, MotorType.kBrushed);
+
+        indexWheel.setInverted(true);
     }
 
     /**

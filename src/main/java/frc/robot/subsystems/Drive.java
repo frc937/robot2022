@@ -34,10 +34,10 @@ public class Drive extends SubsystemBase {
         rearRight = new WPI_TalonSRX(Constants.ID_TALON_REAR_RIGHT);
 
         /* Sets default drive directions */
-        frontLeft.setInverted(true);
-        rearLeft.setInverted(true);
-        frontRight.setInverted(false);
-        rearRight.setInverted(false);
+        frontLeft.setInverted(false);
+        rearLeft.setInverted(false);
+        frontRight.setInverted(true);
+        rearRight.setInverted(true);
 
         frontLeft.setNeutralMode(NeutralMode.Brake);
         rearLeft.setNeutralMode(NeutralMode.Brake);

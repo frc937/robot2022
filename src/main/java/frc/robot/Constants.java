@@ -66,7 +66,7 @@ public final class Constants {
     public static final double CONTROL_WHEEL_SPEED = 0.4;
 
     /* Speed to run the flywheel at. */
-    public static final double FLYWHEEL_SPEED = 1.0;
+    public static final double FLYWHEEL_SPEED = 0.6;
 
     /* Multiplexer port for color sensor */
     public static final int COLOR_SENSOR_PORT = 1;
