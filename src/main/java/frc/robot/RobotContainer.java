@@ -132,7 +132,8 @@ public class RobotContainer {
      * @return The command to run the flywheel
      */
     public Command getRunFlywheelCommand() {
-        return runFlywheel;
+        //return runFlywheel;
+        return new InstantCommand(flywheelSubsystem::testFlywheel, flywheelSubsystem);
     }
 
     public static double getLeftXAxis() {
@@ -145,7 +146,7 @@ public class RobotContainer {
 
 
     public static double getLeftYAxis() {
-        return controller.getLeftY();
+        return controller.getLeftY() * -1.0;
     }
 
     public static double getScaledLeftYAxis() {
@@ -154,7 +155,7 @@ public class RobotContainer {
 
 
     public static double getRightXAxis() {
-        return controller.getRightX() * -1.0;
+        return controller.getRightX();
     }
 
     public static double getScaledRightXAxis() {
@@ -171,7 +172,7 @@ public class RobotContainer {
     }
 
     private static double scaleAxis(double a) {
-        return Math.signum(a) * Math.pow(a, 4);
+        return Math.signum(a) * Math.pow(a, 2);
     }
 
 }
