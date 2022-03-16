@@ -13,7 +13,8 @@ import frc.robot.subsystems.Limelight;
 /**
  * A command to use the Limelight to aim the robot
  * 
- * <p>Currently set up to be used with .whenHeld() or similar methods, but could easily be altered to work as a oneshot.
+ * <p>Designed to be used with .whenHeld for obvious safety reasons, but isFinished() will return true when the robot is aimed.
+ * This is so that this can be used with a command group to automate aiming AND shooting.
  */
 public class AimWithLimelight extends CommandBase {
     private Drive drive;
