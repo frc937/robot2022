@@ -93,26 +93,26 @@ public final class Constants {
      * ***************
     */
     /* The number of degrees the limelight is mounted back from perfectly vertical */
-    public static final double LIMELIGHT_MOUNT_ANGLE = 0.0;
+    public static final double LIMELIGHT_MOUNT_ANGLE = 25.0;
 
     /* The number of inches from the center of the Limelight lens to the floor */
-    public static final double LIMELIGHT_MOUNT_HEIGHT = 0.0;
+    public static final double LIMELIGHT_MOUNT_HEIGHT = 36.5;
 
     /* The number of inches from the retroreflective tape on the upper hub to the floor */
     /* This is 8'8", which is what the manual says the height from the floor to the top of the upper hub is. */
     public static final double UPPER_HUB_TAPE_HEIGHT = 104.0;
 
     /* How far in inches we want to be from the target when we shoot */
-    public static final double LIMELIGHT_DIST_FROM_TARGET = 0.0;
+    public static final double LIMELIGHT_DIST_FROM_TARGET = 175.0;
 
     /* How hard to turn toward the target. Double between 0 and 1, standard way to drive a motor */
-    public static final double LIMELIGHT_STEER_STRENGTH = 0.0;
+    public static final double LIMELIGHT_STEER_STRENGTH = 0.7;
 
     /* How hard to drive toward the target. Same notation as above. */
-    public static final double LIMELIGHT_DRIVE_STRENGTH = 0.0;
+    public static final double LIMELIGHT_DRIVE_STRENGTH = 0.7;
 
     /* VERY BASIC speed limit to make sure we don't drive too fast towards the target. Will need to be changed when implementing PID. */
-    public static final double LIMELIGHT_SPEED_LIMIT = 0.0;
+    public static final double LIMELIGHT_SPEED_LIMIT = 0.7;
 
     /* Controller ID */
     public static final int CONTROLLER_NUMBER = 0;
