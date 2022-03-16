@@ -41,13 +41,13 @@ public class AimWithLimelight extends CommandBase {
     public void execute() {
         if (limelight.hasValidTarget()) {
             double z = limelight.getTX() * Constants.LIMELIGHT_STEER_STRENGTH;
-            double x = (Constants.LIMELIGHT_DIST_FROM_TARGET - ((Constants.UPPER_HUB_TAPE_HEIGHT - Constants.LIMELIGHT_MOUNT_HEIGHT)/Math.tan((Constants.LIMELIGHT_MOUNT_ANGLE + limelight.getTY()) * (Math.PI / 180.0)))) * Constants.LIMELIGHT_DRIVE_STRENGTH;
+            double y = (Constants.LIMELIGHT_DIST_FROM_TARGET - ((Constants.UPPER_HUB_TAPE_HEIGHT - Constants.LIMELIGHT_MOUNT_HEIGHT)/Math.tan((Constants.LIMELIGHT_MOUNT_ANGLE + limelight.getTY()) * (Math.PI / 180.0)))) * Constants.LIMELIGHT_DRIVE_STRENGTH;
 
             if (z > Constants.LIMELIGHT_SPEED_LIMIT) {
                 z = Constants.LIMELIGHT_SPEED_LIMIT;
             }
 
-            drive.moveRobot(x * -1.0, 0.0, z);
+            drive.moveRobot(y * -1.0, 0.0, z);
         }
     }
 
