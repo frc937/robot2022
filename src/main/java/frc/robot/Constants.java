@@ -114,6 +114,12 @@ public final class Constants {
     /* VERY BASIC speed limit to make sure we don't drive too fast towards the target. Will need to be changed when implementing PID. */
     public static final double LIMELIGHT_SPEED_LIMIT = 0.2;
 
+    /* When we're at or below this number of degrees from where we want to be, we'll consider the limelight's aim routine "done" */
+    public static final double LIMELIGHT_TURN_DONE_THRESHOLD = 1.0;
+
+    /* When we're at or below this number of inches from the target distance, we'll consider the limelight's drive routine "done" */
+    public static final double LIMELIGHT_DISTANCE_DONE_THRESHOLD = 4.0;
+
     /* Controller ID */
     public static final int CONTROLLER_NUMBER = 0;
 
