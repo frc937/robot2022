@@ -13,8 +13,8 @@ public class Climber extends SubsystemBase {
     /* Variables */
     private CANSparkMax winch0;
     private CANSparkMax winch1;
-    private double winchSpeed;
     
+    /* The encoder code should be uncommented when we actually put in encoders for climber */
     /*private Encoder winchEncoder;*/
     
     /* Creates a new Climber Subsystem */
@@ -26,6 +26,7 @@ public class Climber extends SubsystemBase {
 
         /*winchEncoder = new Encoder(Constants.DIO_PIN_WINCH_ENCODER_0, Constants.DIO_PIN_WINCH_ENCODER_1);*/
 
+        /* This makes winch1 do the exact same thing as winch0 */
         winch1.follow(winch0);
 
     }
@@ -39,10 +40,7 @@ public class Climber extends SubsystemBase {
     }
 
     public void runClimberDown() {
-
-        winchSpeed = -0.30;
-        winch0.set(winchSpeed);
-
+        winch0.set(Constants.WINCH_SPEED * -1.0);
     }
 
 }

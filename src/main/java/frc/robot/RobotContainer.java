@@ -13,7 +13,7 @@ import frc.robot.commands.DriveRobotOriented;
 import frc.robot.commands.DriveAutonomous;
 import frc.robot.commands.AimWithLimelight;
 import frc.robot.commands.ClimbUp;
-import frc.robot.commands.ClimberDown;
+import frc.robot.commands.ClimbDown;
 import frc.robot.commands.RunIndexWheel;
 import frc.robot.commands.RunConveyorForward;
 import frc.robot.commands.RunConveyorReverse;
