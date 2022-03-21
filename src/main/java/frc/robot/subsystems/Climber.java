@@ -1,7 +1,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.Encoder;
+/*import edu.wpi.first.wpilibj.Encoder;*/
 
 import frc.robot.Constants;
 
@@ -15,7 +15,7 @@ public class Climber extends SubsystemBase {
     private CANSparkMax winch1;
     private double winchSpeed;
     
-    private Encoder winchEncoder;
+    /*private Encoder winchEncoder;*/
     
     /* Creates a new Climber Subsystem */
     public Climber() {
@@ -24,7 +24,7 @@ public class Climber extends SubsystemBase {
         winch0 = new CANSparkMax(Constants.ID_SPARKMAX_WINCH_0, MotorType.kBrushed);
         winch1 = new CANSparkMax(Constants.ID_SPARKMAX_WINCH_1, MotorType.kBrushed);
 
-        winchEncoder = new Encoder(Constants.DIO_PIN_WINCH_ENCODER_0, Constants.DIO_PIN_WINCH_ENCODER_1);
+        /*winchEncoder = new Encoder(Constants.DIO_PIN_WINCH_ENCODER_0, Constants.DIO_PIN_WINCH_ENCODER_1);*/
 
         winch1.follow(winch0);
 
