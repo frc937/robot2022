@@ -30,6 +30,8 @@ public class Climber extends PIDSubsystem {
 
         winchEncoder = new Encoder(Constants.DIO_PIN_WINCH_ENCODER_0, Constants.DIO_PIN_WINCH_ENCODER_1);
 
+        winch1.follow(winch0);
+
     }
 
     @Override
@@ -44,19 +46,16 @@ public class Climber extends PIDSubsystem {
 
     public void runClimberForward() {
         setSetpoint(Constants.WINCH_SPEED);
-        winch1.follow(winch0);
     }
 
     public void stopClimber() {
         setSetpoint(0);
-        winch1.follow(winch0);
     }
 
     public void reset() {
 
         winchSpeed = -0.30;
         setSetpoint(winchSpeed);
-        winch1.follow(winch0);
 
     }
 
