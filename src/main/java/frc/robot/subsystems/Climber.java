@@ -30,18 +30,7 @@ public class Climber extends SubsystemBase {
 
     }
 
-    /* I think this method might be useless now without PID */
-    // @Override
-    // public void useOutput() {
-    //     winch0.set(0);
-    // }
-
-    // @Override
-    // public double getMeasurement() {
-    // return winchEncoder.getRate();
-    // }
-
-    public void runClimberForward() {
+    public void runClimberUp() {
         winch0.set(Constants.WINCH_SPEED);
     }
 
@@ -49,7 +38,7 @@ public class Climber extends SubsystemBase {
         winch0.set(0);
     }
 
-    public void reset() {
+    public void runClimberDown() {
 
         winchSpeed = -0.30;
         winch0.set(winchSpeed);
