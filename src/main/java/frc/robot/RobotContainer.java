@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.util.Color;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.FlywheelIdle;
 import frc.robot.commands.DriveFieldOriented;
 import frc.robot.commands.DriveRobotOriented;
 import frc.robot.commands.DriveAutonomous;
@@ -32,6 +33,7 @@ import frc.robot.TwoButtonCombo;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -61,6 +63,7 @@ public class RobotContainer {
     /*private final ClimbForward climbForward = new ClimbForward(climberSubsystem);
     private final ClimberReset climberReset = new ClimberReset(climberSubsystem);*/
     private final FlywheelShoot flywheelShoot = new FlywheelShoot(flywheelSubsystem);
+    private final FlywheelIdle flywheelIdle = new FlywheelIdle(flywheelSubsystem);
     private final RunSkrungles runSkrungles = new RunSkrungles(skrunglesSubsystem);
     private final RunConveyorForward runConveyorForward = new RunConveyorForward(conveyorSubsystem);
     private final RunConveyorReverse runConveyorReverse = new RunConveyorReverse(conveyorSubsystem);
@@ -108,12 +111,14 @@ public class RobotContainer {
         /*xButton.whenPressed(new InstantCommand(flywheelSubsystem::testFlywheel, flywheelSubsystem));
         yButton.whenPressed(new InstantCommand(flywheelSubsystem::stopFlywheel, flywheelSubsystem));*/
 
+        // xButton.whenHeld(aimWithLimelight);
+        xButton.whenPressed(flywheelShoot);
         xButton.whenHeld(aimWithLimelight);
+        xButton.whenReleased(flywheelIdle);
 
         backButton.whenPressed(resetGyro);
 
         leftStick.toggleWhenPressed(driveFO);
-
 
     }
     
@@ -138,8 +143,9 @@ public class RobotContainer {
      * @return The command to run the flywheel
      */
     public Command getFlywheelShootCommand() {
-        //return flywheelShoot;
-        return new InstantCommand(flywheelSubsystem::testFlywheel, flywheelSubsystem);
+        // return flywheelShoot
+        return flywheelIdle;
+        // return new InstantCommand(flywheelSubsystem::testFlywheel, flywheelSubsystem);
     }
 
     public static double getLeftXAxis() {
