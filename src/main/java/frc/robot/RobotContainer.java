@@ -105,18 +105,15 @@ public class RobotContainer {
 
         /* Buttons for shooter/intake */
         aButton.whenHeld(runSkrungles.alongWith(runConveyorForward));
-        bButton.whenHeld(runIndex);
         /*xButton.whenHeld(new ConditionalCommand(runConveyorForward, runConveyorReverse, colorSensor::canShoot));*/
 
+        xAndY.whenHeld(runIndex);
         /*xButton.whenPressed(new InstantCommand(flywheelSubsystem::testFlywheel, flywheelSubsystem));
         yButton.whenPressed(new InstantCommand(flywheelSubsystem::stopFlywheel, flywheelSubsystem));*/
         // xButton.whenHeld(aimWithLimelight);
 
-        /* Will cause the flywheel to start running faster when x is pressed */
-        xButton.whenPressed(flywheelShoot);
-        xButton.whenHeld(aimWithLimelight);
-        /* Will cause the flywheel to start running at half speed when x is pressed */
-        xButton.whenReleased(flywheelIdle);
+        /* Runs the limelight along with ALL the things when X is held */
+        xButton.whenHeld(new SequentialCommandGroup(flywheelShoot, aimWithLimelight, runIndex, flywheelIdle));
 
         backButton.whenPressed(resetGyro);
 
