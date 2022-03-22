@@ -18,7 +18,7 @@ import frc.robot.commands.RunIndexWheel;
 import frc.robot.commands.RunConveyorForward;
 import frc.robot.commands.RunConveyorReverse;
 import frc.robot.commands.RunSkrungles;
-import frc.robot.commands.RunFlywheel;
+import frc.robot.commands.FlywheelShoot;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Flywheel;
 import frc.robot.subsystems.IndexWheel;
@@ -60,7 +60,7 @@ public class RobotContainer {
     private final InstantCommand resetGyro = new InstantCommand(driveSubsystem::resetGyro, driveSubsystem);
     /*private final ClimbForward climbForward = new ClimbForward(climberSubsystem);
     private final ClimberReset climberReset = new ClimberReset(climberSubsystem);*/
-    private final RunFlywheel runFlywheel = new RunFlywheel(flywheelSubsystem);
+    private final FlywheelShoot flywheelShoot = new FlywheelShoot(flywheelSubsystem);
     private final RunSkrungles runSkrungles = new RunSkrungles(skrunglesSubsystem);
     private final RunConveyorForward runConveyorForward = new RunConveyorForward(conveyorSubsystem);
     private final RunConveyorReverse runConveyorReverse = new RunConveyorReverse(conveyorSubsystem);
@@ -137,8 +137,8 @@ public class RobotContainer {
      * Used to pass the command to run the flywheel to {@link Robot}
      * @return The command to run the flywheel
      */
-    public Command getRunFlywheelCommand() {
-        //return runFlywheel;
+    public Command getFlywheelShootCommand() {
+        //return flywheelShoot;
         return new InstantCommand(flywheelSubsystem::testFlywheel, flywheelSubsystem);
     }
 

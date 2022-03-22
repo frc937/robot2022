@@ -30,7 +30,7 @@ public class Robot extends TimedRobot {
         // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
         // autonomous chooser on the dashboard.
         container = new RobotContainer();
-        defaultFlywheelCommand = container.getRunFlywheelCommand();
+        defaultFlywheelCommand = container.getFlywheelShootCommand();
         defaultDriveCommand = container.getDriveROCommand();
     }
 

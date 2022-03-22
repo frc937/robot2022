@@ -12,12 +12,12 @@ import frc.robot.subsystems.Flywheel;
 /**
  * Command to run the flywheel. Run as a defualt command.
  */
-public class RunFlywheel extends CommandBase {
+public class FlywheelShoot extends CommandBase {
     Flywheel flywheel;
     boolean done;
 
     /** Constructor for RunFlywheel */
-    public RunFlywheel(Flywheel flywheelSubsystem) {
+    public FlywheelShoot(Flywheel flywheelSubsystem) {
         addRequirements(flywheelSubsystem);
         flywheel = flywheelSubsystem;
         done = false;
@@ -32,7 +32,7 @@ public class RunFlywheel extends CommandBase {
         done = true;
     }
 
-    // Returns true when the command should end.
+    // Returns true when the command should end
     @Override
     public boolean isFinished() {
         return done;
