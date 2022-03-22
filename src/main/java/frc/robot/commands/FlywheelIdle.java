@@ -12,12 +12,12 @@ import frc.robot.subsystems.Flywheel;
 /**
  * Command to run the flywheel. Run as a defualt command.
  */
-public class FlywheelShoot extends CommandBase {
+public class FlywheelIdle extends CommandBase {
     Flywheel flywheel;
     boolean done;
 
     /** Constructor for RunFlywheel */
-    public FlywheelShoot(Flywheel flywheelSubsystem) {
+    public FlywheelIdle(Flywheel flywheelSubsystem) {
         addRequirements(flywheelSubsystem);
         flywheel = flywheelSubsystem;
         done = false;
@@ -28,7 +28,7 @@ public class FlywheelShoot extends CommandBase {
      */
     @Override
     public void initialize() {
-        flywheel.setVelocity(Constants.FLYWHEEL_SHOOT_SPEED);
+        flywheel.setVelocity(Constants.FLYWHEEL_IDLE_SPEED);
         done = true;
     }
 
