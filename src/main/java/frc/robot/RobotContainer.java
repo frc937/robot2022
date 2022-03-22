@@ -110,10 +110,12 @@ public class RobotContainer {
 
         /*xButton.whenPressed(new InstantCommand(flywheelSubsystem::testFlywheel, flywheelSubsystem));
         yButton.whenPressed(new InstantCommand(flywheelSubsystem::stopFlywheel, flywheelSubsystem));*/
-
         // xButton.whenHeld(aimWithLimelight);
+
+        /* Will cause the flywheel to start running faster when x is pressed */
         xButton.whenPressed(flywheelShoot);
         xButton.whenHeld(aimWithLimelight);
+        /* Will cause the flywheel to start running at half speed when x is pressed */
         xButton.whenReleased(flywheelIdle);
 
         backButton.whenPressed(resetGyro);
