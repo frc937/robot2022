@@ -110,10 +110,10 @@ public final class Constants {
     public static final double LIMELIGHT_DIST_FROM_TARGET = 175.0;
 
     /* How hard to turn toward the target. Double between 0 and 1, standard way to drive a motor */
-    public static final double LIMELIGHT_STEER_STRENGTH = 0.1;
+    public static final double LIMELIGHT_STEER_STRENGTH = 0.01;
 
     /* How hard to drive toward the target. Same notation as above. */
-    public static final double LIMELIGHT_DRIVE_STRENGTH = 0.1;
+    public static final double LIMELIGHT_DRIVE_STRENGTH = 0.01;
 
     /* VERY BASIC speed limit to make sure we don't drive too fast towards the target. Will need to be changed when implementing PID. */
     public static final double LIMELIGHT_SPEED_LIMIT = 0.2;
