@@ -4,13 +4,13 @@ import frc.robot.subsystems.Climber;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class ClimberReset extends CommandBase {
+public class ClimbDown extends CommandBase {
 
     /* Variables */
     private Climber climberInABox;
 
     /* Initializes the ClimbUp method */
-    public ClimberReset(Climber subsystemClimb) {
+    public ClimbDown(Climber subsystemClimb) {
 
         climberInABox = subsystemClimb;
 
@@ -20,9 +20,7 @@ public class ClimberReset extends CommandBase {
 
     @Override
     public void initialize() {
-
-        climberInABox.reset();
-
+        climberInABox.runClimberDown();
     }
     
     @Override

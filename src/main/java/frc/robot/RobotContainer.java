@@ -12,8 +12,8 @@ import frc.robot.commands.DriveFieldOriented;
 import frc.robot.commands.DriveRobotOriented;
 import frc.robot.commands.DriveAutonomous;
 import frc.robot.commands.AimWithLimelight;
-import frc.robot.commands.ClimbForward;
-import frc.robot.commands.ClimberReset;
+import frc.robot.commands.ClimbUp;
+import frc.robot.commands.ClimbDown;
 import frc.robot.commands.RunIndexWheel;
 import frc.robot.commands.RunConveyorForward;
 import frc.robot.commands.RunConveyorReverse;
@@ -32,11 +32,9 @@ import frc.robot.TwoButtonCombo;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -48,7 +46,7 @@ public class RobotContainer {
     /* The robot's subsystems and commands are defined here... */
     private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
     private final Drive driveSubsystem = new Drive();
-    /*private final Climber climberSubsystem = new Climber();*/
+    private final Climber climberSubsystem = new Climber();
     /*private final ColorSensor colorSensor = new ColorSensor();*/
     private final Conveyor conveyorSubsystem = new Conveyor();
     private final Flywheel flywheelSubsystem = new Flywheel();
@@ -59,18 +57,16 @@ public class RobotContainer {
     private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
     private final DriveRobotOriented driveRO = new DriveRobotOriented(driveSubsystem);
     private final DriveFieldOriented driveFO = new DriveFieldOriented(driveSubsystem);
-    private final DriveAutonomous driveAuto = new DriveAutonomous(driveSubsystem);
+    private final DriveAutonomous driveA = new DriveAutonomous(driveSubsystem);
     private final InstantCommand resetGyro = new InstantCommand(driveSubsystem::resetGyro, driveSubsystem);
-    /*private final ClimbForward climbForward = new ClimbForward(climberSubsystem);
-    private final ClimberReset climberReset = new ClimberReset(climberSubsystem);*/
+    private final ClimbDown climbDown = new ClimbDown(climberSubsystem);
+    private final ClimbUp climbUp = new ClimbUp(climberSubsystem);
     private final RunFlywheel runFlywheel = new RunFlywheel(flywheelSubsystem);
     private final RunSkrungles runSkrungles = new RunSkrungles(skrunglesSubsystem);
     private final RunConveyorForward runConveyorForward = new RunConveyorForward(conveyorSubsystem);
     private final RunConveyorReverse runConveyorReverse = new RunConveyorReverse(conveyorSubsystem);
     private final RunIndexWheel runIndex = new RunIndexWheel(indexSubsystem);
     private final AimWithLimelight aimWithLimelight = new AimWithLimelight(driveSubsystem, limelight);
-    private final ParallelRaceGroup timedDriveAuto = new ParallelRaceGroup(driveAuto, new WaitCommand(2));
-    private final ParallelRaceGroup timedRunIndex = new ParallelRaceGroup(runIndex, new WaitCommand(1)); 
     
     public static XboxController controller = new XboxController(Constants.CONTROLLER_NUMBER);
 
@@ -98,12 +94,16 @@ public class RobotContainer {
         JoystickButton startButton = new JoystickButton(controller, Constants.START_NUMBER);
         JoystickButton leftStick = new JoystickButton(controller, Constants.LEFT_STICK_NUMBER);
         JoystickButton rightStick = new JoystickButton(controller, Constants.RIGHT_STICK_NUMBER);
+        POVButton dPadUp = new POVButton(controller, 0);
+        POVButton dPadRight= new POVButton(controller, 90);        
+        POVButton dPadDown = new POVButton(controller, 180);
+        POVButton dPadLeft = new POVButton(controller, 270);
         TwoButtonCombo xAndY = new TwoButtonCombo(controller, Constants.X_NUMBER, Constants.Y_NUMBER);
 
         /* TODO: Change these buttons when a more convenient controller layout becomes obvious */
         /* Buttons for the climber in a box */
-        /*leftBumper.whenHeld(climbForward);
-        rightBumper.whenHeld(climberReset);*/
+        dPadUp.whenHeld(climbUp);
+        dPadDown.whenHeld(climbDown);
 
         /* Buttons for shooter/intake */
         aButton.whenHeld(runSkrungles.alongWith(runConveyorForward));
@@ -129,8 +129,9 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand() {
-        /* This waits a couple of seconds so the flywheel has time to spin up, since spinning up the flywheel and running the drivetrain at the same time would pull too many amps */
-        return new SequentialCommandGroup(new WaitCommand(2), timedDriveAuto, aimWithLimelight, timedRunIndex);
+        /* Autonomous runs driveA then Shooter */
+        return new ParallelCommandGroup(driveA, runIndex);
+        //return m_autocommand;
     }
 
     public Command getDriveROCommand() {
