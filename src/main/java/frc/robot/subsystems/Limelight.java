@@ -18,6 +18,8 @@ public class Limelight extends SubsystemBase {
     /** Creates a new Limelight. */
     public Limelight() {
         this.limelightTable = NetworkTableInstance.getDefault().getTable("limelight");
+        /* Turn off the Limelight's LEDs by default. Commands that use it will turn them on. */
+        limelightTable.getEntry("ledMode").setNumber(1.0);
     }
 
     /**
@@ -53,6 +55,20 @@ public class Limelight extends SubsystemBase {
      */
     public double getTA() {
         return ta;
+    }
+
+    /**
+     * Turns on the Limelight's LEDs.
+     */
+    public void turnOnLEDs() {
+        limelightTable.getEntry("ledMode").setNumber(3.0);
+    }
+
+    /**
+     * Turns off the Limelight's LEDs.
+     */
+    public void turnOffLEDs() {
+        limelightTable.getEntry("ledMode").setNumber(1.0);
     }
 
     /**

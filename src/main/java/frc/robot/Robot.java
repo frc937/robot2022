@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.util.net.PortForwarder;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -32,6 +33,14 @@ public class Robot extends TimedRobot {
         container = new RobotContainer();
         defaultFlywheelCommand = container.getRunFlywheelCommand();
         defaultDriveCommand = container.getDriveROCommand();
+        
+        /* Port forwarding for the Limelight. This will allow us to access the Limelight's interface over the roboRIO's USB connection, should we ever need to. */
+        PortForwarder.add(5800, "limelight.local", 5800);
+        PortForwarder.add(5801, "limelight.local", 5801);
+        PortForwarder.add(5802, "limelight.local", 5802);
+        PortForwarder.add(5803, "limelight.local", 5803);
+        PortForwarder.add(5804, "limelight.local", 5804);
+        PortForwarder.add(5805, "limelight.local", 5805);
     }
 
     /**
