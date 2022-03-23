@@ -31,7 +31,7 @@ public class DriveRobotOriented extends CommandBase {
         mecanumX = RobotContainer.getScaledLeftXAxis();
         mecanumY = RobotContainer.getScaledLeftYAxis();
         mecanumZ = RobotContainer.getScaledRightXAxis();
-        drivetrain.moveRobot(mecanumY, mecanumX, mecanumZ);
+        drivetrain.moveMecanumRobot(mecanumY, mecanumX, mecanumZ);
 
     }
 

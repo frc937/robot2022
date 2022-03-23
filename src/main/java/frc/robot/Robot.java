@@ -71,6 +71,10 @@ public class Robot extends TimedRobot {
     public void autonomousInit() {
         m_autonomousCommand = container.getAutonomousCommand();
 
+        if (defaultDriveCommand != null) {
+            defaultFlywheelCommand.schedule();
+        }
+
         // schedule the autonomous command (example)
         if (m_autonomousCommand != null) {
             m_autonomousCommand.schedule();
@@ -96,7 +100,7 @@ public class Robot extends TimedRobot {
 
         // This will need to be moved to autonomousInit but needs to be here for testing
         if (defaultFlywheelCommand != null) {
-            /*defaultFlywheelCommand.schedule();*/
+            defaultFlywheelCommand.schedule();
         }
     }
 

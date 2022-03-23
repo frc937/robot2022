@@ -18,7 +18,6 @@ import frc.robot.commands.RunIndexWheel;
 import frc.robot.commands.RunConveyorForward;
 import frc.robot.commands.RunConveyorReverse;
 import frc.robot.commands.RunSkrungles;
-import frc.robot.commands.StopAutonomous;
 import frc.robot.commands.RunFlywheel;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Flywheel;
@@ -33,6 +32,7 @@ import frc.robot.TwoButtonCombo;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -59,8 +59,7 @@ public class RobotContainer {
     private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
     private final DriveRobotOriented driveRO = new DriveRobotOriented(driveSubsystem);
     private final DriveFieldOriented driveFO = new DriveFieldOriented(driveSubsystem);
-    private final DriveAutonomous driveA = new DriveAutonomous(driveSubsystem);
-    private final StopAutonomous stopA = new StopAutonomous(driveSubsystem);
+    private final DriveAutonomous driveAuto = new DriveAutonomous(driveSubsystem);
     private final InstantCommand resetGyro = new InstantCommand(driveSubsystem::resetGyro, driveSubsystem);
     /*private final ClimbForward climbForward = new ClimbForward(climberSubsystem);
     private final ClimberReset climberReset = new ClimberReset(climberSubsystem);*/
@@ -70,6 +69,8 @@ public class RobotContainer {
     private final RunConveyorReverse runConveyorReverse = new RunConveyorReverse(conveyorSubsystem);
     private final RunIndexWheel runIndex = new RunIndexWheel(indexSubsystem);
     private final AimWithLimelight aimWithLimelight = new AimWithLimelight(driveSubsystem, limelight);
+    private final ParallelRaceGroup timedDriveAuto = new ParallelRaceGroup(driveAuto, new WaitCommand(2));
+    private final ParallelRaceGroup timedRunIndex = new ParallelRaceGroup(runIndex, new WaitCommand(1)); 
     
     public static XboxController controller = new XboxController(Constants.CONTROLLER_NUMBER);
 
@@ -128,10 +129,8 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand() {
-        /* Autonomous runs driveA then Shooter */
-        /* TODO: The time in WaitCommand is arbitrary and needs to be changed */
-        return new SequentialCommandGroup(driveA, new WaitCommand(2), stopA, aimWithLimelight, runIndex);
-        //return m_autocommand;
+        /* This waits a couple of seconds so the flywheel has time to spin up, since spinning up the flywheel and running the drivetrain at the same time would pull too many amps */
+        return new SequentialCommandGroup(new WaitCommand(2), timedDriveAuto, aimWithLimelight, timedRunIndex);
     }
 
     public Command getDriveROCommand() {
