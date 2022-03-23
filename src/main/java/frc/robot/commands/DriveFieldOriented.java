@@ -31,7 +31,7 @@ public class DriveFieldOriented extends CommandBase {
         mecanumX = RobotContainer.getScaledLeftXAxis();
         mecanumY = RobotContainer.getScaledLeftYAxis();
         mecanumZ = RobotContainer.getScaledRightXAxis();
-        drivetrain.moveField(mecanumY, mecanumX, mecanumZ);
+        drivetrain.moveMecanumField(mecanumY, mecanumX, mecanumZ);
 
     }
 

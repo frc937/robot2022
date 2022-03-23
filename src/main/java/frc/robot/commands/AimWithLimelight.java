@@ -52,7 +52,7 @@ public class AimWithLimelight extends CommandBase {
                 z = Constants.LIMELIGHT_SPEED_LIMIT;
             }
 
-            drive.moveRobot(y * -1.0, 0.0, z);
+            drive.moveMecanumRobot(y * -1.0, 0.0, z);
 
             if (Math.abs(limelight.getTX()) < Constants.LIMELIGHT_TURN_DONE_THRESHOLD && Math.abs((Constants.LIMELIGHT_DIST_FROM_TARGET - ((Constants.UPPER_HUB_TAPE_HEIGHT - Constants.LIMELIGHT_MOUNT_HEIGHT)/Math.tan((Constants.LIMELIGHT_MOUNT_ANGLE + limelight.getTY()) * (Math.PI / 180.0))))) <= Constants.LIMELIGHT_DISTANCE_DONE_THRESHOLD) {
                 this.finished = true;
