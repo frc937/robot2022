@@ -27,6 +27,9 @@ public final class Constants {
     public static final int ID_TALON_REAR_LEFT = 1;
     public static final int ID_TALON_REAR_RIGHT = 4;
 
+    /* Drive scale factor */
+    public static final double DRIVE_SCALE = 0.5;
+
     /* SPARK MAX CAN IDs for shooter */
     public static final int ID_SPARKMAX_FLYWHEEL = 7;
     public static final int ID_SPARKMAX_CONTROL_WHEEL = 5;
