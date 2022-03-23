@@ -18,6 +18,7 @@ import frc.robot.commands.RunIndexWheel;
 import frc.robot.commands.RunConveyorForward;
 import frc.robot.commands.RunConveyorReverse;
 import frc.robot.commands.RunSkrungles;
+import frc.robot.commands.StopAutonomous;
 import frc.robot.commands.RunFlywheel;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Flywheel;
@@ -58,6 +59,7 @@ public class RobotContainer {
     private final DriveRobotOriented driveRO = new DriveRobotOriented(driveSubsystem);
     private final DriveFieldOriented driveFO = new DriveFieldOriented(driveSubsystem);
     private final DriveAutonomous driveA = new DriveAutonomous(driveSubsystem);
+    private final StopAutonomous stopA = new StopAutonomous(driveSubsystem);
     private final InstantCommand resetGyro = new InstantCommand(driveSubsystem::resetGyro, driveSubsystem);
     /*private final ClimbForward climbForward = new ClimbForward(climberSubsystem);
     private final ClimberReset climberReset = new ClimberReset(climberSubsystem);*/
@@ -126,7 +128,7 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         /* Autonomous runs driveA then Shooter */
-        return new SequentialCommandGroup(driveA, aimWithLimelight, runIndex);
+        return new SequentialCommandGroup(driveA, stopA, aimWithLimelight, runIndex);
         //return m_autocommand;
     }
 
