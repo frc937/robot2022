@@ -34,6 +34,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -45,7 +46,7 @@ public class RobotContainer {
     /* The robot's subsystems and commands are defined here... */
     private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
     private final Drive driveSubsystem = new Drive();
-    /*private final Climber climberSubsystem = new Climber();*/
+    private final Climber climberSubsystem = new Climber();
     /*private final ColorSensor colorSensor = new ColorSensor();*/
     private final Conveyor conveyorSubsystem = new Conveyor();
     private final Flywheel flywheelSubsystem = new Flywheel();
@@ -58,8 +59,8 @@ public class RobotContainer {
     private final DriveFieldOriented driveFO = new DriveFieldOriented(driveSubsystem);
     private final DriveAutonomous driveA = new DriveAutonomous(driveSubsystem);
     private final InstantCommand resetGyro = new InstantCommand(driveSubsystem::resetGyro, driveSubsystem);
-    /*private final ClimbForward climbForward = new ClimbForward(climberSubsystem);
-    private final ClimberReset climberReset = new ClimberReset(climberSubsystem);*/
+    private final ClimbDown climbDown = new ClimbDown(climberSubsystem);
+    private final ClimbUp climbUp = new ClimbUp(climberSubsystem);
     private final RunFlywheel runFlywheel = new RunFlywheel(flywheelSubsystem);
     private final RunSkrungles runSkrungles = new RunSkrungles(skrunglesSubsystem);
     private final RunConveyorForward runConveyorForward = new RunConveyorForward(conveyorSubsystem);
@@ -93,12 +94,16 @@ public class RobotContainer {
         JoystickButton startButton = new JoystickButton(controller, Constants.START_NUMBER);
         JoystickButton leftStick = new JoystickButton(controller, Constants.LEFT_STICK_NUMBER);
         JoystickButton rightStick = new JoystickButton(controller, Constants.RIGHT_STICK_NUMBER);
+        POVButton dPadUp = new POVButton(controller, 0);
+        POVButton dPadRight= new POVButton(controller, 90);        
+        POVButton dPadDown = new POVButton(controller, 180);
+        POVButton dPadLeft = new POVButton(controller, 270);
         TwoButtonCombo xAndY = new TwoButtonCombo(controller, Constants.X_NUMBER, Constants.Y_NUMBER);
 
         /* TODO: Change these buttons when a more convenient controller layout becomes obvious */
         /* Buttons for the climber in a box */
-        /*leftBumper.whenHeld(climbForward);
-        rightBumper.whenHeld(climberReset);*/
+        dPadUp.whenHeld(climbUp);
+        dPadDown.whenHeld(climbDown);
 
         /* Buttons for shooter/intake */
         aButton.whenHeld(runSkrungles.alongWith(runConveyorForward));
