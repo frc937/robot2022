@@ -11,14 +11,14 @@ import frc.robot.Constants;
 public class Flywheel extends SubsystemBase {
 
     private CANSparkMax flywheel;
-    private RelativeEncoder flywheelEncoder;
+    /*private RelativeEncoder flywheelEncoder;*/
     private SparkMaxPIDController flywheelPID;
 
     /** Creates a new Flywheel. */
     public Flywheel() {
         flywheel = new CANSparkMax(Constants.ID_SPARKMAX_FLYWHEEL, MotorType.kBrushed);
 
-        flywheelEncoder = flywheel.getEncoder();
+        /*flywheelEncoder = flywheel.getEncoder();*/
 
         flywheelPID = flywheel.getPIDController();
 
