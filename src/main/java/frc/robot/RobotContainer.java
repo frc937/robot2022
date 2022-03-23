@@ -36,6 +36,7 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -128,7 +129,8 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         /* Autonomous runs driveA then Shooter */
-        return new SequentialCommandGroup(driveA, stopA, aimWithLimelight, runIndex);
+        /* TODO: The time in WaitCommand is arbitrary and needs to be changed */
+        return new SequentialCommandGroup(driveA, new WaitCommand(2), stopA, aimWithLimelight, runIndex);
         //return m_autocommand;
     }
 
