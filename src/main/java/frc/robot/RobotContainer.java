@@ -25,6 +25,7 @@ import frc.robot.subsystems.IndexWheel;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Skrungles;
 import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.Camera;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ColorSensor;
 import frc.robot.subsystems.Conveyor;
@@ -55,6 +56,8 @@ public class RobotContainer {
     private final Flywheel flywheelSubsystem = new Flywheel();
     private final IndexWheel indexSubsystem = new IndexWheel();
     private final Skrungles skrunglesSubsystem = new Skrungles();
+    private final Camera driverCamera = new Camera(Constants.ID_CAMERA_DRIVER);
+    private final Camera conveyorCamera = new Camera(Constants.ID_CAMERA_CONVEYOR);
     private final Limelight limelight = new Limelight();
 
     private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
@@ -69,6 +72,12 @@ public class RobotContainer {
     private final RunConveyorForward runConveyorForward = new RunConveyorForward(conveyorSubsystem);
     private final RunConveyorReverse runConveyorReverse = new RunConveyorReverse(conveyorSubsystem);
     private final RunIndexWheel runIndex = new RunIndexWheel(indexSubsystem);
+<<<<<<< HEAD
+=======
+    private final ParallelRaceGroup runIndexTimed = new ParallelRaceGroup(runIndex, new WaitCommand(1));
+    private final InstantCommand displayDriverVideo = new InstantCommand(driverCamera::startCamera, driverCamera);
+    private final InstantCommand displayConveyorVideo = new InstantCommand(conveyorCamera::startCamera, conveyorCamera);
+>>>>>>> cameras
     private final AimWithLimelight aimWithLimelight = new AimWithLimelight(driveSubsystem, limelight);
     // private final SequentialCommandGroup aimAndShoot = new SequentialCommandGroup(aimWithLimelight, runIndex);
     
@@ -154,8 +163,17 @@ public class RobotContainer {
         return new InstantCommand(flywheelSubsystem::testFlywheel, flywheelSubsystem);
     }
 
+<<<<<<< HEAD
     public Command getRunIndexCommand() {
         return runIndex;
+=======
+    public Command getDisplayDriverVideoCommand() {
+        return displayDriverVideo;
+    }
+
+    public Command getDisplayConveyorVideoCommand() {
+        return displayConveyorVideo;
+>>>>>>> cameras
     }
 
     public static double getLeftXAxis() {
