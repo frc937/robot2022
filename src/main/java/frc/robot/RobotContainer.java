@@ -113,6 +113,7 @@ public class RobotContainer {
         /* Buttons for shooter/intake */
         leftBumper.whenHeld(runSkrungles.alongWith(runConveyorForward));
         aAndB.whenHeld(runIndex);
+        xButton.whenHeld(runConveyorReverse);
         /*xButton.whenHeld(new ConditionalCommand(runConveyorForward, runConveyorReverse, colorSensor::canShoot));*/
 
         /*xButton.whenPressed(new InstantCommand(flywheelSubsystem::testFlywheel, flywheelSubsystem));
