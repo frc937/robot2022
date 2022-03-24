@@ -69,8 +69,8 @@ public class RobotContainer {
     private final RunConveyorForward runConveyorForward = new RunConveyorForward(conveyorSubsystem);
     private final RunConveyorReverse runConveyorReverse = new RunConveyorReverse(conveyorSubsystem);
     private final RunIndexWheel runIndex = new RunIndexWheel(indexSubsystem);
-    private final ParallelRaceGroup runIndexTimed = new ParallelRaceGroup(runIndex, new WaitCommand(1));
     private final AimWithLimelight aimWithLimelight = new AimWithLimelight(driveSubsystem, limelight);
+    // private final SequentialCommandGroup aimAndShoot = new SequentialCommandGroup(aimWithLimelight, runIndex);
     
     public static XboxController controller = new XboxController(Constants.CONTROLLER_NUMBER);
 
@@ -108,18 +108,19 @@ public class RobotContainer {
         /* TODO: Change these buttons when a more convenient controller layout becomes obvious */
         /* Buttons for the climber in a box */
         dPadUp.whenHeld(climbUp);
-        dPadLeft.whenHeld(climbDown);
+        dPadDown.whenHeld(climbDown);
 
         /* Buttons for shooter/intake */
         leftBumper.whenHeld(runSkrungles.alongWith(runConveyorForward));
-        aAndB.whenHeld(runIndex);
+        // aAndB.whenHeld(runIndex);
         xButton.whenHeld(runConveyorReverse);
         /*xButton.whenHeld(new ConditionalCommand(runConveyorForward, runConveyorReverse, colorSensor::canShoot));*/
 
         /*xButton.whenPressed(new InstantCommand(flywheelSubsystem::testFlywheel, flywheelSubsystem));
         yButton.whenPressed(new InstantCommand(flywheelSubsystem::stopFlywheel, flywheelSubsystem));*/
 
-        aButton.whenHeld(new SequentialCommandGroup(aimWithLimelight, runIndex));
+        aButton.whenHeld(aimWithLimelight);
+        bButton.whenHeld(runIndex); 
 
         //backButton.whenPressed(resetGyro);
 
@@ -136,7 +137,7 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         /* Autonomous runs driveA then Shooter */
-        return new SequentialCommandGroup(aimWithLimelight, runIndexTimed);
+        return aimWithLimelight.andThen(runIndex);
         //return m_autocommand;
     }
 
@@ -151,6 +152,10 @@ public class RobotContainer {
     public Command getRunFlywheelCommand() {
         //return runFlywheel;
         return new InstantCommand(flywheelSubsystem::testFlywheel, flywheelSubsystem);
+    }
+
+    public Command getRunIndexCommand() {
+        return runIndex;
     }
 
     public static double getLeftXAxis() {

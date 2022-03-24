@@ -6,6 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandGroupBase;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.util.net.PortForwarder;
 
@@ -19,6 +20,7 @@ public class Robot extends TimedRobot {
     private Command m_autonomousCommand;
     private Command defaultFlywheelCommand;
     private Command defaultDriveCommand;
+    private Command runIndexCommand;
 
     private RobotContainer container;
 
@@ -33,6 +35,7 @@ public class Robot extends TimedRobot {
         container = new RobotContainer();
         defaultFlywheelCommand = container.getRunFlywheelCommand();
         defaultDriveCommand = container.getDriveROCommand();
+        runIndexCommand = container.getRunIndexCommand();
         
         /* Port forwarding for the Limelight. This will allow us to access the Limelight's interface over the roboRIO's USB connection, should we ever need to. */
         PortForwarder.add(5800, "limelight.local", 5800);
@@ -71,7 +74,7 @@ public class Robot extends TimedRobot {
     public void autonomousInit() {
         m_autonomousCommand = container.getAutonomousCommand();
 
-        if (defaultDriveCommand != null) {
+        if (defaultFlywheelCommand != null) {
             defaultFlywheelCommand.schedule();
         }
 
@@ -93,6 +96,7 @@ public class Robot extends TimedRobot {
         // this line or comment it out.
         if (m_autonomousCommand != null) {
             m_autonomousCommand.cancel();
+            CommandGroupBase.clearGroupedCommand(runIndexCommand);
         }
         if (defaultDriveCommand != null) {
             defaultDriveCommand.schedule();

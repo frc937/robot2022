@@ -24,15 +24,16 @@ public class Climber extends SubsystemBase {
         winch0 = new CANSparkMax(Constants.ID_SPARKMAX_WINCH_0, MotorType.kBrushed);
         winch1 = new CANSparkMax(Constants.ID_SPARKMAX_WINCH_1, MotorType.kBrushed);
 
+        // winch0.setInverted(true);
+
         /*winchEncoder = new Encoder(Constants.DIO_PIN_WINCH_ENCODER_0, Constants.DIO_PIN_WINCH_ENCODER_1);*/
 
         /* This makes winch1 do the exact same thing as winch0 */
         winch1.follow(winch0);
-
     }
 
     public void runClimberUp() {
-        winch0.set(Constants.WINCH_SPEED);
+        winch0.set(Constants.WINCH_SPEED_UP);
     }
 
     public void stopClimber() {
@@ -40,7 +41,7 @@ public class Climber extends SubsystemBase {
     }
 
     public void runClimberDown() {
-        winch0.set(Constants.WINCH_SPEED * -1.0);
+        winch0.set(Constants.WINCH_SPEED_DOWN * -1.0);
     }
 
 }

@@ -75,8 +75,9 @@ public final class Constants {
     /* Multiplexer port for color sensor */
     public static final int COLOR_SENSOR_PORT = 1;
 
-    /* Speed to run the winch at. Supposedly it's in RPM */
-    public static final double WINCH_SPEED = 0.5;
+    /* Speed to run the winch at. It's a percent output setpoint */
+    public static final double WINCH_SPEED_DOWN = 1.0;
+    public static final double WINCH_SPEED_UP = 0.5;
 
     /* Shooter/intake color sensor calibration values */
     /* TODO: these are stolen from REV's examples, and won't be accurate to the actual ball colors. calibrate them. */
@@ -107,7 +108,7 @@ public final class Constants {
     public static final double UPPER_HUB_TAPE_HEIGHT = 104.0;
 
     /* How far in inches we want to be from the target when we shoot */
-    public static final double LIMELIGHT_DIST_FROM_TARGET = 175.0;
+    public static final double LIMELIGHT_DIST_FROM_TARGET = 205.0;
 
     /* How hard to turn toward the target. Double between 0 and 1, standard way to drive a motor */
     public static final double LIMELIGHT_STEER_STRENGTH = 0.01;
