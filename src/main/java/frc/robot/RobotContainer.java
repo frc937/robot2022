@@ -32,6 +32,9 @@ import frc.robot.TwoButtonCombo;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
@@ -66,6 +69,7 @@ public class RobotContainer {
     private final RunConveyorForward runConveyorForward = new RunConveyorForward(conveyorSubsystem);
     private final RunConveyorReverse runConveyorReverse = new RunConveyorReverse(conveyorSubsystem);
     private final RunIndexWheel runIndex = new RunIndexWheel(indexSubsystem);
+    private final ParallelRaceGroup runIndexTimed = new ParallelRaceGroup(runIndex, new WaitCommand(1));
     private final AimWithLimelight aimWithLimelight = new AimWithLimelight(driveSubsystem, limelight);
     
     public static XboxController controller = new XboxController(Constants.CONTROLLER_NUMBER);
@@ -130,7 +134,7 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         /* Autonomous runs driveA then Shooter */
-        return new ParallelCommandGroup(driveA, runIndex);
+        return new SequentialCommandGroup(aimWithLimelight, runIndexTimed);
         //return m_autocommand;
     }
 
