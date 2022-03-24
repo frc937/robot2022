@@ -103,25 +103,26 @@ public class RobotContainer {
         POVButton dPadDown = new POVButton(controller, 180);
         POVButton dPadLeft = new POVButton(controller, 270);
         TwoButtonCombo xAndY = new TwoButtonCombo(controller, Constants.X_NUMBER, Constants.Y_NUMBER);
+        TwoButtonCombo aAndB = new TwoButtonCombo(controller, Constants.A_NUMBER, Constants.B_NUMBER);
 
         /* TODO: Change these buttons when a more convenient controller layout becomes obvious */
         /* Buttons for the climber in a box */
         dPadUp.whenHeld(climbUp);
-        dPadDown.whenHeld(climbDown);
+        dPadLeft.whenHeld(climbDown);
 
         /* Buttons for shooter/intake */
-        aButton.whenHeld(runSkrungles.alongWith(runConveyorForward));
-        bButton.whenHeld(runIndex);
+        leftBumper.whenHeld(runSkrungles.alongWith(runConveyorForward));
+        aAndB.whenHeld(runIndex);
         /*xButton.whenHeld(new ConditionalCommand(runConveyorForward, runConveyorReverse, colorSensor::canShoot));*/
 
         /*xButton.whenPressed(new InstantCommand(flywheelSubsystem::testFlywheel, flywheelSubsystem));
         yButton.whenPressed(new InstantCommand(flywheelSubsystem::stopFlywheel, flywheelSubsystem));*/
 
-        xButton.whenHeld(new SequentialCommandGroup(aimWithLimelight, runIndex));
+        aButton.whenHeld(new SequentialCommandGroup(aimWithLimelight, runIndex));
 
-        backButton.whenPressed(resetGyro);
+        //backButton.whenPressed(resetGyro);
 
-        leftStick.toggleWhenPressed(driveFO);
+        //leftStick.toggleWhenPressed(driveFO);
 
 
     }
