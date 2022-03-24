@@ -117,7 +117,7 @@ public class RobotContainer {
         /*xButton.whenPressed(new InstantCommand(flywheelSubsystem::testFlywheel, flywheelSubsystem));
         yButton.whenPressed(new InstantCommand(flywheelSubsystem::stopFlywheel, flywheelSubsystem));*/
 
-        xButton.whenHeld(aimWithLimelight);
+        xButton.whenHeld(new SequentialCommandGroup(aimWithLimelight, runIndex));
 
         backButton.whenPressed(resetGyro);
 
