@@ -124,6 +124,9 @@ public final class Constants {
     /* When we're at or below this number of inches from the target distance, we'll consider the limelight's drive routine "done" */
     public static final double LIMELIGHT_DISTANCE_DONE_THRESHOLD = 4.0;
 
+    public static final int ID_CAMERA_DRIVER = 0;
+    public static final int ID_CAMERA_CONVEYOR = 1;
+
     /* Controller ID */
     public static final int CONTROLLER_NUMBER = 0;
 

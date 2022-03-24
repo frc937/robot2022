@@ -19,6 +19,8 @@ public class Robot extends TimedRobot {
     private Command m_autonomousCommand;
     private Command defaultFlywheelCommand;
     private Command defaultDriveCommand;
+    private Command displayDriverVideoCommand;
+    private Command displayConveyorVideoCommand;
 
     private RobotContainer container;
 
@@ -33,6 +35,8 @@ public class Robot extends TimedRobot {
         container = new RobotContainer();
         defaultFlywheelCommand = container.getRunFlywheelCommand();
         defaultDriveCommand = container.getDriveROCommand();
+        displayDriverVideoCommand = container.getDisplayDriverVideoCommand();
+        displayConveyorVideoCommand = container.getDisplayConveyorVideoCommand();
         
         /* Port forwarding for the Limelight. This will allow us to access the Limelight's interface over the roboRIO's USB connection, should we ever need to. */
         PortForwarder.add(5800, "limelight.local", 5800);
@@ -41,6 +45,9 @@ public class Robot extends TimedRobot {
         PortForwarder.add(5803, "limelight.local", 5803);
         PortForwarder.add(5804, "limelight.local", 5804);
         PortForwarder.add(5805, "limelight.local", 5805);
+
+        displayDriverVideoCommand.initialize();
+        displayConveyorVideoCommand.initialize();
     }
 
     /**

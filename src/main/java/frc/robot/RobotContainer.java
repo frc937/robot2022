@@ -25,6 +25,7 @@ import frc.robot.subsystems.IndexWheel;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Skrungles;
 import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.Camera;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ColorSensor;
 import frc.robot.subsystems.Conveyor;
@@ -55,6 +56,8 @@ public class RobotContainer {
     private final Flywheel flywheelSubsystem = new Flywheel();
     private final IndexWheel indexSubsystem = new IndexWheel();
     private final Skrungles skrunglesSubsystem = new Skrungles();
+    private final Camera driverCamera = new Camera(Constants.ID_CAMERA_DRIVER);
+    private final Camera conveyorCamera = new Camera(Constants.ID_CAMERA_CONVEYOR);
     private final Limelight limelight = new Limelight();
 
     private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
@@ -70,6 +73,8 @@ public class RobotContainer {
     private final RunConveyorReverse runConveyorReverse = new RunConveyorReverse(conveyorSubsystem);
     private final RunIndexWheel runIndex = new RunIndexWheel(indexSubsystem);
     private final ParallelRaceGroup runIndexTimed = new ParallelRaceGroup(runIndex, new WaitCommand(1));
+    private final InstantCommand displayDriverVideo = new InstantCommand(driverCamera::startCamera, driverCamera);
+    private final InstantCommand displayConveyorVideo = new InstantCommand(conveyorCamera::startCamera, conveyorCamera);
     private final AimWithLimelight aimWithLimelight = new AimWithLimelight(driveSubsystem, limelight);
     
     public static XboxController controller = new XboxController(Constants.CONTROLLER_NUMBER);
@@ -149,6 +154,14 @@ public class RobotContainer {
     public Command getRunFlywheelCommand() {
         //return runFlywheel;
         return new InstantCommand(flywheelSubsystem::testFlywheel, flywheelSubsystem);
+    }
+
+    public Command getDisplayDriverVideoCommand() {
+        return displayDriverVideo;
+    }
+
+    public Command getDisplayConveyorVideoCommand() {
+        return displayConveyorVideo;
     }
 
     public static double getLeftXAxis() {
