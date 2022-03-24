@@ -72,12 +72,9 @@ public class RobotContainer {
     private final RunConveyorForward runConveyorForward = new RunConveyorForward(conveyorSubsystem);
     private final RunConveyorReverse runConveyorReverse = new RunConveyorReverse(conveyorSubsystem);
     private final RunIndexWheel runIndex = new RunIndexWheel(indexSubsystem);
-<<<<<<< HEAD
-=======
-    private final ParallelRaceGroup runIndexTimed = new ParallelRaceGroup(runIndex, new WaitCommand(1));
+    // private final ParallelRaceGroup runIndexTimed = new ParallelRaceGroup(runIndex, new WaitCommand(1));
     private final InstantCommand displayDriverVideo = new InstantCommand(driverCamera::startCamera, driverCamera);
     private final InstantCommand displayConveyorVideo = new InstantCommand(conveyorCamera::startCamera, conveyorCamera);
->>>>>>> cameras
     private final AimWithLimelight aimWithLimelight = new AimWithLimelight(driveSubsystem, limelight);
     // private final SequentialCommandGroup aimAndShoot = new SequentialCommandGroup(aimWithLimelight, runIndex);
     
@@ -163,17 +160,16 @@ public class RobotContainer {
         return new InstantCommand(flywheelSubsystem::testFlywheel, flywheelSubsystem);
     }
 
-<<<<<<< HEAD
     public Command getRunIndexCommand() {
         return runIndex;
-=======
+    }
+    
     public Command getDisplayDriverVideoCommand() {
         return displayDriverVideo;
     }
 
     public Command getDisplayConveyorVideoCommand() {
         return displayConveyorVideo;
->>>>>>> cameras
     }
 
     public static double getLeftXAxis() {
