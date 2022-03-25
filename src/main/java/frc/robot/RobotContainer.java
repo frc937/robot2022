@@ -212,7 +212,7 @@ public class RobotContainer {
     }
 
     private static double scaleAxis(double a) {
-        return Math.signum(a) * Math.pow(a, 2) * Constants.DRIVE_SCALE;
+        return Math.signum(a) * Math.pow(a, 2);
     }
 
 }
