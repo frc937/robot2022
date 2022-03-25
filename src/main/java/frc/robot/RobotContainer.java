@@ -163,6 +163,10 @@ public class RobotContainer {
     public Command getRunIndexCommand() {
         return runIndex;
     }
+
+    public Command getLimelightCommand() {
+        return aimWithLimelight;
+    }
     
     public Command getDisplayDriverVideoCommand() {
         return displayDriverVideo;

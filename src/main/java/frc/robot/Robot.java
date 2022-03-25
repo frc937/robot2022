@@ -21,6 +21,7 @@ public class Robot extends TimedRobot {
     private Command defaultFlywheelCommand;
     private Command defaultDriveCommand;
     private Command runIndexCommand;
+    private Command limelightCommand;
     private Command displayDriverVideoCommand;
     private Command displayConveyorVideoCommand;
 
@@ -38,6 +39,8 @@ public class Robot extends TimedRobot {
         defaultFlywheelCommand = container.getRunFlywheelCommand();
         defaultDriveCommand = container.getDriveROCommand();
         runIndexCommand = container.getRunIndexCommand();
+        limelightCommand = container.getLimelightCommand();
+        
         displayDriverVideoCommand = container.getDisplayDriverVideoCommand();
         displayConveyorVideoCommand = container.getDisplayConveyorVideoCommand();
         
@@ -104,6 +107,7 @@ public class Robot extends TimedRobot {
         if (m_autonomousCommand != null) {
             m_autonomousCommand.cancel();
             CommandGroupBase.clearGroupedCommand(runIndexCommand);
+            CommandGroupBase.clearGroupedCommand(limelightCommand);
         }
         if (defaultDriveCommand != null) {
             defaultDriveCommand.schedule();
