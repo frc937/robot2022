@@ -41,7 +41,7 @@ public class Flywheel extends SubsystemBase {
     }
 
     public void testFlywheel() {
-        flywheel.set(0.7);
+        flywheel.set(Constants.FLYWHEEL_PERCENT_OUT_SPEED);
     }
 
     public void stopFlywheel() {

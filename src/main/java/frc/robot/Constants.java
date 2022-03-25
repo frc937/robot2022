@@ -72,6 +72,10 @@ public final class Constants {
     /* Speed to run the flywheel at. */
     public static final double FLYWHEEL_SPEED = 0.6;
 
+    /* Speed to run the flywheel at with percent output, so without PID */
+    /* THIS IS THE SPEED WE ARE CURRENTLY USING */
+    public static final double FLYWHEEL_PERCENT_OUT_SPEED = 0.67;
+
     /* Multiplexer port for color sensor */
     public static final int COLOR_SENSOR_PORT = 1;
 
