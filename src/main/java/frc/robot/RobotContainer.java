@@ -143,7 +143,7 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         /* Autonomous runs driveA then Shooter */
-        return aimWithLimelight.andThen(runIndex);
+        return aimWithLimelight.withTimeout(5).andThen(runIndex.withTimeout(5));
         //return m_autocommand;
     }
 
