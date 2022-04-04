@@ -112,7 +112,7 @@ public final class Constants {
     public static final double UPPER_HUB_TAPE_HEIGHT = 104.0;
 
     /* How far in inches we want to be from the target when we shoot */
-    public static final double LIMELIGHT_DIST_FROM_TARGET = 205.0;
+    public static final double LIMELIGHT_DIST_FROM_TARGET = 169.0;
 
     /* How hard to turn toward the target. Double between 0 and 1, standard way to drive a motor */
     public static final double LIMELIGHT_STEER_STRENGTH = 0.01;
