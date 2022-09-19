@@ -5,28 +5,36 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
+import frc.robot.subsystems.Flywheel;
 
+/* This is very intentionally NOT inlined, because we may want to do power optimizations later. */
+/**
+ * Command to run the flywheel. Run as a defualt command.
+ */
 public class RunFlywheelBase extends CommandBase {
-  /** Creates a new RunFlywheelBase. */
-  public RunFlywheelBase() {
-    // Use addRequirements() here to declare subsystem dependencies.
-  }
+    Flywheel flywheel;
+    boolean done;
 
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {}
+    /** Constructor for RunFlywheel */
+    public RunFlywheelBase(Flywheel flywheelSubsystem) {
+        addRequirements(flywheelSubsystem);
+        flywheel = flywheelSubsystem;
+        done = false;
+    }
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {}
+    /**
+     * Initialization for RunFlywheel command. Starts the flywheel and sets done to true, which is returned by isFinished.
+     */
+    @Override
+    public void initialize() {
+        flywheel.setVelocity(Constants.FLYWHEEL_SPEED_BASE);
+        done = true;
+    }
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {}
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
+    // Returns true when the command should end.
+    @Override
+    public boolean isFinished() {
+        return done;
+    }
 }
