@@ -48,10 +48,10 @@ public final class Constants {
     public static final int DIO_PIN_WINCH_ENCODER_1 = 3;
 
     /* PID gains for shooter flywheel */
-    public static final double kFLYWHEEL_P = 1;
+    public static final double kFLYWHEEL_P = 0.006000000052154064;
     public static final double kFLYWHEEL_I = 0;
     public static final double kFLYWHEEL_D = 0;
-    public static final double kFLYWHEEL_FF= 0.000245;
+    public static final double kFLYWHEEL_FF= 0.00027350999880582094;
 
     /* PID gains for climber winch */
     public static final int kWINCH_P = 1;
