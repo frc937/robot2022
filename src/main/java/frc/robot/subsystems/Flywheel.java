@@ -24,25 +24,25 @@ public class Flywheel extends SubsystemBase {
 
         /* 
          * *************************************************************************************
-         * ONLY COMMENT THIS BACK IN IF YOU ARE NOT GOING TO TRY AND TUNE THINGS WITH REV CLIENT
+         * ONLY COMMENT THIS IF YOU ARE GOING TO TRY AND TUNE THINGS WITH REV CLIENT
          * *************************************************************************************
          */
-        /*flywheelPID.setP(Constants.kFLYWHEEL_P);
+        flywheelPID.setP(Constants.kFLYWHEEL_P);
         flywheelPID.setI(Constants.kFLYWHEEL_I);
         flywheelPID.setD(Constants.kFLYWHEEL_D);
-        flywheelPID.setFF(Constants.kFLYWHEEL_FF);*/
+        flywheelPID.setFF(Constants.kFLYWHEEL_FF);
         /* TODO: set encoder counts per rev here. cpr of our encoder is 8192, ppr is 2048 */
         //flywheelEncoder.
-        /*flywheel.burnFlash();*/
+        flywheel.burnFlash();
     }
 
     public void setVelocity(double velocity) {
         flywheelPID.setReference(velocity, ControlType.kVelocity);
     }
 
-    public void testFlywheel() {
-        flywheel.set(Constants.FLYWHEEL_PERCENT_OUT_SPEED);
-    }
+    // public void testFlywheel() {
+    //     flywheel.set(Constants.FLYWHEEL_PERCENT_OUT_SPEED);
+    // }
 
     public void stopFlywheel() {
         flywheel.set(0);
