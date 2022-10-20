@@ -10,7 +10,7 @@ import frc.robot.subsystems.Flywheel;
 
 /* This is very intentionally NOT inlined, because we may want to do power optimizations later. */
 /**
- * Command to run the flywheel. Run as a defualt command.
+ * Command to run the flywheel. Run as a default command.
  */
 public class RunFlywheelBase extends CommandBase {
     Flywheel flywheel;
