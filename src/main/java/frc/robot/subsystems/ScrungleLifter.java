@@ -20,6 +20,7 @@ public class ScrungleLifter extends SubsystemBase {
     private boolean isUp;
     private boolean moving;
     private boolean moveUp;
+
     public ScrungleLifter() {
         lifterLeft = new CANSparkMax(Constants.ID_SPARKMAX_SKRUNGLE_LIFT_L, MotorType.kBrushed);
         lifterLeft.setInverted(true);
@@ -34,6 +35,12 @@ public class ScrungleLifter extends SubsystemBase {
     public void liftScrungles() {
         if (!isUp) {
             startMotors("up");
+        }
+    }
+
+    public void lowerScrungles() {
+        if (isUp) {
+            startMotors("down");
         }
     }
 
@@ -58,11 +65,11 @@ public class ScrungleLifter extends SubsystemBase {
 
     }
 
-    private void stopMotors(){
+    private void stopMotors() {
         lifterRight.stopMotor();
         lifterLeft.stopMotor();
         moving = false;
-        
+
     }
 
     @Override
