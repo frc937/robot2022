@@ -6,6 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.DriveFieldOriented;
@@ -19,6 +20,7 @@ import frc.robot.commands.RunConveyorForward;
 import frc.robot.commands.RunConveyorReverse;
 import frc.robot.commands.RunSkrungles;
 import frc.robot.commands.RunFlywheel;
+import frc.robot.commands.RunFlywheelTest;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Flywheel;
 import frc.robot.subsystems.IndexWheel;
@@ -68,6 +70,7 @@ public class RobotContainer {
     private final ClimbDown climbDown = new ClimbDown(climberSubsystem);
     private final ClimbUp climbUp = new ClimbUp(climberSubsystem);
     private final RunFlywheel runFlywheel = new RunFlywheel(flywheelSubsystem);
+    private final RunFlywheelTest runFlywheelTest = new RunFlywheelTest(flywheelSubsystem);
     private final RunSkrungles runSkrungles = new RunSkrungles(skrunglesSubsystem);
     private final RunConveyorForward runConveyorForward = new RunConveyorForward(conveyorSubsystem);
     private final RunConveyorReverse runConveyorReverse = new RunConveyorReverse(conveyorSubsystem);
@@ -132,7 +135,7 @@ public class RobotContainer {
 
         //leftStick.toggleWhenPressed(driveFO);
 
-
+        SmartDashboard.putData("Test flywheel command", runFlywheelTest);
     }
     
 
