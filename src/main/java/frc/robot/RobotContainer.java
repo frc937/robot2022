@@ -11,7 +11,8 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.DriveFieldOriented;
 import frc.robot.commands.DriveRobotOriented;
 import frc.robot.commands.DriveAutonomous;
-import frc.robot.commands.AimWithLimelight;
+import frc.robot.commands.DriveWithLimelight;
+import frc.robot.commands.SpeedWithLimelight;
 import frc.robot.commands.ClimbUp;
 import frc.robot.commands.ClimbDown;
 import frc.robot.commands.RunIndexWheel;
@@ -75,7 +76,8 @@ public class RobotContainer {
     // private final ParallelRaceGroup runIndexTimed = new ParallelRaceGroup(runIndex, new WaitCommand(1));
     private final InstantCommand displayDriverVideo = new InstantCommand(driverCamera::startCamera, driverCamera);
     private final InstantCommand displayConveyorVideo = new InstantCommand(conveyorCamera::startCamera, conveyorCamera);
-    private final AimWithLimelight aimWithLimelight = new AimWithLimelight(driveSubsystem, limelight);
+    private final DriveWithLimelight driveWithLimelight = new DriveWithLimelight(driveSubsystem, limelight);
+    private final SpeedWithLimelight speedWithLimelight = new SpeedWithLimelight(driveSubsystem, limelight);
     // private final SequentialCommandGroup aimAndShoot = new SequentialCommandGroup(aimWithLimelight, runIndex);
     
     public static XboxController controller = new XboxController(Constants.CONTROLLER_NUMBER);
@@ -125,7 +127,8 @@ public class RobotContainer {
         /*xButton.whenPressed(new InstantCommand(flywheelSubsystem::testFlywheel, flywheelSubsystem));
         yButton.whenPressed(new InstantCommand(flywheelSubsystem::stopFlywheel, flywheelSubsystem));*/
 
-        aButton.whenHeld(aimWithLimelight);
+        aButton.whenHeld(driveWithLimelight);
+        yButton.whenHeld(speedWithLimelight);
         bButton.whenHeld(runIndex); 
 
         //backButton.whenPressed(resetGyro);
@@ -143,7 +146,7 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         /* Autonomous runs driveA then Shooter */
-        return aimWithLimelight.withTimeout(5).andThen(runIndex.withTimeout(5));
+        return driveWithLimelight.withTimeout(5).andThen(runIndex.withTimeout(5));
         //return m_autocommand;
     }
 
@@ -164,7 +167,7 @@ public class RobotContainer {
     }
 
     public Command getLimelightCommand() {
-        return aimWithLimelight;
+        return driveWithLimelight;
     }
     
     public Command getDisplayDriverVideoCommand() {
