@@ -77,7 +77,7 @@ public class RobotContainer {
     private final InstantCommand displayDriverVideo = new InstantCommand(driverCamera::startCamera, driverCamera);
     private final InstantCommand displayConveyorVideo = new InstantCommand(conveyorCamera::startCamera, conveyorCamera);
     private final DriveWithLimelight driveWithLimelight = new DriveWithLimelight(driveSubsystem, limelight);
-    private final SpeedWithLimelight speedWithLimelight = new SpeedWithLimelight(driveSubsystem, limelight);
+    private final SpeedWithLimelight speedWithLimelight = new SpeedWithLimelight(flywheelSubsystem, limelight);
     // private final SequentialCommandGroup aimAndShoot = new SequentialCommandGroup(aimWithLimelight, runIndex);
     
     public static XboxController controller = new XboxController(Constants.CONTROLLER_NUMBER);
