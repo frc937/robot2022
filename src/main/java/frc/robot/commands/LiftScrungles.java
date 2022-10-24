@@ -4,19 +4,19 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.ScrungleLifter;
+import frc.robot.subsystems.SkrungleLifter;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
 public class LiftScrungles extends CommandBase {
-    ScrungleLifter lifter;
+    SkrungleLifter lifter;
 
     /**
      * Creates a new ExampleCommand.
      *
      * @param subsystem The subsystem used by this command.
      */
-    public LiftScrungles(ScrungleLifter scrungleLifter) {
+    public LiftScrungles(SkrungleLifter scrungleLifter) {
         lifter = scrungleLifter;
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(scrungleLifter);
