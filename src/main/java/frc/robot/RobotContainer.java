@@ -19,10 +19,13 @@ import frc.robot.commands.RunConveyorForward;
 import frc.robot.commands.RunConveyorReverse;
 import frc.robot.commands.RunSkrungles;
 import frc.robot.commands.RunFlywheel;
+import frc.robot.commands.LiftScrungles;
+import frc.robot.commands.LowerScrungles;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Flywheel;
 import frc.robot.subsystems.IndexWheel;
 import frc.robot.subsystems.Limelight;
+import frc.robot.subsystems.SkrungleLifter;
 import frc.robot.subsystems.Skrungles;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Camera;
@@ -56,6 +59,7 @@ public class RobotContainer {
     private final Flywheel flywheelSubsystem = new Flywheel();
     private final IndexWheel indexSubsystem = new IndexWheel();
     private final Skrungles skrunglesSubsystem = new Skrungles();
+    private final SkrungleLifter skrungleLifter = new SkrungleLifter();
     private final Camera driverCamera = new Camera(Constants.ID_CAMERA_DRIVER);
     private final Camera conveyorCamera = new Camera(Constants.ID_CAMERA_CONVEYOR);
     private final Limelight limelight = new Limelight();
@@ -69,6 +73,8 @@ public class RobotContainer {
     private final ClimbUp climbUp = new ClimbUp(climberSubsystem);
     private final RunFlywheel runFlywheel = new RunFlywheel(flywheelSubsystem);
     private final RunSkrungles runSkrungles = new RunSkrungles(skrunglesSubsystem);
+    private final LiftScrungles liftScrungles = new LiftScrungles(skrungleLifter);
+    private final LowerScrungles lowerScrungles = new LowerScrungles(skrungleLifter);
     private final RunConveyorForward runConveyorForward = new RunConveyorForward(conveyorSubsystem);
     private final RunConveyorReverse runConveyorReverse = new RunConveyorReverse(conveyorSubsystem);
     private final RunIndexWheel runIndex = new RunIndexWheel(indexSubsystem);
@@ -131,6 +137,10 @@ public class RobotContainer {
         //backButton.whenPressed(resetGyro);
 
         //leftStick.toggleWhenPressed(driveFO);
+
+        // commands for ScrungleLifter
+        rightBumper.whenHeld(lowerScrungles);
+        rightBumper.whenReleased(liftScrungles);
 
 
     }

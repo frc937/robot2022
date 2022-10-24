@@ -101,7 +101,7 @@ public final class Constants {
     /* Intake speeds */
     public static final double SKRUNGLE_SPEED = 0.5;
     public static final double CONVEYOR_SPEED = 0.3;
-    public static final double SKRUNGLE_LIFT_SPEED = 0.05;
+    public static final double SKRUNGLE_LIFT_SPEED = 0.15;
 
     /* 
      * ***************

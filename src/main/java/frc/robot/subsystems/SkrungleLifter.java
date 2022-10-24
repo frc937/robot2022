@@ -23,24 +23,24 @@ public class ScrungleLifter extends SubsystemBase {
 
     public ScrungleLifter() {
         lifterLeft = new CANSparkMax(Constants.ID_SPARKMAX_SKRUNGLE_LIFT_L, MotorType.kBrushed);
-        lifterLeft.setInverted(true);
         lifterRight = new CANSparkMax(Constants.ID_SPARKMAX_SKRUNGLE_LIFT_R, MotorType.kBrushed);
+        lifterLeft.follow(lifterRight,true);
         swLiftUp = new DigitalInput(Constants.ID_SCRUNGLE_UP_SWITCH);
         swLiftDown = new DigitalInput(Constants.ID_SCRUNGLE_DOWN_SWITCH);
-        isUp = true; // assumes robot starts with intake is up
+        resetMotors();
         moveUp = false;
         moving = false;
     }
 
     public void liftScrungles() {
         if (!isUp) {
-            startMotors("up");
+            startMotors(1);
         }
     }
 
     public void lowerScrungles() {
         if (isUp) {
-            startMotors("down");
+            startMotors(0);
         }
     }
 
@@ -52,14 +52,12 @@ public class ScrungleLifter extends SubsystemBase {
         return swLiftDown.get();
     }
 
-    private void startMotors(String state) {
-        if (state.equals("up")) {
-            lifterLeft.set(Constants.SKRUNGLE_LIFT_SPEED);
+    private void startMotors(int state) {
+        if (state == 1) {
             lifterRight.set(Constants.SKRUNGLE_LIFT_SPEED);
             moveUp = true;
-        } else if (state.equals("down")) {
-            lifterLeft.set(-Constants.SKRUNGLE_LIFT_SPEED);
-            lifterRight.set(-Constants.SKRUNGLE_LIFT_SPEED);
+        } else if (state == 0) {
+            lifterRight.set(-1*Constants.SKRUNGLE_LIFT_SPEED);
             moveUp = false;
         }
 
@@ -67,9 +65,14 @@ public class ScrungleLifter extends SubsystemBase {
 
     private void stopMotors() {
         lifterRight.stopMotor();
-        lifterLeft.stopMotor();
         moving = false;
 
+    }
+
+    private void resetMotors() {
+        if (!getUpSwitchState()) {
+            startMotors(1);
+        }
     }
 
     @Override
