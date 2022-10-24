@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class ScrungleLifter extends SubsystemBase {
+public class SkrungleLifter extends SubsystemBase {
     /** Creates a new ScrungleLifter. */
     private CANSparkMax lifterLeft;
     private CANSparkMax lifterRight;
@@ -21,7 +21,7 @@ public class ScrungleLifter extends SubsystemBase {
     private boolean moving;
     private boolean moveUp;
 
-    public ScrungleLifter() {
+    public SkrungleLifter() {
         lifterLeft = new CANSparkMax(Constants.ID_SPARKMAX_SKRUNGLE_LIFT_L, MotorType.kBrushed);
         lifterRight = new CANSparkMax(Constants.ID_SPARKMAX_SKRUNGLE_LIFT_R, MotorType.kBrushed);
         lifterLeft.follow(lifterRight,true);

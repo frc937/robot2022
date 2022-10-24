@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.SkrungleLifter;
 import frc.robot.subsystems.Skrungles;
 
 /**
@@ -14,13 +15,15 @@ import frc.robot.subsystems.Skrungles;
  */
 public class RunSkrungles extends CommandBase {
     Skrungles skrungles;
+    SkrungleLifter skrungleLifter;
 
     /** 
      * Creates a new RunSkrungles.
      * @param intake Takes an intake subsytem for dependency injection
      */
-    public RunSkrungles(Skrungles skrunglesSubsystem) {
+    public RunSkrungles(Skrungles skrunglesSubsystem, SkrungleLifter lifter) {
         skrungles = skrunglesSubsystem;
+        skrungleLifter = lifter;
         addRequirements(skrunglesSubsystem);
     }
 
@@ -30,6 +33,7 @@ public class RunSkrungles extends CommandBase {
     @Override
     public void initialize() {
         skrungles.runSkrungles();
+        skrungleLifter.lowerScrungles();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -42,6 +46,7 @@ public class RunSkrungles extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         skrungles.stopSkrungles();
+        skrungleLifter.liftScrungles();
     }
 
     /** 

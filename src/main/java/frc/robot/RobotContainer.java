@@ -19,8 +19,6 @@ import frc.robot.commands.RunConveyorForward;
 import frc.robot.commands.RunConveyorReverse;
 import frc.robot.commands.RunSkrungles;
 import frc.robot.commands.RunFlywheel;
-import frc.robot.commands.LiftScrungles;
-import frc.robot.commands.LowerScrungles;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Flywheel;
 import frc.robot.subsystems.IndexWheel;
@@ -72,9 +70,7 @@ public class RobotContainer {
     private final ClimbDown climbDown = new ClimbDown(climberSubsystem);
     private final ClimbUp climbUp = new ClimbUp(climberSubsystem);
     private final RunFlywheel runFlywheel = new RunFlywheel(flywheelSubsystem);
-    private final RunSkrungles runSkrungles = new RunSkrungles(skrunglesSubsystem);
-    private final LiftScrungles liftScrungles = new LiftScrungles(skrungleLifter);
-    private final LowerScrungles lowerScrungles = new LowerScrungles(skrungleLifter);
+    private final RunSkrungles runSkrungles = new RunSkrungles(skrunglesSubsystem,skrungleLifter);
     private final RunConveyorForward runConveyorForward = new RunConveyorForward(conveyorSubsystem);
     private final RunConveyorReverse runConveyorReverse = new RunConveyorReverse(conveyorSubsystem);
     private final RunIndexWheel runIndex = new RunIndexWheel(indexSubsystem);
@@ -139,8 +135,6 @@ public class RobotContainer {
         //leftStick.toggleWhenPressed(driveFO);
 
         // commands for ScrungleLifter
-        rightBumper.whenHeld(lowerScrungles);
-        rightBumper.whenReleased(liftScrungles);
 
 
     }
