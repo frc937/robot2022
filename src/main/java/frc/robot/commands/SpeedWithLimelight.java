@@ -7,7 +7,7 @@ package frc.robot.commands;
 import java.lang.Math;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
-import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.Flywheel;
 import frc.robot.subsystems.Limelight;
 
 /**
@@ -17,7 +17,7 @@ import frc.robot.subsystems.Limelight;
  * This is so that this can be used with a command group to automate aiming AND shooting.
  */
 public class SpeedWithLimelight extends CommandBase {
-    private Drive drive;
+    private Flywheel flywheel;
     private Limelight limelight;
     private boolean finished;
     private int counter;
@@ -27,12 +27,12 @@ public class SpeedWithLimelight extends CommandBase {
      * @param drive Takes a drive subsystem for dependency injection
      * @param limelight Takes a limelight subsystem for dependency injection
      */
-    public SpeedWithLimelight(Drive drive, Limelight limelight) {
-        this.drive = drive;
+    public SpeedWithLimelight(Flywheel flywheel, Limelight limelight) {
+        this.flywheel = flywheel;
         this.limelight = limelight;
         this.finished = false;
         this.counter = 0;
-        addRequirements(drive, limelight);
+        addRequirements(flywheel, limelight);
     }
 
     // Called when the command is initially scheduled.
@@ -46,25 +46,26 @@ public class SpeedWithLimelight extends CommandBase {
     /**
      * Called every time the scheduler runs while the command is scheduled. Moves the robot to aim into the upper hub.
      */
+    /* TODO: Find equation to flywheel speed; this can be done by testing different flyw sheelpeeds, seeing how far they go, and hoping to find an equation from that.*/
     @Override
     public void execute() {
         if (limelight.hasValidTarget()) {
-            double z = limelight.getTX() * Constants.LIMELIGHT_STEER_STRENGTH;
-            double y = (Constants.LIMELIGHT_DIST_FROM_TARGET - ((Constants.UPPER_HUB_TAPE_HEIGHT - Constants.LIMELIGHT_MOUNT_HEIGHT)/Math.tan((Constants.LIMELIGHT_MOUNT_ANGLE + limelight.getTY()) * (Math.PI / 180.0)))) * Constants.LIMELIGHT_DRIVE_STRENGTH;
+            // double z = limelight.getTX() * Constants.LIMELIGHT_STEER_STRENGTH;
+            // double y = (Constants.LIMELIGHT_DIST_FROM_TARGET - ((Constants.UPPER_HUB_TAPE_HEIGHT - Constants.LIMELIGHT_MOUNT_HEIGHT)/Math.tan((Constants.LIMELIGHT_MOUNT_ANGLE + limelight.getTY()) * (Math.PI / 180.0)))) * Constants.LIMELIGHT_DRIVE_STRENGTH;
 
-            if (z > Constants.LIMELIGHT_SPEED_LIMIT) {
-                z = Constants.LIMELIGHT_SPEED_LIMIT;
-            }
+            // if (z > Constants.LIMELIGHT_SPEED_LIMIT) {
+            //     z = Constants.LIMELIGHT_SPEED_LIMIT;
+            // }
 
-            drive.moveMecanumRobot(y * -1.0, 0.0, z);
+            // drive.moveMecanumRobot(y * -1.0, 0.0, z);
 
-            boolean isAngled = Math.abs(limelight.getTX()) < Constants.LIMELIGHT_TURN_DONE_THRESHOLD;
-            boolean isDistanced = Math.abs((Constants.LIMELIGHT_DIST_FROM_TARGET - ((Constants.UPPER_HUB_TAPE_HEIGHT - Constants.LIMELIGHT_MOUNT_HEIGHT)/Math.tan((Constants.LIMELIGHT_MOUNT_ANGLE + limelight.getTY()) * (Math.PI / 180.0))))) <= Constants.LIMELIGHT_DISTANCE_DONE_THRESHOLD;
+            // boolean isAngled = Math.abs(limelight.getTX()) < Constants.LIMELIGHT_TURN_DONE_THRESHOLD;
+            // boolean isDistanced = Math.abs((Constants.LIMELIGHT_DIST_FROM_TARGET - ((Constants.UPPER_HUB_TAPE_HEIGHT - Constants.LIMELIGHT_MOUNT_HEIGHT)/Math.tan((Constants.LIMELIGHT_MOUNT_ANGLE + limelight.getTY()) * (Math.PI / 180.0))))) <= Constants.LIMELIGHT_DISTANCE_DONE_THRESHOLD;
 
-            if (isAngled && isDistanced) {
-                counter++;
-                if (counter > 5) {
-                    this.finished = true;
+            // if (isAngled && isDistanced) {
+            //     counter++;
+            //     if (counter > 5) {
+            //         this.finished = true;
                 }
             }
         }
