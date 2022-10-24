@@ -46,7 +46,7 @@ public class SpeedWithLimelight extends CommandBase {
     /**
      * Called every time the scheduler runs while the command is scheduled. Moves the robot to aim into the upper hub.
      */
-    /* TODO: Find equation to flywheel speed; this can be done by testing different flyw sheelpeeds, seeing how far they go, and hoping to find an equation from that.*/
+    /* TODO: Find equation to flywheel speed; this can be done by testing different flywheel speeds, seeing how far they go, and hoping to find an equation from that.*/
     @Override
     public void execute() {
         if (limelight.hasValidTarget()) {
