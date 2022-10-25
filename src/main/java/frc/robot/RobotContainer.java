@@ -21,6 +21,8 @@ import frc.robot.commands.RunConveyorReverse;
 import frc.robot.commands.RunSkrungles;
 import frc.robot.commands.RunFlywheel;
 import frc.robot.commands.RunFlywheelTest;
+import frc.robot.commands.RunFlywheelBase;
+import frc.robot.commands.RunFlywheelLaunchpad;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Flywheel;
 import frc.robot.subsystems.IndexWheel;
@@ -71,6 +73,8 @@ public class RobotContainer {
     private final ClimbUp climbUp = new ClimbUp(climberSubsystem);
     private final RunFlywheel runFlywheel = new RunFlywheel(flywheelSubsystem);
     private final RunFlywheelTest runFlywheelTest = new RunFlywheelTest(flywheelSubsystem);
+    private final RunFlywheelBase runFlywheelBase = new RunFlywheelBase(flywheelSubsystem); 
+    private final RunFlywheelLaunchpad runFlywheelLaunchpad = new RunFlywheelLaunchpad(flywheelSubsystem);
     private final RunSkrungles runSkrungles = new RunSkrungles(skrunglesSubsystem);
     private final RunConveyorForward runConveyorForward = new RunConveyorForward(conveyorSubsystem);
     private final RunConveyorReverse runConveyorReverse = new RunConveyorReverse(conveyorSubsystem);
