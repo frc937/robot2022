@@ -121,7 +121,10 @@ public final class Constants {
     public static final double LIMELIGHT_DRIVE_STRENGTH = 0.01;
 
     /* VERY BASIC speed limit to make sure we don't drive too fast towards the target. Will need to be changed when implementing PID. */
-    public static final double LIMELIGHT_SPEED_LIMIT = 0.2;
+    public static final double LIMELIGHT_DRIVE_SPEED_LIMIT = 0.2;
+
+    /* VERY BASIC speed limit to make sure the flywheel's speed doesn't go above unreasonable speeds. */
+    public static final int LIMELIGHT_FLYWHEEL_SPEED_LIMIT = 2750;
 
     /* When we're at or below this number of degrees from where we want to be, we'll consider the limelight's aim routine "done" */
     public static final double LIMELIGHT_TURN_DONE_THRESHOLD = 1.0;

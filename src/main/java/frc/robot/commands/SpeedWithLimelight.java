@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Flywheel;
 import frc.robot.subsystems.Limelight;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * A command to use the Limelight to aim the robot
@@ -50,24 +51,26 @@ public class SpeedWithLimelight extends CommandBase {
     @Override
     public void execute() {
         if (limelight.hasValidTarget()) {
-            // double z = limelight.getTX() * Constants.LIMELIGHT_STEER_STRENGTH;
-            // double y = (Constants.LIMELIGHT_DIST_FROM_TARGET - ((Constants.UPPER_HUB_TAPE_HEIGHT - Constants.LIMELIGHT_MOUNT_HEIGHT)/Math.tan((Constants.LIMELIGHT_MOUNT_ANGLE + limelight.getTY()) * (Math.PI / 180.0)))) * Constants.LIMELIGHT_DRIVE_STRENGTH;
+            double z = limelight.getTX() * Constants.LIMELIGHT_STEER_STRENGTH;
+            double y = (Constants.LIMELIGHT_DIST_FROM_TARGET - ((Constants.UPPER_HUB_TAPE_HEIGHT - Constants.LIMELIGHT_MOUNT_HEIGHT)/Math.tan((Constants.LIMELIGHT_MOUNT_ANGLE + limelight.getTY()) * (Math.PI / 180.0)))) * Constants.LIMELIGHT_DRIVE_STRENGTH;
 
-            // if (z > Constants.LIMELIGHT_SPEED_LIMIT) {
-            //     z = Constants.LIMELIGHT_SPEED_LIMIT;
+            /* Likely not needed, but uncomment if neeeded */
+            // if (z > Constants.LIMELIGHT_FLYWHEEL_SPEED_LIMIT) {
+            //     z = Constants.LIMELIGHT_FLYWHEEL_SPEED_LIMIT;
+            //     SmartDashboard.putString("Too far away from target, get closer")
             // }
 
-            // drive.moveMecanumRobot(y * -1.0, 0.0, z);
+            flywheel.setVelocity(z);
 
-            // boolean isAngled = Math.abs(limelight.getTX()) < Constants.LIMELIGHT_TURN_DONE_THRESHOLD;
-            // boolean isDistanced = Math.abs((Constants.LIMELIGHT_DIST_FROM_TARGET - ((Constants.UPPER_HUB_TAPE_HEIGHT - Constants.LIMELIGHT_MOUNT_HEIGHT)/Math.tan((Constants.LIMELIGHT_MOUNT_ANGLE + limelight.getTY()) * (Math.PI / 180.0))))) <= Constants.LIMELIGHT_DISTANCE_DONE_THRESHOLD;
+            boolean isAngled = Math.abs(limelight.getTX()) < Constants.LIMELIGHT_TURN_DONE_THRESHOLD;
+            boolean isDistanced = Math.abs((Constants.LIMELIGHT_DIST_FROM_TARGET - ((Constants.UPPER_HUB_TAPE_HEIGHT - Constants.LIMELIGHT_MOUNT_HEIGHT)/Math.tan((Constants.LIMELIGHT_MOUNT_ANGLE + limelight.getTY()) * (Math.PI / 180.0))))) <= Constants.LIMELIGHT_DISTANCE_DONE_THRESHOLD;
 
-            // if (isAngled && isDistanced) {
-            //     counter++;
-            //     if (counter > 5) {
-            //         this.finished = true;
-                // }
-            // }
+            if (isAngled && isDistanced) {
+                counter++;
+                if (counter > 5) {
+                    this.finished = true;
+                }
+            }
         }
     }
 
