@@ -14,6 +14,7 @@ public class Flywheel extends SubsystemBase {
     private CANSparkMax flywheel;
     private RelativeEncoder flywheelEncoder;
     private SparkMaxPIDController flywheelPID;
+    private double flywheelSetpoint;
 
     /** Creates a new Flywheel. */
     public Flywheel() {
@@ -38,6 +39,7 @@ public class Flywheel extends SubsystemBase {
     }
 
     public void setVelocity(double velocity) {
+        flywheelSetpoint = velocity;
         flywheelPID.setReference(velocity, ControlType.kVelocity);
     }
 
@@ -47,6 +49,14 @@ public class Flywheel extends SubsystemBase {
 
     public void stopFlywheel() {
         flywheel.set(0);
+    }
+
+    public double getError() {
+        return this.flywheelSetpoint - flywheelEncoder.getVelocity();
+    }
+
+    public double getFlywheelVelocity() {
+        return flywheelEncoder.getVelocity();
     }
 
     /**
@@ -62,10 +72,6 @@ public class Flywheel extends SubsystemBase {
         //SmartDashboard.putNumber("Flywheel speed", flywheelEncoder.getVelocity());
         /*System.out.println(SmartDashboard.getNumber("Flywheel setpoint", Constants.FLYWHEEL_SPEED));*/
         // This method will be called once per scheduler run
-    }
-
-    public double getFlywheelVelocity() {
-        return flywheelEncoder.getVelocity();
     }
     
 }

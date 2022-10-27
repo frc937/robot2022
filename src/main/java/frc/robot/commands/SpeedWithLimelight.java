@@ -57,14 +57,16 @@ public class SpeedWithLimelight extends CommandBase {
             /* Likely not needed, but uncomment if needed */
             // if (z > Constants.LIMELIGHT_FLYWHEEL_SPEED_LIMIT) {
             //     z = Constants.LIMELIGHT_FLYWHEEL_SPEED_LIMIT;
-            //     SmartDashboard.putString("Too far away from target, get closer")
+            //     SmartDashboard.putString("Too far away from target, get closer");
             // }
 
             flywheel.setVelocity(z);
 
             boolean isAtVelocity = (flywheel.getFlywheelVelocity() == z);
+            /* TODO: this is a complete guess as to reasonable error of rpm, do change please */
+            boolean reasonableError = flywheel.getError() < 200;
 
-            if (isAtVelocity) {
+            if (reasonableError) {
                 counter++;
                 if (counter > 5) {
                     this.finished = true;
@@ -76,6 +78,7 @@ public class SpeedWithLimelight extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+        SmartDashboard.putString("yippee we're ready", "yippee we're ready");
         limelight.turnOffLEDs();
     }
 
