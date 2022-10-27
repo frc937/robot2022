@@ -25,6 +25,7 @@ public class RunSkrungles extends CommandBase {
         skrungles = skrunglesSubsystem;
         skrungleLifter = lifter;
         addRequirements(skrunglesSubsystem);
+        addRequirements(skrungleLifter);
     }
 
     /** 
@@ -33,12 +34,14 @@ public class RunSkrungles extends CommandBase {
     @Override
     public void initialize() {
         skrungles.runSkrungles();
-        skrungleLifter.lowerScrungles();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
-    public void execute() {}
+    public void execute(
+    ) {
+        skrungleLifter.lowerScrungles();
+    }
 
     /**
      * Called once the command ends or is interrupted. Turns off the skrungles.

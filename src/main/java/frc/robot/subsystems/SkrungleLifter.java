@@ -17,9 +17,7 @@ public class SkrungleLifter extends SubsystemBase {
     private CANSparkMax lifterRight;
     private DigitalInput swLiftUp;
     private DigitalInput swLiftDown;
-    private boolean isUp;
-    private boolean moving;
-    private boolean moveUp;
+    private boolean reset;
 
     public SkrungleLifter() {
         lifterLeft = new CANSparkMax(Constants.ID_SPARKMAX_SKRUNGLE_LIFT_L, MotorType.kBrushed);
@@ -27,62 +25,37 @@ public class SkrungleLifter extends SubsystemBase {
         lifterLeft.follow(lifterRight,true);
         swLiftUp = new DigitalInput(Constants.ID_SCRUNGLE_UP_SWITCH);
         swLiftDown = new DigitalInput(Constants.ID_SCRUNGLE_DOWN_SWITCH);
-        resetMotors();
-        moveUp = false;
-        moving = false;
     }
 
     public void liftScrungles() {
-        if (!isUp) {
-            startMotors(1);
+        if (!swLiftUp.get()) {
+            lifterRight.set(Constants.SKRUNGLE_LIFT_SPEED);
+        } else {
+            lifterRight.set(0);
+            reset = false;
         }
     }
 
     public void lowerScrungles() {
-        if (isUp) {
-            startMotors(0);
-        }
-    }
-
-    private boolean getUpSwitchState() {
-        return swLiftUp.get();
-    }
-
-    private boolean getDownSwitchState() {
-        return swLiftDown.get();
-    }
-
-    private void startMotors(int state) {
-        if (state == 1) {
-            lifterRight.set(Constants.SKRUNGLE_LIFT_SPEED);
-            moveUp = true;
-        } else if (state == 0) {
+        if (!swLiftDown.get()) {
             lifterRight.set(-1*Constants.SKRUNGLE_LIFT_SPEED);
-            moveUp = false;
+        } else {
+            lifterRight.set(0);
         }
-
     }
 
-    private void stopMotors() {
+    public void stopMotors() {
         lifterRight.stopMotor();
-        moving = false;
-
     }
 
-    private void resetMotors() {
-        if (!getUpSwitchState()) {
-            startMotors(1);
-        }
+    public void endCommand() {
+        reset = true;
     }
 
     @Override
     public void periodic() {
-        if (moving) {
-            if ((getDownSwitchState()) & (!moveUp)) {
-                stopMotors();
-            } else if ((getUpSwitchState()) & (moveUp)) {
-                stopMotors();
-            }
+        if (reset) {
+            liftScrungles();
         }
     }
 
