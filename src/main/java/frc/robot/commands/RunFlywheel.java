@@ -28,7 +28,7 @@ public class RunFlywheel extends CommandBase {
      */
     @Override
     public void initialize() {
-        flywheel.setVelocity(Constants.FLYWHEEL_SPEED);
+        flywheel.testFlywheel();
         done = true;
     }
 
