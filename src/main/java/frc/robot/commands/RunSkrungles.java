@@ -49,7 +49,7 @@ public class RunSkrungles extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         skrungles.stopSkrungles();
-        skrungleLifter.liftScrungles();
+        skrungleLifter.endCommand();
     }
 
     /** 

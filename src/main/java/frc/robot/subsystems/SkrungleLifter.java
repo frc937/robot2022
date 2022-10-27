@@ -26,8 +26,7 @@ public class SkrungleLifter extends SubsystemBase {
         swLiftUp = new DigitalInput(Constants.ID_SCRUNGLE_UP_SWITCH);
         swLiftDown = new DigitalInput(Constants.ID_SCRUNGLE_DOWN_SWITCH);
     }
-
-    public void liftScrungles() {
+    public void liftScrungles() {             
         if (!swLiftUp.get()) {
             lifterRight.set(Constants.SKRUNGLE_LIFT_SPEED);
         } else {
