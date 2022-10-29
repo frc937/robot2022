@@ -37,12 +37,20 @@ public class SkrungleLifter extends SubsystemBase {
         }
     }
 
+    public void liftSkrunglesOverride() {
+        lifterRight.set(-0.3);
+    }
+
     public void lowerScrungles() {
         if (!swLiftDown.get()) {
             lifterRight.set(Constants.SKRUNGLE_LOWER_SPEED);
         } else {
             lifterRight.set(0);
         }
+    }
+
+    public void lowerSkrunglesOverride() {
+        lifterRight.set(0.2);
     }
 
     public void stopMotors() {

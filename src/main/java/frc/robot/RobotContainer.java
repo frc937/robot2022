@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.util.Color;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.LiftSkrungles;
+import frc.robot.commands.LiftSkrunglesOverride;
+import frc.robot.commands.LowerSkrunglesOverride;
 import frc.robot.commands.DriveFieldOriented;
 import frc.robot.commands.DriveRobotOriented;
 import frc.robot.commands.DriveAutonomous;
@@ -81,6 +83,8 @@ public class RobotContainer {
     private final AimWithLimelight aimWithLimelight = new AimWithLimelight(driveSubsystem, limelight);
     // private final SequentialCommandGroup aimAndShoot = new SequentialCommandGroup(aimWithLimelight, runIndex);
     private final LiftSkrungles liftSkrungles = new LiftSkrungles(skrungleLifter);
+    private final LiftSkrunglesOverride liftSkrunglesOverride = new LiftSkrunglesOverride(skrungleLifter);
+    private final LowerSkrunglesOverride lowerSkrunglesOverride = new LowerSkrunglesOverride(skrungleLifter);
     
     public static XboxController controller = new XboxController(Constants.CONTROLLER_NUMBER);
 
@@ -123,6 +127,9 @@ public class RobotContainer {
         /* Buttons for shooter/intake */
         leftBumper.whenHeld(runSkrungles.alongWith(runConveyorForward));
         rightBumper.whenHeld(liftSkrungles);
+
+        dPadLeft.whenHeld(lowerSkrunglesOverride);
+        dPadRight.whenHeld(liftSkrunglesOverride);
         // aAndB.whenHeld(runIndex);
         xButton.whenHeld(runConveyorReverse);
         /*xButton.whenHeld(new ConditionalCommand(runConveyorForward, runConveyorReverse, colorSensor::canShoot));*/
