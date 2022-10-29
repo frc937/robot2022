@@ -8,6 +8,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -25,10 +26,11 @@ public class SkrungleLifter extends SubsystemBase {
         lifterLeft.follow(lifterRight,true);
         swLiftUp = new DigitalInput(Constants.ID_SCRUNGLE_UP_SWITCH);
         swLiftDown = new DigitalInput(Constants.ID_SCRUNGLE_DOWN_SWITCH);
+        reset = true;
     }
     public void liftScrungles() {             
         if (!swLiftUp.get()) {
-            lifterRight.set(Constants.SKRUNGLE_LIFT_SPEED);
+            lifterRight.set(-1.0*Constants.SKRUNGLE_RAISE_SPEED);
         } else {
             lifterRight.set(0);
             reset = false;
@@ -37,7 +39,7 @@ public class SkrungleLifter extends SubsystemBase {
 
     public void lowerScrungles() {
         if (!swLiftDown.get()) {
-            lifterRight.set(-1*Constants.SKRUNGLE_LIFT_SPEED);
+            lifterRight.set(Constants.SKRUNGLE_LOWER_SPEED);
         } else {
             lifterRight.set(0);
         }
@@ -56,6 +58,9 @@ public class SkrungleLifter extends SubsystemBase {
         if (reset) {
             liftScrungles();
         }
+
+        SmartDashboard.putBoolean("Up limit switch", swLiftUp.get());
+        SmartDashboard.putBoolean("Down limit switch", swLiftDown.get());
     }
 
     @Override

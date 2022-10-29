@@ -94,14 +94,15 @@ public final class Constants {
     public static final int ID_SPARKMAX_SKRUNGLE_LIFT_L = 11;
     public static final int ID_SPARKMAX_SKRUNGLE_LIFT_R = 12;
     /* Scrungle lifter switch IDs */
-    public static final int ID_SCRUNGLE_DOWN_SWITCH = 0;
-    public static final int ID_SCRUNGLE_UP_SWITCH = 1;
+    public static final int ID_SCRUNGLE_DOWN_SWITCH = 2;
+    public static final int ID_SCRUNGLE_UP_SWITCH = 3;
     
 
     /* Intake speeds */
     public static final double SKRUNGLE_SPEED = 0.5;
     public static final double CONVEYOR_SPEED = 0.3;
-    public static final double SKRUNGLE_LIFT_SPEED = 0.15;
+    public static final double SKRUNGLE_RAISE_SPEED = 0.5;
+    public static final double SKRUNGLE_LOWER_SPEED = 0.3;
 
     /* 
      * ***************
