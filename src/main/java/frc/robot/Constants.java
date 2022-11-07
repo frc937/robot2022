@@ -70,7 +70,7 @@ public final class Constants {
     public static final double CONTROL_WHEEL_SPEED = 0.4;
 
     /* Speed to run the flywheel at. */
-    public static final double FLYWHEEL_SPEED = 0.6;
+    public static final double FLYWHEEL_SPEED = 2760;
     public static final double FLYWHEEL_SPEED_BASE = 0.3; 
     public static final double FLYWHEEL_SPEED_LAUNCHPAD = 0.9; 
 
