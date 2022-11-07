@@ -174,8 +174,7 @@ public class RobotContainer {
      * @return The command to run the flywheel
      */
     public Command getRunFlywheelCommand() {
-        //return runFlywheel;
-        return new InstantCommand(flywheelSubsystem::testFlywheel, flywheelSubsystem);
+        return runFlywheel;
     }
 
     public Command getRunIndexCommand() {
