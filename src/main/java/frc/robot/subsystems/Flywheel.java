@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
+import com.revrobotics.SparkMaxRelativeEncoder;
 import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -20,7 +21,7 @@ public class Flywheel extends SubsystemBase {
     public Flywheel() {
         flywheel = new CANSparkMax(Constants.ID_SPARKMAX_FLYWHEEL, MotorType.kBrushed);
 
-        flywheelEncoder = flywheel.getEncoder();
+        flywheelEncoder = flywheel.getEncoder(SparkMaxRelativeEncoder.Type.kQuadrature, 8192);
 
         flywheelPID = flywheel.getPIDController();
 
