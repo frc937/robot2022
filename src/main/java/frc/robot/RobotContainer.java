@@ -8,6 +8,9 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.util.Color;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.LiftSkrungles;
+import frc.robot.commands.LiftSkrunglesOverride;
+import frc.robot.commands.LowerSkrunglesOverride;
 import frc.robot.commands.DriveFieldOriented;
 import frc.robot.commands.DriveRobotOriented;
 import frc.robot.commands.DriveAutonomous;
@@ -25,6 +28,7 @@ import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.Flywheel;
 import frc.robot.subsystems.IndexWheel;
 import frc.robot.subsystems.Limelight;
+import frc.robot.subsystems.SkrungleLifter;
 import frc.robot.subsystems.Skrungles;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Camera;
@@ -58,6 +62,7 @@ public class RobotContainer {
     private final Flywheel flywheelSubsystem = new Flywheel();
     private final IndexWheel indexSubsystem = new IndexWheel();
     private final Skrungles skrunglesSubsystem = new Skrungles();
+    private final SkrungleLifter skrungleLifter = new SkrungleLifter();
     private final Camera driverCamera = new Camera(Constants.ID_CAMERA_DRIVER);
     private final Camera conveyorCamera = new Camera(Constants.ID_CAMERA_CONVEYOR);
     private final Limelight limelight = new Limelight();
@@ -72,15 +77,18 @@ public class RobotContainer {
     private final RunFlywheel runFlywheel = new RunFlywheel(flywheelSubsystem);
     private final RunFlywheelBase runFlywheelBase = new RunFlywheelBase(flywheelSubsystem); 
     private final RunFlywheelLaunchpad runFlywheelLaunchpad = new RunFlywheelLaunchpad(flywheelSubsystem);
-    private final RunSkrungles runSkrungles = new RunSkrungles(skrunglesSubsystem);
+    private final RunSkrungles runSkrungles = new RunSkrungles(skrunglesSubsystem,skrungleLifter);
     private final RunConveyorForward runConveyorForward = new RunConveyorForward(conveyorSubsystem);
     private final RunConveyorReverse runConveyorReverse = new RunConveyorReverse(conveyorSubsystem);
-    private final RunIndexWheel runIndex = new RunIndexWheel(indexSubsystem);
+    private final RunIndexWheel runIndex = new RunIndexWheel(indexSubsystem, conveyorSubsystem);
     // private final ParallelRaceGroup runIndexTimed = new ParallelRaceGroup(runIndex, new WaitCommand(1));
     private final InstantCommand displayDriverVideo = new InstantCommand(driverCamera::startCamera, driverCamera);
     private final InstantCommand displayConveyorVideo = new InstantCommand(conveyorCamera::startCamera, conveyorCamera);
     private final AimWithLimelight aimWithLimelight = new AimWithLimelight(driveSubsystem, limelight);
     // private final SequentialCommandGroup aimAndShoot = new SequentialCommandGroup(aimWithLimelight, runIndex);
+    private final LiftSkrungles liftSkrungles = new LiftSkrungles(skrungleLifter);
+    private final LiftSkrunglesOverride liftSkrunglesOverride = new LiftSkrunglesOverride(skrungleLifter);
+    private final LowerSkrunglesOverride lowerSkrunglesOverride = new LowerSkrunglesOverride(skrungleLifter);
     
     public static XboxController controller = new XboxController(Constants.CONTROLLER_NUMBER);
 
@@ -122,6 +130,10 @@ public class RobotContainer {
 
         /* Buttons for shooter/intake */
         leftBumper.whenHeld(runSkrungles.alongWith(runConveyorForward));
+        rightBumper.whenHeld(liftSkrungles);
+
+        dPadLeft.whenHeld(lowerSkrunglesOverride);
+        dPadRight.whenHeld(liftSkrunglesOverride);
         // aAndB.whenHeld(runIndex);
         xButton.whenHeld(runConveyorReverse);
         /*xButton.whenHeld(new ConditionalCommand(runConveyorForward, runConveyorReverse, colorSensor::canShoot));*/
@@ -135,6 +147,8 @@ public class RobotContainer {
         //backButton.whenPressed(resetGyro);
 
         //leftStick.toggleWhenPressed(driveFO);
+
+        // commands for ScrungleLifter
 
 
     }

@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Conveyor;
 import frc.robot.subsystems.IndexWheel;
 
 /**
@@ -14,13 +15,15 @@ import frc.robot.subsystems.IndexWheel;
  */
 public class RunIndexWheel extends CommandBase {
     IndexWheel index;
+    Conveyor conveyor;
 
     /**
      * Creates a new RunControlWheel. 
      * @param shooter Takes a shooter subsystem for dependency injection
     */
-    public RunIndexWheel(IndexWheel indexSubsystem) {
+    public RunIndexWheel(IndexWheel indexSubsystem, Conveyor conveyorSubsystem) {
         index = indexSubsystem;
+        conveyor = conveyorSubsystem;
         addRequirements(indexSubsystem);
     }
 
@@ -30,6 +33,7 @@ public class RunIndexWheel extends CommandBase {
     @Override
     public void initialize() {
         index.runIndex();
+        conveyor.runConveyorForward();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -42,6 +46,7 @@ public class RunIndexWheel extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         index.stopIndex();
+        conveyor.stopConveyor();
     }
 
     /** 
