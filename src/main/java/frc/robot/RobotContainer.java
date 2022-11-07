@@ -76,7 +76,7 @@ public class RobotContainer {
     private final RunSkrungles runSkrungles = new RunSkrungles(skrunglesSubsystem,skrungleLifter);
     private final RunConveyorForward runConveyorForward = new RunConveyorForward(conveyorSubsystem);
     private final RunConveyorReverse runConveyorReverse = new RunConveyorReverse(conveyorSubsystem);
-    private final RunIndexWheel runIndex = new RunIndexWheel(indexSubsystem);
+    private final RunIndexWheel runIndex = new RunIndexWheel(indexSubsystem, conveyorSubsystem);
     // private final ParallelRaceGroup runIndexTimed = new ParallelRaceGroup(runIndex, new WaitCommand(1));
     private final InstantCommand displayDriverVideo = new InstantCommand(driverCamera::startCamera, driverCamera);
     private final InstantCommand displayConveyorVideo = new InstantCommand(conveyorCamera::startCamera, conveyorCamera);
