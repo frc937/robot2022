@@ -5,20 +5,22 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Flywheel extends SubsystemBase {
 
     private CANSparkMax flywheel;
-    /*private RelativeEncoder flywheelEncoder;*/
+    private RelativeEncoder flywheelEncoder;
     private SparkMaxPIDController flywheelPID;
 
     /** Creates a new Flywheel. */
     public Flywheel() {
         flywheel = new CANSparkMax(Constants.ID_SPARKMAX_FLYWHEEL, MotorType.kBrushed);
 
-        /*flywheelEncoder = flywheel.getEncoder();*/
+        flywheelEncoder = flywheel.getEncoder();
 
         flywheelPID = flywheel.getPIDController();
 
@@ -54,6 +56,7 @@ public class Flywheel extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
+        SmartDashboard.putNumber("Flywheel speed", flywheelEncoder.getVelocity());
     }
     
 }
