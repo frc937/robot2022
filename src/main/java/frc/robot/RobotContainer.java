@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.util.Color;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.ResetGyro;
 import frc.robot.commands.DriveFieldOriented;
 import frc.robot.commands.DriveRobotOriented;
 import frc.robot.commands.DriveAutonomous;
@@ -66,7 +67,6 @@ public class RobotContainer {
     private final DriveRobotOriented driveRO = new DriveRobotOriented(driveSubsystem);
     private final DriveFieldOriented driveFO = new DriveFieldOriented(driveSubsystem);
     private final DriveAutonomous driveA = new DriveAutonomous(driveSubsystem);
-    private final InstantCommand resetGyro = new InstantCommand(driveSubsystem::resetGyro, driveSubsystem);
     private final ClimbDown climbDown = new ClimbDown(climberSubsystem);
     private final ClimbUp climbUp = new ClimbUp(climberSubsystem);
     private final RunFlywheel runFlywheel = new RunFlywheel(flywheelSubsystem);
@@ -78,6 +78,7 @@ public class RobotContainer {
     private final InstantCommand displayDriverVideo = new InstantCommand(driverCamera::startCamera, driverCamera);
     private final InstantCommand displayConveyorVideo = new InstantCommand(conveyorCamera::startCamera, conveyorCamera);
     private final AimWithLimelight aimWithLimelight = new AimWithLimelight(driveSubsystem, limelight);
+    private final ResetGyro resetGyro = new ResetGyro(driveSubsystem);
     // private final SequentialCommandGroup aimAndShoot = new SequentialCommandGroup(aimWithLimelight, runIndex);
     
     public static XboxController controller = new XboxController(Constants.CONTROLLER_NUMBER);
@@ -130,9 +131,9 @@ public class RobotContainer {
         aButton.whenHeld(aimWithLimelight);
         bButton.whenHeld(runIndex); 
 
-        //backButton.whenPressed(resetGyro);
+        backButton.whenPressed(resetGyro);
 
-        //leftStick.toggleWhenPressed(driveFO);
+        leftStick.toggleWhenPressed(driveFO);
 
         // commands for ScrungleLifter
 
