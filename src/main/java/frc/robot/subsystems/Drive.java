@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.SPI;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.*;
@@ -57,6 +58,8 @@ public class Drive extends SubsystemBase {
 
         /* Initializes a mecanum drivetrain */ 
         drivetrain = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
+
+        ahrs = new AHRS(SPI.Port.kMXP);
     }
 
 
