@@ -16,7 +16,7 @@ public class ClimbUp extends CommandBase {
 
         addRequirements(climberInABox);
 
-    }kadsjf alkjdsf a
+    }kadsjf alkjdsf athe randomest thing you want to it doesn't really matter
 
     @Override
     public void initialize() {
