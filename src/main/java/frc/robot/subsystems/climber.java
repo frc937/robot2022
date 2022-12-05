@@ -5,13 +5,13 @@ import frc.robot.Constants;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-public class Climber extends SubsystemBase {
+public class climber extends SubsystemBase {
 
     /* Variables */
     private CANSparkMax winch;
     
     /* Creates a new Climber Subsystem */
-    public Climber() {
+    public climber() {
 
         /* Initializes winch motor */
         winch = new CANSparkMax(Constants.ID_SPARKMAX_WINCH, MotorType.kBrushed);

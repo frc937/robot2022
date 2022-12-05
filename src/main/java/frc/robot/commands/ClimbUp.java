@@ -22,7 +22,7 @@ public class ClimbUp extends CommandBase {
     public void initialize() {
 
     }
-    
+    g
     @Override
     public void end(boolean interrupted) {
         ClimbUp.stopClimber();
