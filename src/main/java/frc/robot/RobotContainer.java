@@ -1,42 +1,42 @@
 // Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
+// Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot;
+package frc.robot;
 
-import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.DriveFieldOriented;
-import frc.robot.commands.DriveRobotOriented;
-import frc.robot.subsystems.ExampleSubsystem;
-import frc.robot.subsystems.Drive;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.DriveFieldOriented;
+import frc.robot.commands.DriveRobotOriented;
+import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Drive;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
+ * ”declarative” paradigm, very little robot logic should actually be handled in the {@link Robot}
  * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-    // The robot's subsystems and commands are defined here...
-    private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-    private final Drive driveSubsystem = new Drive();
+    // The robot’s subsystems and commands are defined here...
+    private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+    private final Drive driveSubsystem = new Drive();
 
-    private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-    private final DriveRobotOriented driveRO = new DriveRobotOriented(driveSubsystem);
-    private final DriveFieldOriented driveFO = new DriveFieldOriented(driveSubsystem);
-    private final InstantCommand resetGyro = new InstantCommand(driveSubsystem::resetGyro, driveSubsystem);
+    private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+    private final DriveRobotOriented driveRO = new DriveRobotOriented(driveSubsystem);
+    private final DriveFieldOriented driveFO = new DriveFieldOriented(driveSubsystem);
+    private final InstantCommand resetGyro = new InstantCommand(driveSubsystem::resetGyro, driveSubsystem);
 
-    public static XboxController controller = new XboxController(Constants.CONTROLLER_NUMBER);
+    public static XboxController controller = new XboxController(Constants.CONTROLLER_NUMBER);
 
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
         // Configure the button bindings
-        configureButtonBindings();
+        configureButtonBindings();
     }
 
     /**
@@ -46,24 +46,24 @@ public class RobotContainer {
      * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
     private void configureButtonBindings() {
-        JoystickButton aButton = new JoystickButton(controller, Constants.A_NUMBER);
-        JoystickButton bButton = new JoystickButton(controller, Constants.B_NUMBER);
-        JoystickButton xButton = new JoystickButton(controller, Constants.X_NUMBER);
-        JoystickButton yButton = new JoystickButton(controller, Constants.Y_NUMBER);
-        JoystickButton leftBumper = new JoystickButton(controller, Constants.LEFT_BUMPER_NUMBER);
-        JoystickButton rightBumper = new JoystickButton(controller, Constants.RIGHT_BUMPER_NUMBER);
-        JoystickButton backButton = new JoystickButton(controller, Constants.BACK_NUMBER);
-        JoystickButton startButton = new JoystickButton(controller, Constants.START_NUMBER);
-        JoystickButton leftStick = new JoystickButton(controller, Constants.LEFT_STICK_NUMBER);
-        JoystickButton rightStick = new JoystickButton(controller, Constants.RIGHT_STICK_NUMBER);
+        JoystickButton aButton = new JoystickButton(controller, Constants.A_NUMBER);
+        JoystickButton bButton = new JoystickButton(controller, Constants.B_NUMBER);
+        JoystickButton xButton = new JoystickButton(controller, Constants.X_NUMBER);
+        JoystickButton yButton = new JoystickButton(controller, Constants.Y_NUMBER);
+        JoystickButton leftBumper = new JoystickButton(controller, Constants.LEFT_BUMPER_NUMBER);
+        JoystickButton rightBumper = new JoystickButton(controller, Constants.RIGHT_BUMPER_NUMBER);
+        JoystickButton backButton = new JoystickButton(controller, Constants.BACK_NUMBER);
+        JoystickButton startButton = new JoystickButton(controller, Constants.START_NUMBER);
+        JoystickButton leftStick = new JoystickButton(controller, Constants.LEFT_STICK_NUMBER);
+        JoystickButton rightStick = new JoystickButton(controller, Constants.RIGHT_STICK_NUMBER);
 
         // This button binding is arbitrary, should probably be changed later
-        backButton.whenPressed(resetGyro);
+        backButton.whenPressed(resetGyro);
 
         // Field oriented while stick pressed, we should make sure this is viable on the human end
-        leftStick.whileHeld(driveFO);
+        leftStick.whileHeld(driveFO);
     }
-    
+
 
     /**
      * Use this to pass the autonomous command to the main {@link Robot} class.
@@ -72,50 +72,50 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
-        return m_autoCommand;
+        return m_autoCommand;
     }
 
     public Command getDriveROCommand() {
-        return driveRO;
+        return driveRO;
     }
-    
+
     public static double getLeftXAxis() {
-        return controller.getLeftX();
+        return controller.getLeftX();
     }
 
     public static double getScaledLeftXAxis() {
-        return scaleAxis(getLeftXAxis());
+        return scaleAxis(getLeftXAxis());
        }
 
 
     public static double getLeftYAxis() {
-        return controller.getLeftX();
+        return controller.getLeftX();
     }
 
     public static double getScaledLeftYAxis() {
-       return scaleAxis(getLeftYAxis());
+       return scaleAxis(getLeftYAxis());
     }
 
 
     public static double getRightXAxis() {
-        return controller.getRightX();
+        return controller.getRightX();
     }
 
     public static double getScaledRightXAxis() {
-        return scaleAxis(getRightXAxis());
+        return scaleAxis(getRightXAxis());
     }
 
 
     public static double getRightYAxis() {
-        return controller.getRightY();
+        return controller.getRightY();
     }
 
     public static double getScaledRightYAxis() {
-        return scaleAxis(getRightYAxis());
+        return scaleAxis(getRightYAxis());
     }
 
     private static double scaleAxis(double a) {
-        return Math.signum(a) * Math.pow(a, 4);
+        return Math.signum(a) * Math.pow(a, 4);
     }
 
 }
