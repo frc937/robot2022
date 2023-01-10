@@ -66,7 +66,7 @@ public final class Constants {
     public static final int ID_SPARKMAX_CONVEYOR = 7;
 
     /* Intake speeds */
-    public static final double SKRUNGLE_SPEED = 0.1;
+    public static final double SKRUNGLE_SPEED = 0.1; // ur mom
     public static final double CONVEYOR_SPEED = 0.1;
     
     /* Controller ID */
