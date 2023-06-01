@@ -29,7 +29,6 @@ import frc.robot.subsystems.Camera;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.ColorSensor;
 import frc.robot.subsystems.Conveyor;
-import frc.robot.TwoButtonCombo;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
@@ -108,8 +107,6 @@ public class RobotContainer {
         POVButton dPadRight= new POVButton(controller, 90);        
         POVButton dPadDown = new POVButton(controller, 180);
         POVButton dPadLeft = new POVButton(controller, 270);
-        TwoButtonCombo xAndY = new TwoButtonCombo(controller, Constants.X_NUMBER, Constants.Y_NUMBER);
-        TwoButtonCombo aAndB = new TwoButtonCombo(controller, Constants.A_NUMBER, Constants.B_NUMBER);
 
         /* TODO: Change these buttons when a more convenient controller layout becomes obvious */
         /* Buttons for the climber in a box */
