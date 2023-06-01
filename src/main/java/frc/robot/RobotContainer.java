@@ -113,20 +113,20 @@ public class RobotContainer {
 
         /* TODO: Change these buttons when a more convenient controller layout becomes obvious */
         /* Buttons for the climber in a box */
-        dPadUp.whenHeld(climbUp);
-        dPadDown.whenHeld(climbDown);
+        dPadUp.whileTrue(climbUp);
+        dPadDown.whileTrue(climbDown);
 
         /* Buttons for shooter/intake */
-        leftBumper.whenHeld(runSkrungles.alongWith(runConveyorForward));
-        // aAndB.whenHeld(runIndex);
-        xButton.whenHeld(runConveyorReverse);
-        /*xButton.whenHeld(new ConditionalCommand(runConveyorForward, runConveyorReverse, colorSensor::canShoot));*/
+        leftBumper.whileTrue(runSkrungles.alongWith(runConveyorForward));
+        // aAndB.whileTrue(runIndex);
+        xButton.whileTrue(runConveyorReverse);
+        /*xButton.whileTrue(new ConditionalCommand(runConveyorForward, runConveyorReverse, colorSensor::canShoot));*/
 
         /*xButton.whenPressed(new InstantCommand(flywheelSubsystem::testFlywheel, flywheelSubsystem));
         yButton.whenPressed(new InstantCommand(flywheelSubsystem::stopFlywheel, flywheelSubsystem));*/
 
-        aButton.whenHeld(aimWithLimelight);
-        bButton.whenHeld(runIndex); 
+        aButton.whileTrue(aimWithLimelight);
+        bButton.whileTrue(runIndex); 
 
         //backButton.whenPressed(resetGyro);
 
@@ -143,7 +143,7 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         /* Autonomous runs driveA then Shooter */
-        return aimWithLimelight.withTimeout(5).andThen(runIndex.withTimeout(5));
+        return new AimWithLimelight(driveSubsystem, limelight).withTimeout(5).andThen(new RunIndexWheel(indexSubsystem).withTimeout(5));
         //return m_autocommand;
     }
 

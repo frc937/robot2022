@@ -8,7 +8,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandGroupBase;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.util.net.PortForwarder;
+import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.net.PortForwarder;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -106,8 +107,12 @@ public class Robot extends TimedRobot {
         // this line or comment it out.
         if (m_autonomousCommand != null) {
             m_autonomousCommand.cancel();
-            CommandGroupBase.clearGroupedCommand(runIndexCommand);
-            CommandGroupBase.clearGroupedCommand(limelightCommand);
+            /* This stuff is now deprecated and/or removed and therefore doesn't work anymore.
+             * I've changed the way that m_autonomousCommand is implemented in RobotContainer
+             * so it shouldn't be needed anymore.
+             */
+            /*CommandGroupBase.clearGroupedCommand(runIndexCommand);
+            CommandGroupBase.clearGroupedCommand(limelightCommand);*/
         }
         if (defaultDriveCommand != null) {
             defaultDriveCommand.schedule();

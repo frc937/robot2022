@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -67,7 +68,7 @@ public class Drive extends SubsystemBase {
     }
 
     public void moveMecanumField(double y, double x, double z) {
-        drivetrain.driveCartesian(y, x, z, ahrs.getAngle());
+        drivetrain.driveCartesian(y, x, z, Rotation2d.fromDegrees(ahrs.getAngle()));
     }
 
     public void moveSimple(double left, double right) {
