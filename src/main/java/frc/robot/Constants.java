@@ -32,7 +32,7 @@ public final class Constants {
 
     /* SPARK MAX CAN IDs for shooter */
     public static final int ID_SPARKMAX_FLYWHEEL = 7;
-    public static final int ID_SPARKMAX_CONTROL_WHEEL = 5;
+    public static final int ID_TALON_CONTROL_WHEEL = 5;
 
     /* SPARK MAX CAN IDs for climber */
     /* Currently dummy IDs since we're saving climbers for cow town */
