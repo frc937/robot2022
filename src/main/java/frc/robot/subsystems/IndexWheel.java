@@ -1,17 +1,16 @@
 package frc.robot.subsystems;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class IndexWheel extends SubsystemBase {
 
-    private CANSparkMax indexWheel;
+    private Talon indexWheel;
 
     /** Creates a new Index Wheel. */
     public IndexWheel() {
-        indexWheel = new CANSparkMax(Constants.ID_SPARKMAX_CONTROL_WHEEL, MotorType.kBrushed);
+        indexWheel = new Talon(Constants.ID_TALON_CONTROL_WHEEL);
 
         indexWheel.setInverted(true);
     }
